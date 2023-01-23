@@ -24,10 +24,6 @@ const validateLogin = [
 
 
 
-
-// backend/routes/api/session.js
-// ...
-
 // Log in
 router.post(
     '/',
@@ -77,8 +73,6 @@ router.get(
       } else return res.json({ user: null });
     }
   );
-
-
 
 
 
