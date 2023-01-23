@@ -1,30 +1,23 @@
 'use strict';
 const { Model, Validator } = require('sequelize');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcryptjs'); // Phase 3: import bcryptjs
 
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
+    // Phase 3: toSafeObject and validatePassword instance methods & getCurrentUsersById, login, and signup static methods
     toSafeObject() {
       const { id, username, email } = this; // context will be the User instance
       return { id, username, email };
     }
+
     validatePassword(password) {
       return bcrypt.compareSync(password, this.hashedPassword.toString());
     }
-    static async signup({ username, email, password, firstName, lastName }) {
-      const hashedPassword = bcrypt.hashSync(password);
-      const user = await User.create({
-        username,
-        email,
-        hashedPassword,
-        firstName,
-        lastName
-      });
-      return await User.scope('currentUser').findByPk(user.id);
-    }
+
     static getCurrentUserById(id) {
       return User.scope("currentUser").findByPk(id);
     }
+
     static async login({ credential, password }) {
       const { Op } = require('sequelize');
       const user = await User.scope('loginUser').findOne({
@@ -39,6 +32,19 @@ module.exports = (sequelize, DataTypes) => {
         return await User.scope('currentUser').findByPk(user.id);
       }
     }
+
+    static async signup({ username, email, password, firstName, lastName }) {
+      const hashedPassword = bcrypt.hashSync(password);
+      const user = await User.create({
+        username,
+        email,
+        hashedPassword,
+        firstName,
+        lastName
+      });
+      return await User.scope('currentUser').findByPk(user.id);
+    }
+
     static associate(models) {
       // define association here
     }
@@ -58,12 +64,6 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       },
-      firstName: {
-        type: DataTypes.STRING
-      },
-      lastName: {
-        type: DataTypes.STRING
-      },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -78,16 +78,26 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           len: [60, 60]
         }
+      },
+      firstName: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: false
       }
     },
     {
       sequelize,
       modelName: "User",
+      // Phase 3: defaultScope
       defaultScope: {
         attributes: {
           exclude: ["hashedPassword", "email", "createdAt", "updatedAt"]
         }
       },
+      // Phase 3: other scopes
       scopes: {
         currentUser: {
           attributes: { exclude: ["hashedPassword"] }

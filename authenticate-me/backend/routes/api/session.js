@@ -1,16 +1,16 @@
-// backend/routes/api/session.js
-const express = require('express');
+// Phase 4:
+const express = require('express')
 
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
 const { User } = require('../../db/models');
 
-const router = express.Router();
-
-
+// Phase 5:
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
+const router = express.Router();
 
+// Phase 5: Validate login info middleware
 const validateLogin = [
     check('credential')
       .exists({ checkFalsy: true })
@@ -20,11 +20,9 @@ const validateLogin = [
       .exists({ checkFalsy: true })
       .withMessage('Please provide a password.'),
     handleValidationErrors
-  ];
+];
 
-
-
-// Log in
+// Phase 4: Log in --> Phase 5: Add validateLogin
 router.post(
     '/',
     validateLogin,
@@ -47,20 +45,18 @@ router.post(
         user: user
       });
     }
-  );
+);
 
-
-// Log out
+// Phase 4: Log out
 router.delete(
     '/',
     (_req, res) => {
       res.clearCookie('token');
       return res.json({ message: 'success' });
     }
-  );
+);
 
-
-// Restore session user
+// Phase 4: Restore session user
 router.get(
     '/',
     restoreUser,
@@ -72,9 +68,6 @@ router.get(
         });
       } else return res.json({ user: null });
     }
-  );
-
-
-
+);
 
 module.exports = router;
