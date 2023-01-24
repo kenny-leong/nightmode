@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
     state: DataTypes.STRING,
     country: DataTypes.STRING,
     lat: DataTypes.FLOAT,
-    long: DataTypes.FLOAT,
+    lng: DataTypes.FLOAT,
     name: DataTypes.STRING,
     description: DataTypes.STRING,
     price: DataTypes.DECIMAL
