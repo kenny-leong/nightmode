@@ -10,7 +10,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      // One spot to many spotImages
+      SpotImage.belongsTo(models.Spot, {
+        foreignKey: 'spotId'
+      });
     }
   }
   SpotImage.init({

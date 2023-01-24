@@ -10,7 +10,21 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      // One spot to many reviews
+      Review.belongsTo(models.Spot, {
+        foreignKey: 'spotId'
+      });
+
+      // One spot to many reviews
+      Review.belongsTo(models.User, {
+        foreignKey: 'userId'
+      });
+
+      // One review to many reviewImages
+      Review.hasMany(models.ReviewImage, {
+        foreignKey: 'reviewId',
+        onDelete: 'CASCADE'
+      });
     }
   }
   Review.init({
