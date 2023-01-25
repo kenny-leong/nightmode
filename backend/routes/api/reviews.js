@@ -6,7 +6,7 @@ const router = express.Router();
 const { Spot, SpotImage, Review, ReviewImage, User, sequelize } = require('../../db/models');
 const { requireAuth } = require('../../utils/auth');
 
-// GET /api/reviews/current: Get all Reviews of the Current User
+// GET /api/reviews/current (Get all reviews of the current user)
 router.get('/current', requireAuth, async (req, res) => {
     const currUser = req.user.id;
     const reviewsArr = [];
@@ -55,7 +55,6 @@ router.get('/current', requireAuth, async (req, res) => {
 });
 
 
-// POST /api/reviews/:reviewId/images
 
 //export the router for use in ./api/index.js
 module.exports = router;
