@@ -18,12 +18,11 @@ router.get('/', async (req, res) => {
         const reviews = await Review.findAll({
             where: { spotId: spot.id },
             attributes: [
-                [sequelize.fn('count', sequelize.col('stars')), 'countRatings'],
-                [sequelize.fn('sum', sequelize.col('stars')), 'sumRatings']
+                [sequelize.fn('AVG', sequelize.col('stars')), 'avgRating']
             ]
         });
 
-        const avgRating = reviews[0].dataValues.sumRatings / reviews[0].dataValues.countRatings;
+        const avgRating = reviews[0].dataValues.avgRating;
         spot.avgRating = avgRating;
 
         const img = await SpotImage.findOne({
@@ -50,12 +49,11 @@ router.get('/current', requireAuth, async (req, res) => {
         const reviews = await Review.findAll({
             where: { spotId: spot.id },
             attributes: [
-                [sequelize.fn('count', sequelize.col('stars')), 'countRatings'],
-                [sequelize.fn('sum', sequelize.col('stars')), 'sumRatings']
+                [sequelize.fn('AVG', sequelize.col('stars')), 'avgRating']
             ]
         });
 
-        const avgRating = reviews[0].dataValues.sumRatings / reviews[0].dataValues.countRatings;
+        const avgRating = reviews[0].dataValues.avgRating;
         spot.avgRating = avgRating;
 
         const img = await SpotImage.findOne({
@@ -81,16 +79,21 @@ router.get('/:spotId', async (req, res) => {
     // convert spot to JSON
     spot = spot.toJSON();
 
+    // add numReviews to spot
+    const numReviews = await Review.count({
+        where: { spotId: spot.id }
+    });
+    spot.numReviews = numReviews;
+
     // add average rating to spot
     const reviews = await Review.findAll({
         where: { spotId: spot.id },
         attributes: [
-            [sequelize.fn('count', sequelize.col('stars')), 'countRatings'],
-            [sequelize.fn('sum', sequelize.col('stars')), 'sumRatings']
+            [sequelize.fn('AVG', sequelize.col('stars')), 'avgRating']
         ]
     });
-    const avgRating = reviews[0].dataValues.sumRatings / reviews[0].dataValues.countRatings;
-    spot.avgRating = avgRating;
+    const avgRating = reviews[0].dataValues.avgRating;
+    spot.avgStarRating = avgRating;
 
     //add SpotImages to spot
     const imgs = await SpotImage.findAll({
@@ -113,49 +116,54 @@ router.get('/:spotId', async (req, res) => {
 // POST /api/spots (Create a spot)
 router.post('/', requireAuth, async (req, res) => {
 
-
+    // helper function for error handling
     function errorHandle(valError) {
         return res.status(400).json(valError);
     }
-    const val = {};
+    const val = {
+        message: "Validation Error",
+        statusCode: 400
+    };
 
     // make sure req body parameters are valid
-    let {address, city, state, country, lat, lng, name, description, price} = req.body;
+    let { address, city, state, country, lat, lng, name, description, price } = req.body;
     if (!address) {
         val.error = "Street address is required";
-        errorHandle(val.error)
+        errorHandle(val)
     } else if (!city) {
         val.error = "City is required";
-        errorHandle(val.error)
+        errorHandle(val)
     } else if (!state) {
         val.error = "State is required";
-        errorHandle(val.error)
+        errorHandle(val)
     } else if (!country) {
         val.error = "Country is required";
-        errorHandle(val.error)
+        errorHandle(val)
     } else if (!lat || Number.isNaN(lat) || lat > 90 || lat < -90) {
         val.error = "Latitude is not valid";
-        errorHandle(val.error)
+        errorHandle(val)
     } else if (!lng || Number.isNaN(lng) || lng > 180 || lng < -180) {
         val.error = "Longitude is not valid";
-        errorHandle(val.error)
+        errorHandle(val)
     } else if (!name || name.length > 50) {
         val.error = "Name is required and must be less than 50 characters";
-        errorHandle(val.error)
+        errorHandle(val)
     } else if (!description) {
         val.error = "Description is required";
-        errorHandle(val.error)
+        errorHandle(val)
     } else if (!price) {
         val.error = "Price per day is required";
-        errorHandle(val.error)
+        errorHandle(val)
     }
 
-    const ownerId = req.user.id;
 
-    const newSpot = await Spot.create({ownerId, ...req.body});
+    const ownerId = req.user.id;  // grab current user's id
+    const newSpot = await Spot.create({ownerId, ...req.body}); // create new Spot
 
-    return res.status(201).json(newSpot);
+    return res.status(201).json(newSpot); // return new creation
 });
+
+
 
 
 
