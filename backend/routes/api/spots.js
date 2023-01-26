@@ -41,42 +41,42 @@ router.get('/', async (req, res) => {
     const where = {};
     const { minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
 
-    if (minLat && (minLat % 1 != 0 || minLat == '')) {
+    if (minLat && isNaN(minLat)) {
         return res.status(400).json({
             message: "Validation Error",
             statusCode: 400,
             errors: { minLat: "Minimum latitude is invalid" }
         });
     }
-    if (maxLat && (maxLat % 1 != 0 || maxLat == '')) {
+    if (maxLat && isNaN(maxLat)) {
         return res.status(400).json({
             message: "Validation Error",
             statusCode: 400,
             errors: { maxLat: "Maximum latitude is invalid" }
         });
     }
-    if (minLng && (minLng % 1 != 0 || minLng == '')) {
+    if (minLng && isNaN(minLng)) {
         return res.status(400).json({
             message: "Validation Error",
             statusCode: 400,
             errors: { minLng: "Minimum longitude is invalid" }
         });
     }
-    if (maxLng && (maxLng % 1 != 0 || maxLng == '')) {
+    if (maxLng && isNaN(maxLng)) {
         return res.status(400).json({
             message: "Validation Error",
             statusCode: 400,
             errors: { maxLng: "Maximum longitude is invalid" }
         });
     }
-    if (minPrice && (minPrice < 0 || minPrice == '')) {
+    if (minPrice && isNaN(minPrice)) {
         return res.status(400).json({
             message: "Validation Error",
             statusCode: 400,
             errors: { minPrice: "Minimum price must be greater than or equal to 0" }
         });
     }
-    if (maxPrice && (maxPrice < 0 || maxPrice == '')) {
+    if (maxPrice && isNaN(minPrice)) {
         return res.status(400).json({
             message: "Validation Error",
             statusCode: 400,
