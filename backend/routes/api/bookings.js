@@ -98,10 +98,11 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
         });
     }
 
-    // Can't edit a booking that's past the end date
+    // create a variable storing today's date
     let todayDate = new Date();
     todayDate = todayDate.getTime();
 
+    // past bookings can't be modified
     if (todayDate >= endDate) {
         return res.status(403).json({
             message: "Past bookings can't be modified",
@@ -111,6 +112,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
 
     // Check for Booking conflicts
 
+    // find all bookings that match the spotId of the to-be-updated booking
     const bookings = await Booking.findAll({
         where: {spotId: booking.spotId}
     });
@@ -158,6 +160,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
         }
     }
 
+    //update the booking with the reqbody once all validations are passed
     booking.update(req.body);
     booking = booking.toJSON();
 
@@ -175,7 +178,64 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     const updatedAtTime = booking.updatedAt.toISOString().slice(11, 19);
     booking.updatedAt = `${updatedAtDate} ${updatedAtTime}`;
 
-    res.status(200).json(booking);
+    return res.status(200).json(booking);
 });
+
+// DELETE /api/bookings/:bookingId (Delete a booking)
+router.delete('/:bookingId', requireAuth, async (req, res) => {
+
+    const booking = await Booking.findByPk(req.params.bookingId);
+    const currUser = req.user.id;
+
+    //check if booking exists
+    if (!booking) {
+        return res.status(404).json({
+            message: "Booking couldn't be found",
+            statusCode: 404
+        });
+    }
+
+    // Booking must belong to the current user or the Spot must belong to the current user
+    const spot = await Spot.findByPk(booking.spotId);
+
+    if (currUser != booking.userId || currUser != spot.ownerId) {
+        return res.status(403).json({
+            message: "Booking must belong to the current user or the Spot must belong to the current user",
+            statusCode: 403
+        });
+    }
+
+    //Bookings that have been started can't be deleted
+    const startDate = booking.startDate.getTime();
+
+    let todayDate = new Date();
+    todayDate = todayDate.getTime();
+
+    if (todayDate >= startDate) {
+        return res.status(403).json({
+            message: "Bookings that have been started can't be deleted",
+            statusCode: 403
+        });
+    }
+
+
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 module.exports = router;
