@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
     //Feature 5
 
     // Pagination Options
-    // A limit and offset are calculated and added in as keys to the query
+    // Set default values
     let page = req.query.page === undefined ? 1 : parseInt(req.query.page);
     let size = req.query.size === undefined ? 20 : parseInt(req.query.size);
 
@@ -37,8 +37,7 @@ router.get('/', async (req, res) => {
     const limit = size;
     const offset = size * (page - 1);
 
-    //Validate and set where conditions
-    const where = {};
+    //Validate the query parameters if they exist
     const { minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
 
     if (minLat && isNaN(minLat)) {
@@ -84,6 +83,7 @@ router.get('/', async (req, res) => {
         });
     }
 
+    // pass in limit and offset properties
     const spots = await Spot.findAll({
         limit, offset
     });
@@ -123,6 +123,7 @@ router.get('/', async (req, res) => {
 
     let filter;
 
+    // filter the array based on the validated query params
     if (minLat) filter = spotsArr.filter(obj => obj.lat > minLat);
     if (maxLat) filter = spotsArr.filter(obj => obj.lat < maxLat);
     if (minLng) filter = spotsArr.filter(obj => obj.lng > minLng);
@@ -130,6 +131,7 @@ router.get('/', async (req, res) => {
     if (minPrice) filter = spotsArr.filter(obj => obj.price > minPrice);
     if (maxPrice) filter = spotsArr.filter(obj => obj.price < maxPrice);
 
+    // add the page and size properties to the return obj
     const returnObj = { Spots: filter }
     returnObj.page = page;
     returnObj.size = size;
