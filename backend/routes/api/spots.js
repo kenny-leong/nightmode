@@ -499,7 +499,7 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
     // check user permissions
     if (currUser == spot.ownerId) {
         return res.status(400).json({
-            message: "Booking cannot be made by owner of spot",
+            message: "Forbidden",
             statusCode: 403
         });
     }
