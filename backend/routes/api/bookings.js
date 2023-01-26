@@ -35,12 +35,15 @@ router.get('/current', requireAuth, async (req, res) => {
 
         booking.Spot = spot;
 
+        // format the start and end date to yyyy-mm-dd
         const startDate = booking.startDate.toISOString().slice(0, 10);
         booking.startDate = startDate;
         const endDate = booking.endDate.toISOString().slice(0, 10);
         booking.endDate = endDate;
 
+        bookingsArr.push(booking);
     }
-
-
+    return res.json({ Bookings: bookingsArr })
 });
+
+module.exports = router;
