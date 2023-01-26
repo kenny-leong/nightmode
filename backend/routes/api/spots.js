@@ -3,7 +3,7 @@ const express = require('express')
 
 const router = express.Router();
 
-const { Spot, Review, ReviewImage, SpotImage, User, sequelize } = require('../../db/models');
+const { Spot, Review, ReviewImage, Booking, SpotImage, User, sequelize } = require('../../db/models');
 const user = require('../../db/models/user');
 const { requireAuth } = require('../../utils/auth');
 
@@ -406,6 +406,81 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
     const newReview = await Review.create({ userId: currUser, spotId: spot.id, ...req.body });
     return res.status(200).json(newReview);
 });
+
+
+// Feature 3: Bookings --> GET /api/:spotId/bookings (Get all bookings by spotId)
+router.get('/:spotId/bookings', requireAuth, async (req, res) => {
+    const currUser = req.user.id;
+    const spot = await Spot.findByPk(req.params.spotId);
+
+    //Check if spot exists
+    if (!spot) {
+        return res.status(404).json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        });
+    }
+
+    // NOT spot owner response
+    if (currUser != spot.ownerId) {
+        const bookings = await Booking.findAll({
+            where: { spotId: spot.id },
+            attributes: ["spotId", "startDate", 'endDate']
+        });
+        const bookingsArr = [];
+
+        for (let booking of bookings) {
+            const startDate = booking.startDate.toISOString().slice(0, 10);
+            booking.startDate = startDate;
+            const endDate = booking.endDate.toISOString().slice(0, 10);
+            booking.endDate = endDate;
+
+            bookingsArr.push(booking);
+        }
+
+        return res.json({ Bookings: bookingsArr });
+
+    } else {
+        const bookings = await Booking.findAll({
+            where: { spotId: spot.id }
+        });
+
+        const bookingsArr = [];
+
+        for (let booking of bookings) {
+            booking = booking.toJSON();
+
+            //Add user property to booking
+            const user = await User.findOne({
+                where: { id: booking.userId },
+                attributes: ['id', 'firstName', 'lastName']
+            });
+            booking.User = user;
+
+            //format start and end date as yyyy-mm-dd
+            const startDate = booking.startDate.toISOString().slice(0, 10);
+            booking.startDate = startDate;
+            const endDate = booking.endDate.toISOString().slice(0, 10);
+            booking.endDate = endDate;
+
+            //format createdAt and updatedAt to yyyy-mm-dd hh:mm:ss
+            const createdAtDate = booking.createdAt.toISOString().slice(0, 10);
+            const createdAtTime = booking.createdAt.toISOString().slice(11, 19);
+            booking.createdAt = `${createdAtDate} ${createdAtTime}`;
+            const updatedAtDate = booking.updatedAt.toISOString().slice(0, 10);
+            const updatedAtTime = booking.updatedAt.toISOString().slice(11, 19);
+            booking.updatedAt = `${updatedAtDate} ${updatedAtTime}`;
+
+            bookingsArr.push(booking);
+        }
+
+        return res.json({ Bookings: bookingsArr });
+    }
+
+
+
+});
+
 
 
 //export the router to use in ./api/index.js
