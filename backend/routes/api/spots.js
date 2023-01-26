@@ -8,9 +8,85 @@ const user = require('../../db/models/user');
 const { requireAuth } = require('../../utils/auth');
 
 
-// GET /api/spots (Get all spots)
+// GET /api/spots (Get all spots) (FEATURE 5: Query Filter Added)
 router.get('/', async (req, res) => {
-    const spots = await Spot.findAll();
+
+    //Feature 5
+
+    // Pagination Options
+    // A limit and offset are calculated and added in as keys to the query
+    let page = req.query.page === undefined ? 1 : parseInt(req.query.page);
+    let size = req.query.size === undefined ? 20 : parseInt(req.query.size);
+
+    // Validate page and size values
+    if (page < 1 || page > 10 || isNaN(page)) {
+        return res.status(400).json({
+            message: "Validation Error",
+            statusCode: 400,
+            errors: { page: "Page must be greater than or equal to 1" }
+        });
+    }
+    if (size < 1 || size > 20 || isNaN(size)) {
+        return res.status(400).json({
+            message: "Validation Error",
+            statusCode: 400,
+            errors: { size: "Size must be greater than or equal to 1" }
+        });
+    }
+
+    const limit = size;
+    const offset = size * (page - 1);
+
+    //Validate and set where conditions
+    const where = {};
+    const { minLat, maxLat, minLng, maxLng, minPrice, maxPrice } = req.query;
+
+    if (minLat && (minLat % 1 != 0 || minLat == '')) {
+        return res.status(400).json({
+            message: "Validation Error",
+            statusCode: 400,
+            errors: { minLat: "Minimum latitude is invalid" }
+        });
+    }
+    if (maxLat && (maxLat % 1 != 0 || maxLat == '')) {
+        return res.status(400).json({
+            message: "Validation Error",
+            statusCode: 400,
+            errors: { maxLat: "Maximum latitude is invalid" }
+        });
+    }
+    if (minLng && (minLng % 1 != 0 || minLng == '')) {
+        return res.status(400).json({
+            message: "Validation Error",
+            statusCode: 400,
+            errors: { minLng: "Minimum longitude is invalid" }
+        });
+    }
+    if (maxLng && (maxLng % 1 != 0 || maxLng == '')) {
+        return res.status(400).json({
+            message: "Validation Error",
+            statusCode: 400,
+            errors: { maxLng: "Maximum longitude is invalid" }
+        });
+    }
+    if (minPrice && (minPrice < 0 || minPrice == '')) {
+        return res.status(400).json({
+            message: "Validation Error",
+            statusCode: 400,
+            errors: { minPrice: "Minimum price must be greater than or equal to 0" }
+        });
+    }
+    if (maxPrice && (maxPrice < 0 || maxPrice == '')) {
+        return res.status(400).json({
+            message: "Validation Error",
+            statusCode: 400,
+            errors: { maxPrice: "Maximum price must be greater than or equal to 0" }
+        });
+    }
+
+    const spots = await Spot.findAll({
+        limit, offset
+    });
     const spotsArr = [];
 
     for (let spot of spots) {
