@@ -41,6 +41,14 @@ router.get('/current', requireAuth, async (req, res) => {
         const endDate = booking.endDate.toISOString().slice(0, 10);
         booking.endDate = endDate;
 
+        //format createdAt and updatedAT as yyyy-mm-dd hh:mm:ss
+        const createdAtDate = booking.createdAt.toISOString().slice(0, 10);
+        const createdAtTime = booking.createdAt.toISOString().slice(11, 19);
+        booking.createdAt = `${createdAtDate} ${createdAtTime}`;
+        const updatedAtDate = booking.updatedAt.toISOString().slice(0, 10);
+        const updatedAtTime = booking.updatedAt.toISOString().slice(11, 19);
+        booking.updatedAt = `${updatedAtDate} ${updatedAtTime}`;
+
         bookingsArr.push(booking);
     }
     return res.json({ Bookings: bookingsArr })
