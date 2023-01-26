@@ -69,14 +69,14 @@ router.get('/', async (req, res) => {
             errors: { maxLng: "Maximum longitude is invalid" }
         });
     }
-    if (minPrice && isNaN(minPrice)) {
+    if (minPrice && (minPrice < 0 || isNaN(minPrice))) {
         return res.status(400).json({
             message: "Validation Error",
             statusCode: 400,
             errors: { minPrice: "Minimum price must be greater than or equal to 0" }
         });
     }
-    if (maxPrice && isNaN(minPrice)) {
+    if (maxPrice && (maxPrice < 0 || isNaN(maxPrice))) {
         return res.status(400).json({
             message: "Validation Error",
             statusCode: 400,
