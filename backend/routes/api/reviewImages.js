@@ -22,7 +22,6 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
         });
     }
 
-
     //review must belong to current user
     const review = await Review.findByPk(reviewImage.reviewId);
 
@@ -43,10 +42,6 @@ router.delete('/:imageId', requireAuth, async (req, res) => {
     });
 
 });
-
-
-
-
 
 
 
