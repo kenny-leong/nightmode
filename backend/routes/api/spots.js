@@ -87,6 +87,7 @@ router.get('/', async (req, res) => {
     const spots = await Spot.findAll({
         limit, offset
     });
+
     const spotsArr = [];
 
     for (let spot of spots) {
@@ -119,7 +120,21 @@ router.get('/', async (req, res) => {
         //push into arr
         spotsArr.push(spot);
     }
-    return res.json({ Spots: spotsArr })
+
+    let filter;
+
+    if (minLat) filter = spotsArr.filter(obj => obj.lat > minLat);
+    if (maxLat) filter = spotsArr.filter(obj => obj.lat < maxLat);
+    if (minLng) filter = spotsArr.filter(obj => obj.lng > minLng);
+    if (maxLng) filter = spotsArr.filter(obj => obj.lng < maxLng);
+    if (minPrice) filter = spotsArr.filter(obj => obj.price > minPrice);
+    if (maxPrice) filter = spotsArr.filter(obj => obj.price < maxPrice);
+
+    const returnObj = { Spots: filter }
+    returnObj.page = page;
+    returnObj.size = size;
+
+    return res.json(returnObj)
 });
 
 // GET /api/spots/current (Get all Spots owned by current user)
