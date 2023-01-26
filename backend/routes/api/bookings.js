@@ -72,7 +72,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     //Check if booking belongs to current user
     if (currUser != booking.userId) {
         return res.status(403).json({
-            message: "Booking must belong to the current user",
+            message: "Forbidden",
             statusCode: 403
         });
     }
@@ -204,7 +204,7 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
 
     if (currUser != booking.userId && currUser != spot.ownerId) {
         return res.status(403).json({
-            message: "Booking must belong to the current user or the Spot must belong to the current user",
+            message: "Forbidden",
             statusCode: 403,
         });
     }
