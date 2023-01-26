@@ -528,7 +528,6 @@ router.post('/:spotId/bookings', requireAuth, async (req, res) => {
         const bookingStartDate = booking.startDate.toISOString().slice(0, 10);
         const bookingEndDate = booking.endDate.toISOString().slice(0, 10);
 
-        console.log(req.body.startDate, booking.startDate)
         if (req.body.startDate >= bookingStartDate && req.body.startDate <= bookingEndDate) {
             return res.status(403).json({
                 message: "Sorry, this spot is already booked for the specified dates",
