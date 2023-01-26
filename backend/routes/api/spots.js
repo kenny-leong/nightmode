@@ -3,7 +3,7 @@ const express = require('express')
 
 const router = express.Router();
 
-const { Spot, Review, SpotImage, User, sequelize } = require('../../db/models');
+const { Spot, Review, ReviewImage, SpotImage, User, sequelize } = require('../../db/models');
 const user = require('../../db/models/user');
 const { requireAuth } = require('../../utils/auth');
 
@@ -311,6 +311,101 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
 
 });
 
+
+// Feature 2: Reviews --> GET /api/spots/:spotId/reviews (Get all reviews by spotId)
+router.get('/:spotId/reviews', async (req, res) => {
+    const spot = await Spot.findByPk(req.params.spotId);
+    const reviewsArr = [];
+
+    //check if spot exists
+    if (!spot) {
+        return res.status(404).json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        });
+    }
+
+    const reviews = await Review.findAll({
+        where: { spotId: spot.id }
+    });
+
+    for (let review of reviews) {
+        review = review.toJSON();
+
+        //Add User property to each review
+        const user = await User.findOne({
+            where: { id: review.userId },
+            attributes: ['id', 'firstName', 'lastName']
+        });
+        review.User = user;
+
+        //Add ReviewImages property to each review
+        const reviewImages = await ReviewImage.findAll({
+            where: { reviewId: review.id },
+            attributes: ['id', 'url']
+        });
+        review.reviewImages = reviewImages;
+
+        reviewsArr.push(review);
+    }
+
+    return res.json({ Reviews: reviewsArr })
+});
+
+
+// Feature 2: Reviews --> POST /api/spots/:spotId/reviews
+router.post('/:spotId/reviews', requireAuth, async (req, res) => {
+    const currUser = req.user.id;
+    const spot = await Spot.findByPk(req.params.spotId);
+
+    //check if spot exists
+    if (!spot) {
+        return res.status(404).json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        });
+    }
+
+    const reviews = await Review.findAll({
+        where: { spotId: spot.id }
+    });
+
+    // check if Review from the current user already exists for the Spot
+    for (let review of reviews) {
+        if (currUser == review.userId) {
+            return res.status(403).json({
+                message: "User already has a review for this spot",
+                statusCode: 403
+            });
+        }
+    }
+
+    // build up validation error
+    const val = {
+        message: 'Validation Error',
+        statusCode: 400
+    };
+
+    // deconstruct the request body
+    const { review, stars } = req.body;
+
+    // error handling helper function
+    function errorHandle(val) {
+        return res.status(400).json(val);
+    }
+
+    if (!review) {
+        val.error = "Review text is required";
+        errorHandle(val);
+    } else if (!stars || !Number.isInteger(stars) || stars < 0 || stars > 5) {
+        val.error = "Stars must be an integer from 1 to 5";
+        errorHandle(val);
+    }
+
+    //create and return new review
+    const newReview = await Review.create({ userId: currUser, spotId: spot.id, ...req.body });
+    return res.status(200).json(newReview);
+});
 
 
 //export the router to use in ./api/index.js
