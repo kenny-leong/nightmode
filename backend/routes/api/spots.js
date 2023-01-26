@@ -430,6 +430,9 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
         const bookingsArr = [];
 
         for (let booking of bookings) {
+            booking = booking.toJSON();
+
+            //format the start and end dates
             const startDate = booking.startDate.toISOString().slice(0, 10);
             booking.startDate = startDate;
             const endDate = booking.endDate.toISOString().slice(0, 10);
@@ -439,8 +442,9 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
         }
 
         return res.json({ Bookings: bookingsArr });
-
-    } else {
+    }
+    // spot owner response
+    else {
         const bookings = await Booking.findAll({
             where: { spotId: spot.id }
         });
@@ -476,9 +480,99 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
 
         return res.json({ Bookings: bookingsArr });
     }
+});
 
 
+// Feature 3: Bookings --> POST /api/spots/:spotId/bookings (Create booking by spotId)
+router.post('/:spotId/bookings', requireAuth, async (req, res) => {
+    const currUser = req.user.id;
+    const spot = await Spot.findByPk(req.params.spotId);
 
+    // check if spot exists
+    if (!spot) {
+        return res.status(404).json({
+            message: "Spot couldn't be found",
+            statusCode: 404
+        });
+    }
+
+    // check user permissions
+    if (currUser == spot.ownerId) {
+        return res.status(400).json({
+            message: "Booking cannot be made by owner of spot",
+            statusCode: 403
+        });
+    }
+
+    // validate input
+    let {startDate, endDate} = req.body;
+
+    // start date must be before end date
+    if (startDate >= endDate) {
+        return res.status(400).json({
+            message: "Validation error",
+            statusCode: 400,
+            error: {
+                endDate: "endDate cannot be on or before startDate"
+            }
+        });
+    }
+
+    //check for booking conflicts
+    const bookings = await Booking.findAll({
+        where: {spotId: spot.id}
+    });
+
+    for (let booking of bookings) {
+
+        const bookingStartDate = booking.startDate.toISOString().slice(0, 10);
+        const bookingEndDate = booking.endDate.toISOString().slice(0, 10);
+
+        console.log(req.body.startDate, booking.startDate)
+        if (req.body.startDate >= bookingStartDate && req.body.startDate <= bookingEndDate) {
+            return res.status(403).json({
+                message: "Sorry, this spot is already booked for the specified dates",
+                statusCode: 403,
+                error: {
+                    startDate: "Start date conflicts with an existing booking"
+                }
+            });
+        }
+        if (req.body.endDate >= bookingStartDate && req.body.endDate <= bookingEndDate) {
+            return res.status(403).json({
+                message: "Sorry, this spot is already booked for the specified dates",
+                statusCode: 403,
+                error: {
+                    endDate: "End date conflicts with an existing booking"
+                }
+            });
+        }
+    }
+
+    // create new booking
+    let newBooking = await Booking.create({
+        spotId: spot.id,
+        userId: currUser,
+        ...req.body
+    });
+    newBooking = newBooking.toJSON();
+
+
+    //format new booking properties (startDate, endDate, createdAt, updatedAt)
+    startDate = newBooking.startDate.toISOString().slice(0, 10);
+    newBooking.startDate = startDate;
+    endDate = newBooking.endDate.toISOString().slice(0, 10);
+    newBooking.endDate = endDate;
+
+    const createdAtDate = newBooking.createdAt.toISOString().slice(0, 10);
+    const createdAtTime = newBooking.createdAt.toISOString().slice(11, 19);
+    newBooking.createdAt = `${createdAtDate} ${createdAtTime}`;
+    const updatedAtDate = newBooking.updatedAt.toISOString().slice(0, 10);
+    const updatedAtTime = newBooking.updatedAt.toISOString().slice(11, 19);
+    newBooking.updatedAt = `${updatedAtDate} ${updatedAtTime}`;
+
+
+    return res.status(200).json(newBooking);
 });
 
 
