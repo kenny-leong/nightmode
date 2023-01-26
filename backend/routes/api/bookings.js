@@ -198,10 +198,10 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
     // Booking must belong to the current user or the Spot must belong to the current user
     const spot = await Spot.findByPk(booking.spotId);
 
-    if (currUser != booking.userId || currUser != spot.ownerId) {
+    if (currUser != booking.userId && currUser != spot.ownerId) {
         return res.status(403).json({
             message: "Booking must belong to the current user or the Spot must belong to the current user",
-            statusCode: 403
+            statusCode: 403,
         });
     }
 
@@ -218,9 +218,14 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
         });
     }
 
+    //remove the booking
+    booking.destroy();
 
-
-
+    //send success msg response
+    return res.json({
+        message: "Successfully deleted",
+        statusCode: 200
+    });
 
 });
 
