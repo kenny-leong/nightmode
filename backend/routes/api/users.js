@@ -10,7 +10,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 
 
-// Phase 5: Validate signup info middleware
+// Phase 5: Validate signup info middleware (NOT NEEDED)
 const validateSignup = [
     check('email')
       .exists({ checkFalsy: true })
@@ -32,7 +32,7 @@ const validateSignup = [
 ];
 
 // Phase 4: POST /api/users (Sign Up a User)
-router.post('/', validateSignup, async (req, res) => {
+router.post('/', async (req, res) => {
       const { email, password, username, firstName, lastName } = req.body;
 
       // req body validations
