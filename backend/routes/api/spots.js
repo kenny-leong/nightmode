@@ -131,6 +131,13 @@ router.get('/', async (req, res) => {
     if (minPrice) filter = spotsArr.filter(obj => obj.price > minPrice);
     if (maxPrice) filter = spotsArr.filter(obj => obj.price < maxPrice);
 
+    if (filter.length == 0) {
+        return res.status(404).json({
+            message: "No matching data found.",
+            statusCode: 404
+        });
+    }
+
     // add the page and size properties to the return obj
     const returnObj = { Spots: filter }
     returnObj.page = page;
