@@ -33,6 +33,7 @@ router.get('/', async (req, res) => {
         });
     }
 
+
     const limit = size;
     const offset = size * (page - 1);
 
@@ -120,7 +121,7 @@ router.get('/', async (req, res) => {
         spotsArr.push(spot);
     }
 
-    let filter;
+    let filter = spotsArr;
 
     // filter the array based on the validated query params
     if (minLat) filter = spotsArr.filter(obj => obj.lat > minLat);
