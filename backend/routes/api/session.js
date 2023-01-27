@@ -10,7 +10,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
 
-// Phase 5: Validate login info middleware
+// Phase 5: Validate login info middleware (NOT NEEDED)
 const validateLogin = [
     check('credential')
       .exists({ checkFalsy: true })
@@ -22,24 +22,36 @@ const validateLogin = [
     handleValidationErrors
 ];
 
-// Phase 4: Log in --> Phase 5: Add validateLogin
-router.post(
-    '/',
-    validateLogin,
-    async (req, res, next) => {
+// Phase 4: POST /api/session (Log In a User)
+router.post('/', async (req, res, next) => {
       const { credential, password } = req.body;
+
+      //Body Validation error handling
+      if (!credential) {
+        return res.status(400).json({
+          message: "Validation error",
+          statusCode: 400,
+          error: "Email or username is required"
+        });
+      }
+      if(!password) {
+        return res.status(400).json({
+          message: "Validation error",
+          statusCode: 400,
+          error: "Password is required"
+        });
+      }
 
       const user = await User.login({ credential, password });
 
       if (!user) {
-        const err = new Error('Login failed');
-        err.status = 401;
-        err.title = 'Login failed';
-        err.errors = ['The provided credentials were invalid.'];
-        return next(err);
+        return res.status(401).json({
+          message: "Invalid credentials",
+          statusCode: 401
+        });
       }
 
-      await setTokenCookie(res, user);
+      setTokenCookie(res, user);
 
       return res.json({
         user: user
@@ -48,19 +60,14 @@ router.post(
 );
 
 // Phase 4: Log out
-router.delete(
-    '/',
-    (_req, res) => {
+router.delete('/',(_req, res) => {
       res.clearCookie('token');
       return res.json({ message: 'success' });
     }
 );
 
 // Phase 4: Restore session user
-router.get(
-    '/',
-    restoreUser,
-    (req, res) => {
+router.get('/', restoreUser, (req, res) => {
       const { user } = req;
       if (user) {
         return res.json({

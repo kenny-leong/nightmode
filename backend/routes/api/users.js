@@ -103,7 +103,6 @@ router.post('/', async (req, res) => {
       returnObj.username = username;
       returnObj.token = "";
 
-
       return res.json({
         user: returnObj
       });
