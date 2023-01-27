@@ -81,7 +81,6 @@ router.post('/', async (req, res) => {
 
       // username and email validations
       for (let user of allUsers) {
-        console.log(user.email)
         if (user.email == email) {
           err.error = "User with that email already exists";
           errHandle(err);
