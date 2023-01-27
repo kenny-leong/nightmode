@@ -1,15 +1,14 @@
 // Phase 4:
 const express = require('express')
 
-// Phase 4:
-const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User } = require('../../db/models');
+const router = express.Router();
 
-// Phase 5:
+const { User } = require('../../db/models');
+const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
-const router = express.Router();
+
 
 // Phase 5: Validate signup info middleware
 const validateSignup = [
@@ -32,18 +31,81 @@ const validateSignup = [
     handleValidationErrors
 ];
 
-// Phase 4: Sign up --> Phase 5: Add validateSignup
-router.post(
-    '/',
-    validateSignup,
-    async (req, res) => {
+// Phase 4: POST /api/users (Sign Up a User)
+router.post('/', validateSignup, async (req, res) => {
       const { email, password, username, firstName, lastName } = req.body;
-      const user = await User.signup({ email, username, password, firstName, lastName });
 
-      await setTokenCookie(res, user);
+      // req body validations
+      if (!firstName) {
+        return res.status(400).json({
+          message: "Validation error",
+          statusCode: 400,
+          error: "First Name is required"
+        });
+      }
+      if (!lastName) {
+        return res.status(400).json({
+          message: "Validation error",
+          statusCode: 400,
+          error: "Last Name is required"
+        });
+      }
+      if (!username) {
+        return res.status(400).json({
+          message: "Validation error",
+          statusCode: 400,
+          error: "Username is required"
+        });
+      }
+      if ((!email.includes('.com')) || (!email.includes('@')) || email.length < 4 || email.length > 30) {
+        return res.status(400).json({
+          message: "Validation error",
+          statusCode: 400,
+          error: "Invalid email"
+        });
+      }
+
+      //get all existing users
+      const allUsers = await User.findAll();
+
+      //build up error obj
+      const err = {
+        message: "User already exists",
+        statusCode: 403
+      };
+
+      //helper fxn
+      function errHandle(err) {
+        return res.status(403).json(err);
+      }
+
+      // username and email validations
+      for (let user of allUsers) {
+        if (user.email == email) {
+          err.error = "User with that email already exists";
+          errHandle(err);
+        }
+        if (user.username == username) {
+          err.error = "User with that username already exists";
+          errHandle(err);
+        }
+      }
+
+      const newUser = await User.signup({ email, username, password, firstName, lastName });
+
+      setTokenCookie(res, newUser);
+
+      const returnObj = {};
+      returnObj.id = newUser.id;
+      returnObj.firstName = firstName;
+      returnObj.lastName = lastName;
+      returnObj.email = email;
+      returnObj.username = username;
+      returnObj.token = "";
+
 
       return res.json({
-        user: user
+        user: returnObj
       });
     }
 );
