@@ -53,8 +53,16 @@ router.post('/', async (req, res, next) => {
 
       setTokenCookie(res, user);
 
+      const returnObj = {};
+
+      returnObj.id = user.id;
+      returnObj.firstName = user.firstName;
+      returnObj.lastName = user.lastName;
+      returnObj.email = user.email;
+      returnObj.username = user.username;
+
       return res.json({
-        user: user
+        user: returnObj
       });
     }
 );

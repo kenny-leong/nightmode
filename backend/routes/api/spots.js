@@ -10,6 +10,9 @@ const { requireAuth } = require('../../utils/auth');
 // GET /api/spots (Get all spots) (FEATURE 5: Query Filter Added)
 router.get('/', async (req, res) => {
 
+    // Start the benchmark
+    performance.mark('start');
+
     //Feature 5
 
     // Pagination Options
@@ -104,7 +107,7 @@ router.get('/', async (req, res) => {
         const avgRating = reviews[0].avgRating;
 
         // handle the null gracefully
-        if (avgRating != null) spot.avgRating = avgRating;
+        if (avgRating != null) spot.avgRating = avgRating.toFixed();
         else spot.avgRating = "No ratings yet."
 
 
@@ -123,14 +126,31 @@ router.get('/', async (req, res) => {
 
     let filter = spotsArr;
 
-    // filter the array based on the validated query params
-    if (minLat) filter = spotsArr.filter(obj => obj.lat > minLat);
-    if (maxLat) filter = spotsArr.filter(obj => obj.lat < maxLat);
-    if (minLng) filter = spotsArr.filter(obj => obj.lng > minLng);
-    if (maxLng) filter = spotsArr.filter(obj => obj.lng < maxLng);
-    if (minPrice) filter = spotsArr.filter(obj => obj.price > minPrice);
-    if (maxPrice) filter = spotsArr.filter(obj => obj.price < maxPrice);
+    // filter the array based on the validated query parameters
 
+    //check minLat & maxLat
+    if (minLat && maxLat) {
+        filter = spotsArr.filter(obj => obj.lat >= minLat && obj.lat <= maxLat)
+    } else {
+        if (minLat) filter = spotsArr.filter(obj => obj.lat >= minLat);
+        if (maxLat) filter = spotsArr.filter(obj => obj.lat <= maxLat);
+    }
+    //check minLng & maxLng
+    if (minLng && maxLng) {
+        filter = spotsArr.filter(obj => obj.lng >= minLng && obj.lng <= maxLng)
+    } else {
+        if (minLng) filter = spotsArr.filter(obj => obj.lng >= minLng);
+        if (maxLng) filter = spotsArr.filter(obj => obj.lng <= maxLng);
+    }
+    //check minPrice & maxPrice
+    if (minPrice && maxPrice) {
+        filter = spotsArr.filter(obj => obj.price >= minPrice && obj.price <= maxPrice);
+    } else {
+        if (minPrice) filter = spotsArr.filter(obj => obj.price >= minPrice);
+        if (maxPrice) filter = spotsArr.filter(obj => obj.price <= maxPrice);
+    }
+
+    // no matching data found
     if (filter.length == 0) {
         return res.status(404).json({
             message: "No matching data found.",
@@ -142,6 +162,15 @@ router.get('/', async (req, res) => {
     const returnObj = { Spots: filter }
     returnObj.page = page;
     returnObj.size = size;
+
+    // End the benchmark
+    performance.mark('end');
+    // Measure the time taken between the start and end markers
+    performance.measure('query time', 'start', 'end');
+
+    // Log the results
+    const measure = performance.getEntriesByName('query time')[0];
+    console.log(`Query took ${measure.duration} milliseconds`);
 
     return res.json(returnObj)
 });
@@ -165,7 +194,7 @@ router.get('/current', requireAuth, async (req, res) => {
         });
 
         const avgRating = reviews[0].dataValues.avgRating;
-        spot.avgRating = avgRating;
+        spot.avgRating = avgRating.toFixed();
 
         const img = await SpotImage.findOne({
             where: { spotId: spot.id }
@@ -207,7 +236,7 @@ router.get('/:spotId', async (req, res) => {
         ]
     });
     const avgRating = reviews[0].dataValues.avgRating;
-    spot.avgStarRating = avgRating;
+    spot.avgStarRating = avgRating.toFixed();
 
     //add SpotImages to spot
     const imgs = await SpotImage.findAll({
