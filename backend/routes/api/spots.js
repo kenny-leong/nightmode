@@ -10,11 +10,7 @@ const { requireAuth } = require('../../utils/auth');
 // GET /api/spots (Get all spots) (FEATURE 5: Query Filter Added)
 router.get('/', async (req, res) => {
 
-    // Start the benchmark
-    performance.mark('start');
-
     //Feature 5
-
     // Pagination Options
     // Set default values
     let page = req.query.page === undefined ? 1 : parseInt(req.query.page);
@@ -107,7 +103,7 @@ router.get('/', async (req, res) => {
         const avgRating = reviews[0].avgRating;
 
         // handle the null gracefully
-        if (avgRating != null) spot.avgRating = avgRating;
+        if (avgRating != null) spot.avgRating = avgRating.toFixed();
         else spot.avgRating = "No ratings yet."
 
 
@@ -163,15 +159,6 @@ router.get('/', async (req, res) => {
     returnObj.page = page;
     returnObj.size = size;
 
-    // End the benchmark
-    performance.mark('end');
-    // Measure the time taken between the start and end markers
-    performance.measure('query time', 'start', 'end');
-
-    // Log the results
-    const measure = performance.getEntriesByName('query time')[0];
-    console.log(`Query took ${measure.duration} milliseconds`);
-
     return res.json(returnObj)
 });
 
@@ -194,7 +181,7 @@ router.get('/current', requireAuth, async (req, res) => {
         });
 
         const avgRating = reviews[0].dataValues.avgRating;
-        spot.avgRating = avgRating;
+        spot.avgRating = avgRating.toFixed();
 
         const img = await SpotImage.findOne({
             where: { spotId: spot.id }
@@ -236,7 +223,7 @@ router.get('/:spotId', async (req, res) => {
         ]
     });
     const avgRating = reviews[0].dataValues.avgRating;
-    spot.avgStarRating = avgRating;
+    spot.avgStarRating = avgRating.toFixed();
 
     //add SpotImages to spot
     const imgs = await SpotImage.findAll({
