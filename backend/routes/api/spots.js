@@ -103,7 +103,7 @@ router.get('/', async (req, res) => {
         const avgRating = reviews[0].avgRating;
 
         // handle the null gracefully
-        if (avgRating != null) spot.avgRating = avgRating.toFixed();
+        if (avgRating != null) spot.avgRating = avgRating;
         else spot.avgRating = "No ratings yet."
 
 
@@ -181,7 +181,7 @@ router.get('/current', requireAuth, async (req, res) => {
         });
 
         const avgRating = reviews[0].dataValues.avgRating;
-        spot.avgRating = avgRating.toFixed();
+        spot.avgRating = avgRating;
 
         const img = await SpotImage.findOne({
             where: { spotId: spot.id }
@@ -223,7 +223,7 @@ router.get('/:spotId', async (req, res) => {
         ]
     });
     const avgRating = reviews[0].dataValues.avgRating;
-    spot.avgStarRating = avgRating.toFixed();
+    spot.avgStarRating = avgRating;
 
     //add SpotImages to spot
     const imgs = await SpotImage.findAll({
