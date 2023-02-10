@@ -78,20 +78,19 @@ router.delete('/',(_req, res) => {
 router.get('/', restoreUser, (req, res) => {
   const { user } = req;
 
-  const returnObj = {};
-
-  returnObj.id = user.id;
-  returnObj.firstName = user.firstName;
-  returnObj.lastName = user.lastName;
-  returnObj.email = user.email;
-  returnObj.username = user.username;
-
-
   if (user) {
-    return res.json({
-      user: returnObj
-    });
-  } else return res.json({ user: null });
+    const returnObj = {};
+
+    returnObj.id = user.id;
+    returnObj.firstName = user.firstName;
+    returnObj.lastName = user.lastName;
+    returnObj.email = user.email;
+    returnObj.username = user.username;
+
+    return res.json({ user: returnObj });
+  } else {
+    return res.json({ user: null });
+  }
 }
 
 );
