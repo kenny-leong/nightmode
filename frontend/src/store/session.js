@@ -39,7 +39,7 @@ export const restoreUser = () => async dispatch => {
     return response;
   };
 
-// phase 2
+// phase 2: signup a user thunk action creator
 export const signup = (user) => async (dispatch) => {
     const { username, firstName, lastName, email, password } = user;
     const response = await csrfFetch("/api/users", {
@@ -56,6 +56,15 @@ export const signup = (user) => async (dispatch) => {
     dispatch(setUser(data.user));
     return response;
   };
+
+// phase 3: logout thunk action creator
+export const logout = () => async (dispatch) => {
+    const response = await csrfFetch('/api/session', {
+        method: 'DELETE',
+    });
+    dispatch(removeUser());
+    return response;
+};
 
 const initialState = { user: null };
 
