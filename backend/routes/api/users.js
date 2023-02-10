@@ -57,7 +57,7 @@ router.post('/', async (req, res) => {
           error: "Username is required"
         });
       }
-      if ((!email.includes('.com')) || (!email.includes('@')) || email.length < 4 || email.length > 30) {
+      if ((!email.includes('@')) || email.length < 4 || email.length > 30) {
         return res.status(400).json({
           message: "Validation error",
           statusCode: 400,
@@ -95,13 +95,14 @@ router.post('/', async (req, res) => {
 
       setTokenCookie(res, newUser);
 
+
       const returnObj = {};
       returnObj.id = newUser.id;
       returnObj.firstName = firstName;
       returnObj.lastName = lastName;
       returnObj.email = email;
       returnObj.username = username;
-      returnObj.token = "";
+
 
       return res.json({
         user: returnObj
