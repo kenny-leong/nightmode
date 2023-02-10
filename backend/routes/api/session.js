@@ -76,13 +76,24 @@ router.delete('/',(_req, res) => {
 
 // Phase 4: Restore session user
 router.get('/', restoreUser, (req, res) => {
-      const { user } = req;
-      if (user) {
-        return res.json({
-          user: user.toSafeObject()
-        });
-      } else return res.json({ user: null });
-    }
+  const { user } = req;
+
+  const returnObj = {};
+
+  returnObj.id = user.id;
+  returnObj.firstName = user.firstName;
+  returnObj.lastName = user.lastName;
+  returnObj.email = user.email;
+  returnObj.username = user.username;
+
+
+  if (user) {
+    return res.json({
+      user: returnObj
+    });
+  } else return res.json({ user: null });
+}
+
 );
 
 module.exports = router;
