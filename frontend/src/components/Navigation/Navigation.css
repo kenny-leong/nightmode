@@ -32,6 +32,30 @@
   display: none;
 }
 
+.profile-dropdown {
+  position: absolute;
+  right: 30px;
+  top: 75px;
+  border: black solid 2px;
+  padding: 8px;
+  background-color: whitesmoke;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.profile-dropdown li {
+  padding: 5px;
+  color: #FF5A5F;
+  font-weight: bolder;
+}
+
+.logout-btn {
+  color: white;
+  background-color: #FF5A5F;
+  border: 2px black solid;
+  border-radius: 30px;
+}
+
 .profile-dropdown li:hover {
   cursor: pointer;
 }
@@ -46,6 +70,8 @@
     width: 100%;
     height: 50px;
     font-family: 'Montserrat';
+    border-bottom: 2px solid gray;
+    padding-bottom: 28px;
 }
 
 .profile-dropdown li {

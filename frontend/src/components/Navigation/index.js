@@ -46,7 +46,7 @@ function Navigation({ isLoaded }){
           abnb
           </NavLink>
       </li>
-      {isLoaded && (
+      {isLoaded && !sessionUser && (
         <li>
           <button className='upper-right-btn' onClick={() => setShowModals(!showModals)}>
             <i className="fas fa-bars" />
