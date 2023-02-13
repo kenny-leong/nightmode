@@ -34,7 +34,7 @@ function LoginFormModal() {
 
 
   return (
-    <div className="form-container">
+    <div className="login-form">
       <form onSubmit={handleSubmit}>
         <h1>Log In</h1>
         <ul>
@@ -60,7 +60,7 @@ function LoginFormModal() {
             required
           />
         </label>
-        <button type="submit">Log In</button>
+        <button type="submit" disabled={credential.length < 4 || password.length < 6} >Log In</button>
       </form>
     </div>
   );

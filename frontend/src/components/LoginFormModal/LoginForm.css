@@ -43,11 +43,24 @@ margin-top: 10px;
 cursor: pointer;
 }
 
+.login-form button[disabled] {
+  background-color: gray;
+  color: white;
+  cursor: not-allowed;
+}
+
+.login-form button:not([disabled]) {
+  background-color: #FF5A5F;
+  color: white;
+  cursor: pointer;
+}
+
+
 ul {
 list-style: none;
 padding: 0;
 margin: 0;
-color: red;
+color: #FF5A5F;
 font-size: 14px;
 margin-top: 10px;
 }
