@@ -10,7 +10,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 
 
-// Phase 5: Validate signup info middleware
+// Phase 5: Validate signup info middleware (NOT NEEDED)
 const validateSignup = [
     check('email')
       .exists({ checkFalsy: true })
@@ -57,7 +57,14 @@ router.post('/', async (req, res) => {
           error: "Username is required"
         });
       }
-      if ((!email.includes('@')) || email.length < 4 || email.length > 30) {
+      if (username.length < 4 || username.length > 30) {
+        return res.status(400).json({
+          message: 'Username must be between 4 - 30 characters',
+          statusCode: 400,
+          error: 'Invalid username length'
+        });
+      }
+      if ((!email.includes('@')) || email.length < 3 || email.length > 256) {
         return res.status(400).json({
           message: "Validation error",
           statusCode: 400,
@@ -91,14 +98,21 @@ router.post('/', async (req, res) => {
         }
       }
 
-      let newUser = await User.signup({ email, username, password, firstName, lastName });
+      const newUser = await User.signup({ email, username, password, firstName, lastName });
 
-      let token = setTokenCookie(res, newUser);
-      newUser = newUser.toJSON();
-      newUser.token = token;
+      setTokenCookie(res, newUser);
+
+
+      const returnObj = {};
+      returnObj.id = newUser.id;
+      returnObj.firstName = firstName;
+      returnObj.lastName = lastName;
+      returnObj.email = email;
+      returnObj.username = username;
+
 
       return res.json({
-        user: newUser
+        user: returnObj
       });
     }
 );
