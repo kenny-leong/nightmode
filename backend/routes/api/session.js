@@ -10,7 +10,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 const router = express.Router();
 
-// Phase 5: Validate login info middleware (NOT NEEDED)
+// Phase 5: Validate login info middleware
 const validateLogin = [
     check('credential')
       .exists({ checkFalsy: true })

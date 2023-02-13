@@ -2,9 +2,12 @@
 // frontend/src/store/session.js
 import { csrfFetch } from './csrf';
 
+// types
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 
+
+// ACTION CREATORS
 const setUser = (user) => {
   return {
     type: SET_USER,
@@ -28,6 +31,7 @@ export const login = (user) => async (dispatch) => {
     }),
   });
   const data = await response.json();
+  console.log(data)
   dispatch(setUser(data.user));
   return response;
 };

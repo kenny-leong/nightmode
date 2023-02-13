@@ -10,7 +10,7 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 
 
-// Phase 5: Validate signup info middleware (NOT NEEDED)
+// Phase 5: Validate signup info middleware
 const validateSignup = [
     check('email')
       .exists({ checkFalsy: true })
@@ -91,21 +91,14 @@ router.post('/', async (req, res) => {
         }
       }
 
-      const newUser = await User.signup({ email, username, password, firstName, lastName });
+      let newUser = await User.signup({ email, username, password, firstName, lastName });
 
-      setTokenCookie(res, newUser);
-
-
-      const returnObj = {};
-      returnObj.id = newUser.id;
-      returnObj.firstName = firstName;
-      returnObj.lastName = lastName;
-      returnObj.email = email;
-      returnObj.username = username;
-
+      let token = setTokenCookie(res, newUser);
+      newUser = newUser.toJSON();
+      newUser.token = token;
 
       return res.json({
-        user: returnObj
+        user: newUser
       });
     }
 );

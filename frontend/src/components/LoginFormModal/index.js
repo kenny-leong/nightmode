@@ -20,15 +20,23 @@ function LoginFormModal() {
       .catch(
         async (res) => {
           const data = await res.json();
-          if (data && data.errors) setErrors(data.errors);
+
+          if (data && data.message) {
+            let errMsg = Object.values(data.message);
+            errMsg = errMsg.join('');
+            errMsg = [errMsg];
+            setErrors(errMsg);
+          }
         }
       );
   };
 
+
+
   return (
-    <>
-      <h1>Log In</h1>
+    <div className="form-container">
       <form onSubmit={handleSubmit}>
+        <h1>Log In</h1>
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
@@ -54,7 +62,7 @@ function LoginFormModal() {
         </label>
         <button type="submit">Log In</button>
       </form>
-    </>
+    </div>
   );
 }
 
