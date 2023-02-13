@@ -24,11 +24,6 @@
   margin-top: 20px;
 }
 
-.icon-logo {
-  font-size: 2.5em;
-  margin-left: 13px;
-}
-
 .fa-bars {
   margin-right: 5px;
 }
@@ -81,7 +76,6 @@ a, button {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Montserrat', 'sans-serif';
 }
 
 .modals > * {
