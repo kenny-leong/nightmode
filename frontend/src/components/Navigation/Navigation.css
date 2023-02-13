@@ -1,8 +1,36 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:wght@500&display=swap');
+
 
 .navbar-text {
   font-family: 'Montserrat', sans-serif;
   font-weight: bolder;
+  font-size: 2.5em;
+}
+
+.upper-right-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  height: 50px;
+  width: 50px;
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 15px;
+}
+
+.icon-logo, .navbar-text {
+  margin-top: 20px;
+}
+
+.icon-logo {
+  font-size: 2.5em;
+  margin-left: 13px;
+}
+
+.fa-bars {
+  margin-right: 5px;
 }
 
 .hidden {
@@ -22,7 +50,11 @@
     margin: 0;
     width: 100%;
     height: 50px;
-    background-color: pink;
+    font-family: 'Montserrat';
+}
+
+.profile-dropdown li {
+  font-family: 'Montserrat', sans-serif;
 }
 
 li {
@@ -31,11 +63,27 @@ li {
 }
 
 a, button {
-  color: white;
+  color: #FF5A5F;
   text-decoration: none;
   padding: 10px 20px;
   font-size: 16px;
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+
+.modals {
+  position: absolute;
+  top: 80px;
+  right: 20px;
+  background-color: white;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Montserrat', 'sans-serif';
+}
+
+.modals > * {
+  margin-bottom: 10px;
 }
