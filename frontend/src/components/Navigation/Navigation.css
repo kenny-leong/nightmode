@@ -1,3 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.navbar-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bolder;
+}
+
+.hidden {
+  display: none;
+}
+
+.profile-dropdown li:hover {
+  cursor: pointer;
+}
 
 .nav-bar {
     display: flex;
@@ -24,16 +38,4 @@ a, button {
   background-color: transparent;
   border: none;
   cursor: pointer;
-}
-
-a:hover, button:hover {
-  background-color: #444;
-}
-
-.active {
-  background-color: #444;
-}
-
-.hidden {
-  display: none;
 }
