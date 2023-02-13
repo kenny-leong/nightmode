@@ -68,7 +68,7 @@ router.post('/', async (req, res) => {
         return res.status(400).json({
           message: "Validation error",
           statusCode: 400,
-          error: "Invalid email"
+          error: "The provided email is invalid"
         });
       }
 

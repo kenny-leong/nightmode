@@ -17,6 +17,7 @@ align-items: flex-start;
 margin: 10px 0;
 font-size: 16px;
 color: #333;
+font-family: sans-serif;
 }
 
 input[type="text"],
@@ -62,4 +63,15 @@ margin: 0;
 color: #FF5A5F;
 font-size: 14px;
 margin-top: 10px;
+}
+
+.login-form h1 {
+  font-family: sans-serif;
+  color:#333;
+}
+
+.login-errors li {
+  font-family: sans-serif;
+  color: red;
+  margin-bottom: 10px;
 }
