@@ -18,6 +18,9 @@
   align-items: center;
   justify-content: center;
   margin-right: 15px;
+  border: none;
+  color:#FF5A5F;
+  background-color: transparent;
 }
 
 .icon-logo, .navbar-text {
@@ -83,14 +86,26 @@ li {
   align-items: center;
 }
 
-a, button {
+.modals button {
   color: #FF5A5F;
   text-decoration: none;
-  padding: 10px 20px;
   font-size: 16px;
   background-color: transparent;
   border: none;
   cursor: pointer;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.nav-bar a {
+  color: #FF5A5F;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-btn {
+  margin-top: 10px;
+  font-family: 'Montserrat';
 }
 
 .modals {

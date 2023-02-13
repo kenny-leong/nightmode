@@ -55,6 +55,12 @@ cursor: pointer;
   cursor: pointer;
 }
 
+.login-form {
+  padding-left: 130px;
+  padding-right: 130px;
+  padding-bottom: 30px;
+  border:#333 solid 2px;
+}
 
 ul {
 list-style: none;

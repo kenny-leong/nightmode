@@ -24,12 +24,12 @@ function Navigation({ isLoaded }){
         {showModals && (
           <div className='modals'>
             <OpenModalButton
-              buttonText="Log In"
-              modalComponent={<LoginFormModal />}
-            />
-            <OpenModalButton
               buttonText="Sign Up"
               modalComponent={<SignupFormModal />}
+            />
+              <OpenModalButton
+              buttonText="Log In"
+              modalComponent={<LoginFormModal />}
             />
           </div>
         )}
@@ -40,7 +40,6 @@ function Navigation({ isLoaded }){
   return (
     <ul className='nav-bar'>
       <li>
-
         <NavLink exact to="/" className='navbar-text'>
         <i class="fa-brands fa-airbnb icon-logo"></i>
           abnb
