@@ -2,7 +2,6 @@ h2, h4 {
     display: flex;
     font-family: 'Montserrat';
     justify-content: flex-start;
-    margin-left: 25%;
 }
 
 h1 {
@@ -13,6 +12,10 @@ h1 {
 
 h4 {
     font-size: 14;
+}
+
+.section-one {
+    margin-left: 450px;
 }
 
 .form-div {
@@ -43,11 +46,11 @@ input[placeholder="City"] {
 }
 
 input[placeholder="Latitude"] {
-    width: 260px;
+    width: 270px;
 }
 
 input[placeholder="Longitude"] {
-    width: 260px;
+    width: 270px;
 }
 
 .comma-one {
@@ -59,5 +62,12 @@ input[placeholder="Longitude"] {
 .comma-two {
     font-size: 30px;
     margin-top: 40px;
-    margin-right: 5px;
+    margin-right: 35px;
+}
+
+.describe-div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width:610px;
 }

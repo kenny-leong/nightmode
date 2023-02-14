@@ -24,10 +24,10 @@ function CreateSpot() {
 
     return (
         <div className='full-div'>
-            <h1>Create a new Spot</h1>
-            <h2>Where's your place located?</h2>
-            <h4>Guests will only get your exact address once they book a reservation.</h4>
             <div className='form-div'>
+                <h1>Create a new Spot</h1>
+                <h2 className='section-one'>Where's your place located?</h2>
+                <h4 className='section-one'>Guests will only get your exact address once they book a reservation.</h4>
                 <form>
                     <div className='country'>
                         <label className="form-label">
@@ -99,6 +99,41 @@ function CreateSpot() {
                                 required
                             />
                         </label>
+                    </div>
+                    <div className='describe-div'>
+                        <h2>Describe your place to guests</h2>
+                        <h4>Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood.</h4>
+                        <textarea
+                            className='description-ta'
+                            placeholder='Please write at least 30 characters'
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                        />
+                    </div>
+                    <div className='title-div'>
+                        <h2>Create a title for your spot</h2>
+                        <h4>Catch guests' attention witha  spot title that highlights what makes your place special.</h4>
+                        <input
+                            type="text"
+                            placeholder='Name of your spot'
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className='price-div'>
+                        <h2>Set a base price for your spot</h2>
+                        <h4>Competitive pricing can help your listing stand out and rank higher in search results.</h4>
+                        <div className='price-input'>
+                            <span className='dollar-sign'>$</span>
+                            <input
+                                type='text'
+                                placeholder='Price per night (USD)'
+                                value={price}
+                                onChange={(e) => setPrice(e.target.value)}
+                                required
+                            />
+                        </div>
                     </div>
                 </form>
             </div>
