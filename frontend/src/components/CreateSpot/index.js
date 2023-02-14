@@ -16,6 +16,10 @@ function CreateSpot() {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [previewUrl, setPreviewUrl] = useState("");
+    const [image2Url, setImage2Url] = useState("");
+    const [image3Url, setImage3Url] = useState("");
+    const [image4Url, setImage4Url] = useState("");
+    const [image5Url, setImage5Url] = useState("");
 
     const sessionUser = useSelector(state => state.session.user);
 
@@ -134,6 +138,44 @@ function CreateSpot() {
                                 required
                             />
                         </div>
+                    </div>
+                    <div className='url-div'>
+                        <h2>Liven up your spot with photos</h2>
+                        <h4>Submit a link to at least one photo to publish your spot</h4>
+                        <input
+                            type="text"
+                            placeholder="Preview Image URL"
+                            value={previewUrl}
+                            onChange={(e) => setPreviewUrl(e.target.value)}
+                            required
+                        />
+                        <input
+                            type="text"
+                            placeholder="Image URL"
+                            value={image2Url}
+                            onChange={(e) => setImage2Url(e.target.value)}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Image URL"
+                            value={image3Url}
+                            onChange={(e) => setImage3Url(e.target.value)}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Image URL"
+                            value={image4Url}
+                            onChange={(e) => setImage4Url(e.target.value)}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Image URL"
+                            value={image5Url}
+                            onChange={(e) => setImage5Url(e.target.value)}
+                        />
+                    </div>
+                    <div className='submit-div'>
+                        <button type='submit' className='submit-btn'>Create Spot</button>
                     </div>
                 </form>
             </div>

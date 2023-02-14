@@ -66,7 +66,7 @@ input[placeholder="Longitude"] {
     margin-right: 35px;
 }
 
-.describe-div, .title-div, .price-div {
+.describe-div, .title-div, .price-div, .url-div {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -93,4 +93,18 @@ input[placeholder="Longitude"] {
 
 input[placeholder='Price per night (USD)'] {
     width: 595px;
+}
+
+.url-div {
+    margin-bottom: 20px;
+}
+
+.submit-div {
+    border-top: #333 4px solid;
+    width: 610px;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding-top: 30px;
+    padding-bottom: 50px;
 }
