@@ -43,6 +43,7 @@ input[placeholder="City"] {
     justify-content: space-between;
     width: 600px;
     margin-right: 20px;
+    margin-bottom: 30px;
 }
 
 input[placeholder="Latitude"] {
@@ -65,9 +66,31 @@ input[placeholder="Longitude"] {
     margin-right: 35px;
 }
 
-.describe-div {
+.describe-div, .title-div, .price-div {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     width:610px;
+    border-top: 3px #333 solid;
+    margin-bottom: 30px;
+}
+
+.description-ta {
+    width: 610px;
+    height:200px;
+}
+
+.price-input {
+    display: inline-flex;
+    align-items: center;
+}
+
+.dollar-sign {
+    font-family: 'Montserrat';
+    margin-right: 10px;
+    margin-top: 8px;
+}
+
+input[placeholder='Price per night (USD)'] {
+    width: 595px;
 }
