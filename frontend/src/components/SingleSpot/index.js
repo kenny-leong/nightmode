@@ -9,7 +9,7 @@ function SingleSpot({ spot }) {
                 <span className='loc'>{spot.city}, {spot.state}</span>
                 <span className='rating'>
                     <i className="fa-sharp fa-solid fa-star"></i>
-                    {spot.avgRating ? <span>{parseInt(spot.avgRating).toFixed(2)}</span> : <span>New</span>}
+                    {!isNaN(spot.avgRating) ? <span>{parseInt(spot.avgRating).toFixed(2)}</span> : <span>New</span>}
                 </span>
             </div>
             <div className="spot-price-div">
