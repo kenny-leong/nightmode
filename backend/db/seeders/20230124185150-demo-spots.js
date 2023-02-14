@@ -45,6 +45,42 @@ module.exports = {
         name: "Lala House",
         description: "Place where Lala lives",
         price: 555.55
+      },
+      {
+        ownerId: 1,
+        address: "456 Pizza Place",
+        city: "New York",
+        state: 'New York',
+        country: "USA",
+        lat: 40.7128358,
+        lng: 74.0061231,
+        name: "Pizza Palace",
+        description: "Place where delicious pizza is made",
+        price: 99.99
+      },
+      {
+        ownerId: 2,
+        address: "789 Sushi Road",
+        city: "Tokyo",
+        state: 'Tokyo',
+        country: "Japan",
+        lat: 35.6895358,
+        lng: 139.6917131,
+        name: "Sushi Haven",
+        description: "Place where sushi lovers gather",
+        price: 111.11
+      },
+      {
+        ownerId: 3,
+        address: "246 Steak Street",
+        city: "Paris",
+        state: 'Ile-de-France',
+        country: "France",
+        lat: 48.8566358,
+        lng: 2.3522131,
+        name: "Steak House",
+        description: "Place where steak lovers unite",
+        price: 222.22
       }
     ], {});
   },
@@ -53,7 +89,7 @@ module.exports = {
     options.tableName = 'Spots';
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
-      name: { [Op.in]: ["App Academy", "Big Apple", "Lala House"] }
+      name: { [Op.in]: ["App Academy", "Big Apple", "Lala House", 'Pizza Palace', 'Sushi Haven', 'Steak House'] }
     }, {});
   }
 };

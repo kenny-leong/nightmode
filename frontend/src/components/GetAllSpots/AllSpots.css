@@ -1,0 +1,28 @@
+.all-spots-div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+  .single-spot-div {
+    width: calc(25% - 1rem);
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 1200px) {
+.single-spot-div {
+    width: calc(33.33% - 1rem);
+}
+}
+
+@media (max-width: 768px) {
+.single-spot-div {
+    width: calc(50% - 1rem);
+}
+}
+
+@media (max-width: 576px) {
+.single-spot-div {
+    width: 100%;
+}
+}
