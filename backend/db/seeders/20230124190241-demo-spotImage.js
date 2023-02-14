@@ -12,7 +12,7 @@ module.exports = {
     return queryInterface.bulkInsert(options, [
       {
         spotId: 1,
-        url: "https://thumbs.cityrealty.com/assets/smart/736x/webp/1/16/1655f4e3904fb79cb987ab7755d2b3f4b8f37f88/1-city-point.jpg",
+        url: "https://media.timeout.com/images/103920796/image.jpg",
         preview: true
       },
       {
@@ -32,7 +32,7 @@ module.exports = {
       },
       {
         spotId: 5,
-        url: 'https://www.gannett-cdn.com/-mm-/05b227ad5b8ad4e9dcb53af4f31d7fbdb7fa901b/c=0-64-2119-1259/local/-/media/USATODAY/USATODAY/2014/08/13/1407953244000-177513283.jpg',
+        url: 'https://cf.bstatic.com/xdata/images/hotel/max1024x768/204253953.jpg?k=4ad36497a401be332589e2fb06a290f322f71d8845bd2fed4bb4129b3cf8f048&o=&hp=1',
         preview: true
       },
       {
