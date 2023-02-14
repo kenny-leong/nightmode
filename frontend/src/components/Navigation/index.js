@@ -45,6 +45,13 @@ function Navigation({ isLoaded }){
           abnb
           </NavLink>
       </li>
+      {sessionUser !== null && (
+        <li>
+          <NavLink exact to='/spots/new' className='create-spot'>
+            Create a New Spot
+          </NavLink>
+        </li>
+      )}
       {isLoaded && !sessionUser && (
         <li>
           <button className='upper-right-btn' onClick={() => setShowModals(!showModals)}>

@@ -23,6 +23,15 @@
   background-color: transparent;
 }
 
+.create-spot {
+  font-family: 'Montserrat';
+  font-size: 16px;
+  display: flex;
+  position: absolute;
+  right: 150px;
+  top: 35px;
+}
+
 .icon-logo, .navbar-text {
   margin-top: 13px;
 }

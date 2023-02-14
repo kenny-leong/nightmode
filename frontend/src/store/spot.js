@@ -9,6 +9,11 @@ const loadSpots = spots => ({
     spots
 });
 
+const loadDetails = spot => ({
+    type: 'LOAD_DETAILS',
+    spot
+});
+
 
 
 // thunk action creators
@@ -21,7 +26,19 @@ export const getAllSpots = () => async dispatch => {
     }
 }
 
-const initialState = { allSpots: null, spot: null };
+
+export const getSpotDetails = (id) => async dispatch => {
+    const res = await csrfFetch(`/api/spots/${id}`);
+
+    if (res.ok) {
+        const oneSpot = await res.json();
+        dispatch(loadDetails(oneSpot));
+    }
+}
+
+
+
+const initialState = { allSpots: null, oneSpot: null };
 
 const spotReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -35,6 +52,12 @@ const spotReducer = (state = initialState, action) => {
                 ...state,
                 allSpots: allSpots
             };
+        case 'LOAD_DETAILS':
+            const oneSpot = action.spot;
+            return {
+                ...state,
+                oneSpot: oneSpot
+            }
         default:
             return state;
     }
