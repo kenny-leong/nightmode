@@ -10,7 +10,6 @@
 .spot-img {
     flex: 1 0 auto;
     height: auto;
-    min-height: 200px;
     max-width: 500px;
     width: auto;
 }
