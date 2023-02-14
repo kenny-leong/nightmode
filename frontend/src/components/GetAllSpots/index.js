@@ -10,13 +10,14 @@ import './AllSpots.css';
 function LoggedInLanding() {
     const dispatch = useDispatch();
 
-    const allSpots = useSelector(state => state.spot.allSpots)
-    const spotArr = Object.values(allSpots);
-
     //populate store with spots
     useEffect(() => {
         dispatch(getAllSpots());
     }, [dispatch]);
+
+    const allSpots = useSelector(state => state.spot.allSpots)
+    if (!allSpots) return null;
+    const spotArr = Object.values(allSpots);
 
 
     return (
