@@ -58,8 +58,32 @@ function CreateSpot() {
             }
         }
 
+        let spotImages = [];
+
+        if (!previewUrl) {
+            const urlObj = {};
+            urlObj.url = 'https://us.123rf.com/450wm/yehorlisnyi/yehorlisnyi2104/yehorlisnyi210400016/167492439-no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image.jpg?ver=6';
+            urlObj.preview = true;
+            spotImages.push(urlObj);
+        }
+
+        if (!(previewUrl.includes(".png") || previewUrl.includes(".jpg") || previewUrl.includes(".jpeg"))) {
+            const urlError = {}
+            urlError.url = 'Image url must contain one of the following: .png, .jpg, or .jpeg';
+            setErrors(urlError);
+        } else {
+            const urlObj = {};
+            urlObj.url = previewUrl;
+            urlObj.preview = true;
+            spotImages.push(urlObj);
+        }
+
+
+
+
+
         if (newSpot) {
-            dispatch(createSpot(newSpot))
+            dispatch(createSpot(newSpot, spotImages))
                 .catch(
                     async (res) => {
                         const data = await res.json();
