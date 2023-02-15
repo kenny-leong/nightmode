@@ -30,9 +30,11 @@ function CreateSpot() {
         <div className='full-div'>
             <div className='form-div'>
                 <h1>Create a new Spot</h1>
-                <h2 className='section-one'>Where's your place located?</h2>
-                <h4 className='section-one'>Guests will only get your exact address once they book a reservation.</h4>
                 <form>
+                    <div className='section-one'>
+                        <h2>Where's your place located?</h2>
+                        <h4>Guests will only get your exact address once they book a reservation.</h4>
+                    </div>
                     <div className='country'>
                         <label className="form-label">
                             Country

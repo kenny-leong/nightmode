@@ -1,7 +1,5 @@
 h2, h4 {
-    display: flex;
     font-family: 'Montserrat';
-    justify-content: flex-start;
 }
 
 h1 {
@@ -15,7 +13,9 @@ h4 {
 }
 
 .section-one {
-    margin-left: 450px;
+    display: flex;
+    flex-direction: column;
+    width: 610px;
 }
 
 input[placeholder="Country"], input[placeholder="Address"] {
