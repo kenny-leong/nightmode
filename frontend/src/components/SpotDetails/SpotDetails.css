@@ -61,8 +61,9 @@
     width: 240px;
     background-color: #FF5A5F;
     height: 40px;
-    border-radius: 2px;
+    border-radius: 10px;
     cursor: pointer;
     font-family: 'Montserrat';
+    border: solid 2px black;
     box-shadow: 10px 5px 5px black;
 }
