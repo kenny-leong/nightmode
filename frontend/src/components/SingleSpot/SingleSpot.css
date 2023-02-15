@@ -6,10 +6,9 @@
     padding: 20px;
 }
 
-
 .spot-img {
     flex: 1 0 auto;
-    height: auto;
+    height: 200px;
     max-width: 500px;
     width: auto;
 }
