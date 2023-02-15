@@ -8,6 +8,11 @@
     margin-left: 10%;
 }
 
+body {
+    background-color: #1E1E1E;
+    color: #F5F5F5;
+}
+
 .sub-img {
     width: 48%;
     height: 205px;
@@ -66,4 +71,9 @@
     font-family: 'Montserrat';
     border: solid 2px black;
     box-shadow: 10px 5px 5px black;
+}
+
+a {
+    text-decoration: none;
+    color:#FF5A5F;
 }
