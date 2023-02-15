@@ -111,7 +111,7 @@ const spotReducer = (state = initialState, action) => {
         case 'ADD_SPOT':
             return {
                 ...state,
-                singleSpot: {
+                oneSpot: {
                     ...action.spot
                 }
             }
