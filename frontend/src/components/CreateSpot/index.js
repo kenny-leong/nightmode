@@ -22,19 +22,24 @@ function CreateSpot() {
     const [image4Url, setImage4Url] = useState("");
     const [image5Url, setImage5Url] = useState("");
     const [errors, setErrors] = useState({});
+    const [hasSubmitted, setHasSubmitted] = useState(false);
 
     const sessionUser = useSelector(state => state.session.user);
     const history = useHistory();
     const dispatch = useDispatch();
 
-    if (sessionUser === null) history.pushState('/');
 
 
+    useEffect(() => {
+        //rerender upon form submission
+    }, [hasSubmitted])
 
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        setHasSubmitted(true);
 
         const newSpot = {
             country,
@@ -53,23 +58,52 @@ function CreateSpot() {
             }
         }
 
-
         if (newSpot) {
-            const spotRedirect = dispatch(createSpot(newSpot))
+            dispatch(createSpot(newSpot))
+                .catch(
+                    async (res) => {
+                        const data = await res.json();
 
-            // redirect to new spot's details
-            history.push(`/spots/${spotRedirect.id}`);
+                        if (data && data.error) {
+                            let errMsg = Object.values(data.error);
+                            errMsg = errMsg.join('');
+                            let errType = errMsg.split(' ');
+                            errType = errType[0];
+                            errType = errType.toLowerCase();
+                            const errObj = {};
+                            errObj.errType = errMsg;
+                            setErrors(errObj)
+                            setHasSubmitted(false);
+                        }
+                    }
+                )
         }
 
-
+        setHasSubmitted(false);
     }
 
+    const errMsgs = []
+    const keys = Object.keys(errors);
+
+    for (let key of keys) {
+        errMsgs.push(errors[key]);
+    }
 
     return (
         <div className='full-div'>
+            {(errMsgs.length > 0) && (
+                <div className='error-div'>
+                    <p>Please fix the following error before submitting:</p>
+                    <ul>
+                        {errMsgs.map((err) => (
+                            <li key={err} className='error-item'>{err}</li>
+                        ))}
+                    </ul>
+                </div>
+            )}
             <div className='form-div'>
-                <h1>Create a new Spot</h1>
-                <form>
+                <form onSubmit={handleSubmit}>
+                    <h1>Create a new Spot</h1>
                     <div className='section-one'>
                         <h2>Where's your place located?</h2>
                         <h4>Guests will only get your exact address once they book a reservation.</h4>
@@ -82,7 +116,6 @@ function CreateSpot() {
                                 onChange={(e) => setCountry(e.target.value)}
                                 value={country}
                                 placeholder='Country'
-                                required
                             />
                         </label>
                     </div>
@@ -94,7 +127,6 @@ function CreateSpot() {
                                 onChange={(e) => setAddress(e.target.value)}
                                 value={address}
                                 placeholder='Address'
-                                required
                             />
                         </label>
                     </div>
@@ -106,7 +138,6 @@ function CreateSpot() {
                                 placeholder="City"
                                 value={city}
                                 onChange={(e) => setCity(e.target.value)}
-                                required
                                 className='city-input-box'
                             />
                         </label>
@@ -118,7 +149,6 @@ function CreateSpot() {
                                 placeholder="State"
                                 value={state}
                                 onChange={(e) => setState(e.target.value)}
-                                required
                             />
                         </label>
                     </div>
@@ -130,7 +160,6 @@ function CreateSpot() {
                                 placeholder="Latitude"
                                 value={lat}
                                 onChange={(e) => setLat(e.target.value)}
-                                required
                             />
                         </label>
                         <span className='comma-two'>,</span>
@@ -141,7 +170,6 @@ function CreateSpot() {
                                 placeholder="Longitude"
                                 value={lng}
                                 onChange={(e) => setLng(e.target.value)}
-                                required
                             />
                         </label>
                     </div>
@@ -163,7 +191,6 @@ function CreateSpot() {
                             placeholder='Name of your spot'
                             value={name}
                             onChange={(e) => setName(e.target.value)}
-                            required
                         />
                     </div>
                     <div className='price-div'>
@@ -176,7 +203,6 @@ function CreateSpot() {
                                 placeholder='Price per night (USD)'
                                 value={price}
                                 onChange={(e) => setPrice(e.target.value)}
-                                required
                             />
                         </div>
                     </div>
@@ -188,7 +214,6 @@ function CreateSpot() {
                             placeholder="Preview Image URL"
                             value={previewUrl}
                             onChange={(e) => setPreviewUrl(e.target.value)}
-                            required
                         />
                         <input
                             type="text"

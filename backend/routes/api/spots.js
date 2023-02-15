@@ -269,10 +269,10 @@ router.post('/', requireAuth, async (req, res) => {
     } else if (!country) {
         val.error = "Country is required";
         errorHandle(val)
-    } else if (!lat || Number.isNaN(lat) || lat > 90 || lat < -90) {
+    } else if (!lat || isNaN(lat) || lat > 90 || lat < -90) {
         val.error = "Latitude is not valid";
         errorHandle(val)
-    } else if (!lng || Number.isNaN(lng) || lng > 180 || lng < -180) {
+    } else if (!lng || isNaN(lng) || lng > 180 || lng < -180) {
         val.error = "Longitude is not valid";
         errorHandle(val)
     } else if (!name || name.length > 50) {
@@ -281,8 +281,11 @@ router.post('/', requireAuth, async (req, res) => {
     } else if (!description) {
         val.error = "Description is required";
         errorHandle(val)
-    } else if (!price) {
-        val.error = "Price per day is required";
+    } else if (price === null) {
+        val.error = "Price per night is required";
+        errorHandle(val)
+    } else if (isNaN(price)) {
+        val.error = 'Price cannot contain letters or symbols.';
         errorHandle(val)
     }
 
