@@ -1,0 +1,62 @@
+.main-img {
+    width: 50%;
+    height: 413px;
+    margin-right: 5px;
+}
+
+.name-city-div, .imgs-div, .description {
+    margin-left: 10%;
+}
+
+.sub-img {
+    width: 40%;
+    height: 205px;
+    border-right: 3px black solid;
+}
+
+.imgs-div {
+    display: flex;
+}
+
+.description, .name-city-div, .price-per-night, .review {
+    font-family: 'Montserrat';
+}
+
+.description {
+    width: 60%;
+}
+
+.middle-section {
+    display: inline-flex;
+}
+
+.price-per-night {
+    margin-right: 80px;
+}
+
+.reserve-div {
+    display: flex;
+    border: 2px black solid;
+    width: fit-content;
+    margin-left: 50px;
+    margin-top: 15px;
+    height: 140px;
+    border-radius: 20px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pricing-and-review {
+    margin-top: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-bottom: 30px;
+}
+
+.reserve-btn {
+    width: 200px;
+    background-color: #FF5A5F;
+    height: 40px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
