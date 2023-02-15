@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { createSpot } from '../../store/spot';
+import { createSpot, addSpotImgs } from '../../store/spot';
 import './CreateSpot.css';
 
 
@@ -23,18 +23,15 @@ function CreateSpot() {
     const [image5Url, setImage5Url] = useState("");
     const [errors, setErrors] = useState({});
     const [hasSubmitted, setHasSubmitted] = useState(false);
-    const [newSpotId, setNewSpotId] = useState(null);
 
     const sessionUser = useSelector(state => state.session.user);
     const history = useHistory();
     const dispatch = useDispatch();
-
-
+    let newDbSpot;
 
     useEffect(() => {
         //rerender upon form submission
     }, [hasSubmitted])
-
 
 
     const handleSubmit = async (e) => {
@@ -60,6 +57,7 @@ function CreateSpot() {
         }
 
 
+        // create the new spot before adding images to it
         if (newSpot) {
             const result = await dispatch(createSpot(newSpot))
                 .catch(
@@ -79,11 +77,11 @@ function CreateSpot() {
                         }
                     }
                 )
-            const { id } = result;
-            setNewSpotId(id);
+            newDbSpot = result;
         }
 
 
+        // add images to the newly created spot in the database
         let spotImages = [];
 
         if (!previewUrl) {
@@ -104,6 +102,41 @@ function CreateSpot() {
             }
         }
 
+        if (image2Url) {
+            const urlObj = {};
+            urlObj.url = image2Url;
+            urlObj.preview = false;
+            spotImages.push(urlObj);
+        }
+
+        if (image3Url) {
+            const urlObj = {};
+            urlObj.url = image3Url;
+            urlObj.preview = false;
+            spotImages.push(urlObj);
+        }
+
+        if (image4Url) {
+            const urlObj = {};
+            urlObj.url = image4Url;
+            urlObj.preview = false;
+            spotImages.push(urlObj);
+        }
+
+        if (image5Url) {
+            const urlObj = {};
+            urlObj.url = image5Url;
+            urlObj.preview = false;
+            spotImages.push(urlObj);
+        }
+        console.log(spotImages)
+        dispatch(addSpotImgs(newDbSpot, spotImages))
+            .catch(
+                async (res) => {
+                    const data = await res.json();
+                    console.log(data)
+                }
+            )
 
 
         setHasSubmitted(false);

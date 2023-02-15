@@ -64,28 +64,29 @@ export const createSpot = (spot) => async dispatch => {
         dispatch(addSpot(newSpot));
     }
 
-    // // Add the images to the Spot one at a time
-    // const spotImgArr = [];
-
-    // for (let img of spotImages) {
-    //     const imgRes = await csrfFetch(`/api/spots/${spot.id}/images`, {
-    //         method: 'POST',
-    //         headers: {'Content-Type': 'application/json'},
-    //         body: JSON.stringify(img)
-    //     });
-
-    //     if (imgRes.ok) {
-    //         const spotImg = await imgRes.json();
-    //         spotImgArr.push(spotImg);
-    //     }
-    // }
-
-    // dispatch(addSpotImages(spot, spotImgArr));
     return newSpot;
 }
 
+export const addSpotImgs = (spot, imgArr) => async dispatch => {
 
+    //Spot image creation
+    const spotImgArr = [];
 
+    for (let img of imgArr) {
+        const imgRes = await csrfFetch(`/api/spots/${spot.id}/images`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(img)
+        });
+
+        if (imgRes.ok) {
+            const spotImg = await imgRes.json();
+            spotImgArr.push(spotImg);
+        }
+    }
+
+    dispatch(addSpotImages(spot, spotImgArr));
+}
 
 
 
