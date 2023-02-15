@@ -18,10 +18,6 @@ h4 {
     margin-left: 450px;
 }
 
-.form-div {
-    border: white solid 3px;
-}
-
 input[placeholder="Country"], input[placeholder="Address"] {
     padding-right: 20%;
     width: 500px;
