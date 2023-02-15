@@ -88,7 +88,7 @@ const SpotDetails = () => {
                         <span className='price-per-night'>{`$${spot.price} /night`}</span>
                         <span className='review'>
                             <i className="fa-sharp fa-solid fa-star"></i>
-                            {!isNaN(spot.avgStarRating) ? <span>{parseInt(spot.avgStarRating).toFixed(2)}</span> : <span>New</span>}
+                            {!isNaN(spot.avgStarRating) ? <span>{parseInt(spot.avgStarRating).toFixed(1)}</span> : <span>New</span>}
                         </span>
                     </div>
                     <button className='reserve-btn' onClick={handleReserve}>Reserve</button>
