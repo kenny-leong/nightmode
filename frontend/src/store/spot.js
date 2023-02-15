@@ -48,7 +48,7 @@ export const getSpotDetails = (id) => async dispatch => {
     }
 }
 
-export const createSpot = (spot, spotImages) => async dispatch => {
+export const createSpot = (spot) => async dispatch => {
 
     //Spot Creation
     const spotRes = await csrfFetch(`/api/spots`, {
@@ -62,23 +62,23 @@ export const createSpot = (spot, spotImages) => async dispatch => {
         dispatch(addSpot(spot));
     }
 
-    // Add the images to the Spot one at a time
-    const spotImgArr = [];
+    // // Add the images to the Spot one at a time
+    // const spotImgArr = [];
 
-    for (let img of spotImages) {
-        const imgRes = await csrfFetch(`/api/spots/${spot.id}/images`, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(img)
-        });
+    // for (let img of spotImages) {
+    //     const imgRes = await csrfFetch(`/api/spots/${spot.id}/images`, {
+    //         method: 'POST',
+    //         headers: {'Content-Type': 'application/json'},
+    //         body: JSON.stringify(img)
+    //     });
 
-        if (imgRes.ok) {
-            const spotImg = await imgRes.json();
-            spotImgArr.push(spotImg);
-        }
-    }
+    //     if (imgRes.ok) {
+    //         const spotImg = await imgRes.json();
+    //         spotImgArr.push(spotImg);
+    //     }
+    // }
 
-    dispatch(addSpotImages(spot, spotImgArr));
+    // dispatch(addSpotImages(spot, spotImgArr));
     return spot;
 }
 
