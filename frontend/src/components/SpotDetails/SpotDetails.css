@@ -40,23 +40,26 @@
     width: fit-content;
     margin-left: 50px;
     margin-top: 15px;
-    height: 140px;
-    border-radius: 20px;
+    height: 130px;
+    border-radius: 10px;
     flex-direction: column;
     align-items: center;
+    margin-top: 18px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .pricing-and-review {
     margin-top: 25px;
     padding-left: 10px;
     padding-right: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .reserve-btn {
-    width: 200px;
+    width: 240px;
     background-color: #FF5A5F;
     height: 40px;
     border-radius: 5px;
-    margin-bottom: 20px;
+    border: 2px black solid;
 }
