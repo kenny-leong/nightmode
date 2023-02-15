@@ -57,9 +57,11 @@ export const createSpot = (spot) => async dispatch => {
         body: JSON.stringify(spot)
     });
 
+    let newSpot;
+
     if (spotRes.ok) {
-        const spot = await spotRes.json();
-        dispatch(addSpot(spot));
+        newSpot = await spotRes.json();
+        dispatch(addSpot(newSpot));
     }
 
     // // Add the images to the Spot one at a time
@@ -79,7 +81,7 @@ export const createSpot = (spot) => async dispatch => {
     // }
 
     // dispatch(addSpotImages(spot, spotImgArr));
-    return spot;
+    return newSpot;
 }
 
 
