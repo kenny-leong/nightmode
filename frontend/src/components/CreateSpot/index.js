@@ -1,6 +1,7 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { createSpot } from '../../store/spot';
 import './CreateSpot.css';
 
 
@@ -20,10 +21,48 @@ function CreateSpot() {
     const [image3Url, setImage3Url] = useState("");
     const [image4Url, setImage4Url] = useState("");
     const [image5Url, setImage5Url] = useState("");
+    const [errors, setErrors] = useState({});
 
     const sessionUser = useSelector(state => state.session.user);
+    const history = useHistory();
+    const dispatch = useDispatch();
+
+    if (sessionUser === null) history.pushState('/');
 
 
+
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const newSpot = {
+            country,
+            address,
+            city,
+            state,
+            lat,
+            lng,
+            description,
+            name,
+            price,
+            Owner: {
+                id: sessionUser.id,
+                firstName: sessionUser.firstName,
+                lastName: sessionUser.lastName
+            }
+        }
+
+
+        if (newSpot) {
+            const spotRedirect = dispatch(createSpot(newSpot))
+
+            // redirect to new spot's details
+            history.push(`/spots/${spotRedirect.id}`);
+        }
+
+
+    }
 
 
     return (
