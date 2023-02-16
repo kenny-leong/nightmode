@@ -129,10 +129,10 @@ router.put('/:reviewId', requireAuth, async (req, res) => {
     const {review: reqReview, stars: stars} = req.body;
     if (!reqReview) {
         val.error = "Review text is required";
-        errorHandle(val);
+        return errorHandle(val);
     } else if (!stars || !Number.isInteger(stars) || stars < 0 || stars > 5) {
         val.error = "Stars must be an integer from 1 to 5";
-        errorHandle(val);
+        return errorHandle(val);
     }
 
     review.update(req.body);

@@ -90,11 +90,11 @@ router.post('/', async (req, res) => {
       for (let user of allUsers) {
         if (user.email == email) {
           err.error = "User with that email already exists";
-          errHandle(err);
+          return errHandle(err);
         }
         if (user.username == username) {
           err.error = "User with that username already exists";
-          errHandle(err);
+          return errHandle(err);
         }
       }
 

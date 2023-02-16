@@ -259,34 +259,34 @@ router.post('/', requireAuth, async (req, res) => {
     let { address, city, state, country, lat, lng, name, description, price } = req.body;
     if (!address) {
         val.error = "Street address is required";
-        errorHandle(val)
+        return errorHandle(val);
     } else if (!city) {
         val.error = "City is required";
-        errorHandle(val)
+        return errorHandle(val);
     } else if (!state) {
         val.error = "State is required";
-        errorHandle(val)
+        return errorHandle(val);
     } else if (!country) {
         val.error = "Country is required";
-        errorHandle(val)
+        return errorHandle(val);
     } else if (!lat || isNaN(lat) || lat > 90 || lat < -90) {
         val.error = "Latitude is not valid";
-        errorHandle(val)
+        return errorHandle(val);
     } else if (!lng || isNaN(lng) || lng > 180 || lng < -180) {
         val.error = "Longitude is not valid";
-        errorHandle(val)
+        return errorHandle(val);
     } else if (!name || name.length > 50) {
         val.error = "Name is required and must be less than 50 characters";
-        errorHandle(val)
+        return errorHandle(val);
     } else if (!description) {
         val.error = "Description is required";
-        errorHandle(val)
+        return errorHandle(val);
     } else if (price === null) {
         val.error = "Price per night is required";
-        errorHandle(val)
+        return errorHandle(val);
     } else if (isNaN(price)) {
         val.error = 'Price cannot contain letters or symbols.';
-        errorHandle(val)
+        return errorHandle(val);
     }
 
     const ownerId = req.user.id;  // grab current user's id
@@ -367,31 +367,31 @@ router.put('/:spotId', requireAuth, async (req, res) => {
 
     if (!address) {
         val.error = "Street address is required";
-        errorHandle(val);
+        return errorHandle(val);
     } else if (!city) {
         val.error = "City is required";
-        errorHandle(val);
+        return errorHandle(val);
     } else if (!state) {
         val.error = "State is required";
-        errorHandle(val);
+        return errorHandle(val);
     } else if (!country) {
         val.error = "Country is required";
-        errorHandle(val);
+        return errorHandle(val);
     } else if (!lat || Number.isNaN(lat) || lat > 90 || lat < -90) {
         val.error = "Latitude is not valid";
-        errorHandle(val);
+        return errorHandle(val);
     } else if (!lng || Number.isNaN(lng) || lng > 180 || lng < -180) {
         val.error = "Longitude is not valid";
-        errorHandle(val);
+        return errorHandle(val);
     } else if (!name || name.length > 50) {
         val.error = "Name is required and must be less than 50 characters";
-        errorHandle(val);
+        return errorHandle(val);
     } else if (!description) {
         val.error = "Description is required";
-        errorHandle(val);
+        return errorHandle(val);
     } else if (!price) {
         val.error = "Price per day is required";
-        errorHandle(val);
+        return errorHandle(val);
     }
 
     spot.update(req.body);
@@ -515,10 +515,10 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
 
     if (!review) {
         val.error = "Review text is required";
-        errorHandle(val);
+        return errorHandle(val);
     } else if (!stars || !Number.isInteger(stars) || stars < 0 || stars > 5) {
         val.error = "Stars must be an integer from 1 to 5";
-        errorHandle(val);
+        return errorHandle(val);
     }
 
     //create and return new review
