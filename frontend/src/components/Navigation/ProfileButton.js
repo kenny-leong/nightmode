@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
+import { Link } from "react-router-dom";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -32,6 +33,8 @@ function ProfileButton({ user }) {
     dispatch(sessionActions.logout());
   };
 
+  const closeMenu = () => setShowMenu(false);
+
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
@@ -43,6 +46,9 @@ function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         <li>Hello, {user.firstName}</li>
         <li>{user.email}</li>
+        <li>
+          <Link exact to='/spots/current' className="manage-spots" onClick={closeMenu}>Manage Spots</Link>
+        </li>
         <li>
           <button className="logout-btn" onClick={logout}>Log Out</button>
         </li>

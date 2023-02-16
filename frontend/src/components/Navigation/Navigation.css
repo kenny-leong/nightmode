@@ -59,6 +59,8 @@
   padding: 5px;
   color: #FF5A5F;
   font-weight: bolder;
+  padding-bottom: 10px;
+  margin-left: 10px;
 }
 
 .logout-btn {
@@ -67,10 +69,11 @@
   border: 2px black solid;
   border-radius: 30px;
   padding: 10px;
-}
-
-.profile-dropdown li:hover {
+  padding-right: 25px;
+  padding-left: 25px;
   cursor: pointer;
+  display: flex;
+  font-family: 'Montserrat';
 }
 
 .nav-bar {
@@ -131,4 +134,11 @@ li {
 
 .modals > * {
   margin-bottom: 10px;
+}
+
+.manage-spots {
+  border-top: #FF5A5F 2px solid;
+  border-bottom: #FF5A5F 2px solid;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
