@@ -19,9 +19,8 @@ const addSpot = spot => ({
     spot
 });
 
-const deleteSpot = spotId => ({
-    type: 'DELETE_SPOT',
-    spotId
+const deleteSpot = () => ({
+    type: 'DELETE_SPOT'
 });
 
 const addSpotImages = (spot, spotImages) => ({
