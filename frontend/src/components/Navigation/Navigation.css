@@ -21,6 +21,7 @@
   border: none;
   color:#FF5A5F;
   background-color: transparent;
+  cursor: pointer;
 }
 
 .create-spot {
@@ -50,7 +51,7 @@
   top: 75px;
   border: black solid 2px;
   padding: 8px;
-  background-color: whitesmoke;
+  background-color: #1E1E1E;
   padding-left: 40px;
   padding-right: 40px;
 }
@@ -125,7 +126,7 @@ li {
   position: absolute;
   top: 80px;
   right: 20px;
-  background-color: white;
+  background-color: #1E1E1E;
   border: 2px solid black;
   display: flex;
   flex-direction: column;

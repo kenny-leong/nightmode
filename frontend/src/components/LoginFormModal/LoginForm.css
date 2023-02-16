@@ -5,31 +5,32 @@ form {
   padding: 20px;
   }
 
-h1 {
+.login-text {
   display: flex;
   justify-content: center;
+  color: whitesmoke;
+  font-size: 40px;
 }
 
-label {
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-margin: 10px 0;
-font-size: 16px;
-color: #333;
-font-family: sans-serif;
+.email-text, .pw-text {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Montserrat';
 }
 
 input[type="text"],
 input[type="password"] {
-width: 100%;
-padding: 10px;
-font-size: 16px;
-border: 1px solid #ccc;
-border-radius: 5px;
-margin-top: 10px;
-background-color: #f5f5f5;
-color: black;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 10px;
+  background-color: #f5f5f5;
+  color: #333;
+  font-family: 'Montserrat';
 }
 
 .login-form button[disabled] {
@@ -43,10 +44,13 @@ color: black;
   color: white;
   cursor: pointer;
   padding: 15px;
+  padding-left: 40px;
+  padding-right: 40px;
   font-size: 16px;
   margin-top: 10px;
   border: none;
   border-radius: 10px;
+  font-family: 'Montserrat';
 }
 
 .login-form {
@@ -54,24 +58,18 @@ color: black;
   padding-right: 130px;
   padding-bottom: 30px;
   border:#333 solid 2px;
+  background-color: #1E1E1E;;
 }
 
-ul {
-list-style: none;
-padding: 0;
-margin: 0;
-color: #FF5A5F;
-font-size: 14px;
-margin-top: 10px;
-}
-
-.login-form h1 {
-  font-family: sans-serif;
-  color:#333;
+.login-errors ul {
+  list-style: none;
+  color: #FF5A5F;
+  font-size: 14px;
+  margin-top: 10px;
 }
 
 .login-errors li {
   font-family: sans-serif;
-  color: red;
+  color: #FF5A5F;
   margin-bottom: 10px;
 }
