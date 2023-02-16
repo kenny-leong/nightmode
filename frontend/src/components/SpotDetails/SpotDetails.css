@@ -16,7 +16,7 @@ body {
 .sub-img {
     width: 48%;
     height: 205px;
-    border-right: 3px white solid;
+    border-right: 4px #1E1E1E solid;
 }
 
 .imgs-div {

@@ -22,8 +22,10 @@ const SpotDetails = () => {
     const spotImgArr = spot.SpotImages;
     let mainUrlImg;
 
+    const noPhoto = 'https://us.123rf.com/450wm/yehorlisnyi/yehorlisnyi2104/yehorlisnyi210400016/167492439-no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image.jpg?ver=6'
+
     if (spot.SpotImages[0]) mainUrlImg = spot.SpotImages[0].url;
-    else mainUrlImg = 'https://us.123rf.com/450wm/yehorlisnyi/yehorlisnyi2104/yehorlisnyi210400016/167492439-no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image.jpg?ver=6'
+    else mainUrlImg = noPhoto;
 
     const smallImgArr = spotImgArr.slice(1, 5); //grab the first 4 images after the main img
     const smallUrlArr = []; //grab existing data urls
@@ -37,7 +39,7 @@ const SpotDetails = () => {
     const dupesNeeded = 4 - smallUrlArr.length;
 
     for (let i=0; i<dupesNeeded; i++) {
-        smallUrlArr.push(mainUrlImg);
+        smallUrlArr.push(noPhoto);
     }
 
     const inlineDivOne = (
@@ -80,7 +82,7 @@ const SpotDetails = () => {
                 <div className='description'>
                     <h2>{`Hosted by ${spot.Owner.firstName} ${spot.Owner.lastName}`}</h2>
                     <p>{spot.description}</p>
-                    <p>{sampleDescriptionTwo}</p>
+                    <p>{sampleDescription}</p>
                 </div>
                 <div className='reserve-div'>
                     <div className='pricing-and-review'>
