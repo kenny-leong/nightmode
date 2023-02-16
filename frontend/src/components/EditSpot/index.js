@@ -62,11 +62,8 @@ function EditSpot() {
             SpotImages: spotDetails.SpotImages
         }
 
-        console.log(newSpot)
-
 
         // create the new spot before adding images to it
-
         const result = await dispatch(editSpotDetails(newSpot))
             .catch(
                 async (res) => {
@@ -89,53 +86,42 @@ function EditSpot() {
         if (newDbSpot == undefined) return;
 
 
-        // add images to the newly created spot in the database
-        let spotImages = [];
+        // update the spotImages if needed
+        let spotImages = [spotDetails.spotImages];
 
-        if (!previewUrl) {
+        if (previewUrl) {
             const urlObj = {};
-            urlObj.url = 'https://us.123rf.com/450wm/yehorlisnyi/yehorlisnyi2104/yehorlisnyi210400016/167492439-no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image.jpg?ver=6';
+            urlObj.url = previewUrl;
             urlObj.preview = "true";
-            spotImages.push(urlObj);
-        } else {
-            if (!(previewUrl.includes(".png") || previewUrl.includes(".jpg") || previewUrl.includes(".jpeg"))) {
-                const urlError = {}
-                urlError.url = 'Image url must contain one of the following: .png, .jpg, or .jpeg';
-                setErrors(urlError);
-            } else {
-                const urlObj = {};
-                urlObj.url = previewUrl;
-                urlObj.preview = "true;"
-                spotImages.push(urlObj);
-            }
+            spotImages.splice(0, 1, urlObj)
         }
 
         if (image2Url) {
             const urlObj = {};
             urlObj.url = image2Url;
             urlObj.preview = "false";
-            spotImages.push(urlObj);
+            spotImages.splice(1, 1, urlObj)
         }
 
         if (image3Url) {
             const urlObj = {};
             urlObj.url = image3Url;
             urlObj.preview = "false";
-            spotImages.push(urlObj);
+            spotImages.splice(2, 1, urlObj)
         }
 
         if (image4Url) {
             const urlObj = {};
             urlObj.url = image4Url;
             urlObj.preview = "false";
-            spotImages.push(urlObj);
+            spotImages.splice(3, 1, urlObj)
         }
 
         if (image5Url) {
             const urlObj = {};
             urlObj.url = image5Url;
             urlObj.preview = "false";
-            spotImages.push(urlObj);
+            spotImages.splice(4, 1, urlObj)
         }
 
         await dispatch(addSpotImgs(newDbSpot, spotImages))
