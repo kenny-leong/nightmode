@@ -118,7 +118,6 @@ export const deleteUserSpot = (spot) => async dispatch => {
     });
 
     if (res.ok) {
-        const deleteRes = await res.json();
         dispatch(deleteSpot(spot.id))
     }
 }

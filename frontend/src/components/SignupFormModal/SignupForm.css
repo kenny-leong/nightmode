@@ -1,20 +1,22 @@
 
-form {
+.signup-form form {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 20px;
   }
 
-label {
+.signup-label {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 10px 0;
-  color: #333;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: whitesmoke;
+  font-family: 'Montserrat';
 }
 
-input[type="text"], input[type="password"] {
+.signup-form input[type="text"], .signup-form input[type="password"] {
   width: 100%;
   padding: 10px;
   font-size: 16px;
@@ -23,29 +25,23 @@ input[type="text"], input[type="password"] {
   margin-top: 10px;
 }
 
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  color: red;
-  font-size: 14px;
-}
-
 .signup-form {
-  padding-left: 130px;
-  padding-right: 130px;
+  padding-left: 80px;
+  padding-right: 80px;
   padding-bottom: 30px;
-  padding-top: 20px;
   border: #333 2px solid;
+  background-color: #1E1E1E;
 }
 
 .signup-form h1 {
-  font-family: sans-serif;
-  color: #333;
+  font-family: 'Montserrat';
+  color: whitesmoke;
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
 }
 
-button[type="submit"] {
+.signup-form button[type="submit"] {
   background-color: #999;
   color: #fff;
   padding: 10px 20px;
@@ -56,19 +52,26 @@ button[type="submit"] {
   margin-top: 15px;
 }
 
-button[type="submit"]:disabled {
+.signup-form button[type="submit"]:disabled {
   background-color: #ccc;
   color: #fff;
   cursor: not-allowed;
 }
 
-button[type="submit"]:enabled {
+.signup-form button[type="submit"]:enabled {
   background-color: #FF5A5F;
   color: #fff;
 }
 
 .signup-form .errors {
-  font-family: sans-serif;
-  font-size: 17px;
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup-form .errors li {
+  font-family: 'Montserrat';
+  color: #ff8b8b;
+  margin-right: 35px;
 }
