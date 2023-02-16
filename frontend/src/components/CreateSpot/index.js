@@ -154,7 +154,7 @@ function CreateSpot() {
     }
 
     return (
-        <div className='full-div'>
+        <div className='newspot-full-div'>
             {(errMsgs.length > 0) && (
                 <div className='error-div'>
                     <p>Please fix the following error before submitting:</p>
@@ -165,38 +165,34 @@ function CreateSpot() {
                     </ul>
                 </div>
             )}
-            <div className='form-div'>
+            <div className='newspot-form-div'>
                 <form onSubmit={handleSubmit}>
-                    <h1>Create a new Spot</h1>
+                    <h1 className='create-spot-header'>Create a new Spot</h1>
                     <div className='section-one'>
                         <h2>Where's your place located?</h2>
                         <h4>Guests will only get your exact address once they book a reservation.</h4>
                     </div>
-                    <div className='country'>
-                        <label className="form-label">
-                            Country
-                            <input
-                                type='text'
-                                onChange={(e) => setCountry(e.target.value)}
-                                value={country}
-                                placeholder='Country'
-                            />
-                        </label>
-                    </div>
-                    <div className='address'>
-                        <label className="form-label">
-                            Street Address
-                            <input
-                                type='text'
-                                onChange={(e) => setAddress(e.target.value)}
-                                value={address}
-                                placeholder='Address'
-                            />
-                        </label>
-                    </div>
+                    <label className="form-label country">
+                        <p>Country</p>
+                        <input
+                            type='text'
+                            onChange={(e) => setCountry(e.target.value)}
+                            value={country}
+                            placeholder='Country'
+                        />
+                    </label>
+                    <label className="form-label address">
+                        <p>Street Address</p>
+                        <input
+                            type='text'
+                            onChange={(e) => setAddress(e.target.value)}
+                            value={address}
+                            placeholder='Address'
+                        />
+                    </label>
                     <div className='city-state-div'>
                         <label className='form-label city'>
-                            City
+                            <p>City</p>
                             <input
                                 type="text"
                                 placeholder="City"
@@ -207,7 +203,7 @@ function CreateSpot() {
                         </label>
                         <span className='comma-one'>,</span>
                         <label className='form-label state'>
-                            State
+                            <p>State</p>
                             <input
                                 type="text"
                                 placeholder="State"
@@ -218,7 +214,7 @@ function CreateSpot() {
                     </div>
                     <div className='lat-long-div'>
                         <label className='form-label lat'>
-                            Latitude
+                            <p>Latitude</p>
                             <input
                                 type="text"
                                 placeholder="Latitude"
@@ -228,7 +224,7 @@ function CreateSpot() {
                         </label>
                         <span className='comma-two'>,</span>
                         <label className='form-label lng'>
-                            Longitude
+                            <p>Longitude</p>
                             <input
                                 type="text"
                                 placeholder="Longitude"
@@ -242,7 +238,7 @@ function CreateSpot() {
                         <h4>Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood.</h4>
                         <textarea
                             className='description-ta'
-                            placeholder='Please write at least 30 characters'
+                            placeholder='Please write at least 30 characters . . . .'
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
                         />

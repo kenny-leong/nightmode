@@ -33,8 +33,9 @@
   top: 35px;
 }
 
-.icon-logo, .navbar-text {
+.navbar-text {
   margin-top: 13px;
+  margin-left: 18px;
 }
 
 .fa-bars {
@@ -95,7 +96,7 @@
   font-family: 'Montserrat', sans-serif;
 }
 
-li {
+.nav-bar li {
   display: flex;
   align-items: center;
 }

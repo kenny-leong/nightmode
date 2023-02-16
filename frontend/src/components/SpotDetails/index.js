@@ -12,7 +12,7 @@ const SpotDetails = () => {
 
     useEffect(() => {
         dispatch(getSpotDetails(spotId));
-    }, [spotId]);
+    }, [dispatch, spotId]);
 
 
     const spot = useSelector(state => state.spot.oneSpot);

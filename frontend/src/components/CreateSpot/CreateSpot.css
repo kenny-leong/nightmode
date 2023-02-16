@@ -1,69 +1,120 @@
-.form-div h2, .form-div h4 {
+.newspot-full-div h2, .newspot-full-div h4 {
     font-family: 'Montserrat';
 }
 
-.form-div h1 {
-    font-size: 30px;
+.newspot-full-div h1 {
+    font-size: 40px;
     font-family: 'Montserrat';
     margin-bottom: 20px;
 }
 
-.form-div h4 {
+.create-spot-header {
+    display: flex;
+    justify-content: center;
+}
+
+.newspot-full-div h4 {
     font-size: 14;
 }
 
-.section-one {
+.newspot-full-div {
     display: flex;
     flex-direction: column;
-    width: 610px;
+    align-items: center;
+    border: white 3px solid;
 }
 
-input[placeholder="Country"], input[placeholder="Address"] {
-    padding-right: 20%;
-    width: 500px;
+.newspot-form-div form {
+    border: purple 3px solid;
+}
+
+.section-one {
+    margin-top: 40px;
+}
+
+.newspot-form-div input[placeholder="Country"],
+.newspot-form-div input[placeholder="Address"] {
+    width: 595px;
+    background-color: #eeeeee;
+    padding: 9px;
+    font-family: 'Montserrat';
+}
+
+.newspot-form-div input[placeholder="City"] {
+    width: 360px;
+    background-color: #eeeeee;
+    padding: 9px;
+    font-family: 'Montserrat';
+}
+
+.newspot-form-div input[placeholder="State"] {
+    padding: 8px;
+    font-family: 'Montserrat';
+    width: 190px;
     background-color: #eeeeee;
 }
+
+
+.newspot-form-div input[placeholder="Longitude"],
+.newspot-form-div input[placeholder="Latitude"] {
+    width: 275px;
+    background-color: #eeeeee;
+    padding: 8px;
+    font-family: 'Montserrat';
+}
+
+input[placeholder='Price per night (USD)'] {
+    width: 573px;
+    padding: 10px;
+    font-family: 'Montserrat';
+}
+
+input[placeholder='Name of your spot'] {
+    width: 592px;
+    padding: 10px;
+    font-family: 'Montserrat';
+}
+
+input[placeholder='Image URL'],
+input[placeholder='Preview Image URL'] {
+    width: 592px;
+    padding: 10px;
+    font-family: 'Montserrat';
+}
+
+.describe-div textarea{
+    font-family: 'Montserrat';
+    font-size: 18px;
+}
+
 
 .city-state-div {
     display: flex;
     justify-content: space-between;
     width: 600px;
-    margin-right: 15px;
-}
-
-input[placeholder="City"] {
-    width: 360px;
-    background-color: #eeeeee;
 }
 
 .lat-long-div {
     display: flex;
     justify-content: space-between;
     width: 600px;
-    margin-right: 20px;
+
     margin-bottom: 30px;
-}
-
-input[placeholder="Latitude"] {
-    width: 270px;
-    background-color: #eeeeee;
-}
-
-input[placeholder="Longitude"] {
-    width: 270px;
-    background-color: #eeeeee;
 }
 
 .comma-one {
     font-size: 30px;
-    margin-top: 40px;
-    margin-right: 50px;
+    margin-top: 60px;
+    margin-right: 10px;
+    margin-left: 10px;
+
 }
 
 .comma-two {
     font-size: 30px;
-    margin-top: 40px;
-    margin-right: 35px;
+    margin-top: 60px;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 .describe-div, .title-div, .price-div, .url-div {
@@ -91,9 +142,7 @@ input[placeholder="Longitude"] {
     margin-top: 8px;
 }
 
-input[placeholder='Price per night (USD)'] {
-    width: 595px;
-}
+
 
 .url-div {
     margin-bottom: 20px;
@@ -132,10 +181,5 @@ input[placeholder='Price per night (USD)'] {
 .form-label {
     color: whitesmoke;
     font-family: 'Montserrat';
-    display: flex;
-    align-items: flex-start;
-}
-
-.country, .address {
-    margin-right: 100px;
+    display: block;
 }
