@@ -56,10 +56,6 @@ const SpotDetails = () => {
         </div>
     );
 
-
-    const sampleDescription = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Suspendisse sed nisi lacus sed viverra tellus in hac. Mi bibendum neque egestas congue quisque. Venenatis cras sed felis eget. Faucibus et molestie ac feugiat sed lectus vestibulum mattis ullamcorper. Nec ullamcorper sit amet risus nullam eget. Magna fermentum iaculis eu non diam phasellus vestibulum lorem. Eu lobortis elementum nibh tellus molestie.'
-    const sampleDescriptionTwo = 'Ultrices in iaculis nunc sed augue. Consequat interdum varius sit amet mattis vulputate. Luctus accumsan tortor posuere ac ut consequat semper. Ornare aenean euismod elementum nisi quis eleifend.'
-
     const handleReserve = (e) => {
         e.preventDefault();
         window.alert('Feature Coming Soon...');
@@ -82,7 +78,6 @@ const SpotDetails = () => {
                 <div className='description'>
                     <h2>{`Hosted by ${spot.Owner.firstName} ${spot.Owner.lastName}`}</h2>
                     <p>{spot.description}</p>
-                    <p>{sampleDescription}</p>
                 </div>
                 <div className='reserve-div'>
                     <div className='pricing-and-review'>

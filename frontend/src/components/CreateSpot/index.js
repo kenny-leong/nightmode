@@ -77,7 +77,7 @@ function CreateSpot() {
                 }
             )
         newDbSpot = result;
-        if (newDbSpot == undefined) return;
+        if (newDbSpot === undefined) return;
 
 
         // add images to the newly created spot in the database

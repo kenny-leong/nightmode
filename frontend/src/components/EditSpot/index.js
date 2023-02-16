@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { editSpotDetails, addSpotImgs } from '../../store/spot';
+import { editSpotDetails } from '../../store/spot';
 import { getSpotDetails } from '../../store/spot';
 import { useParams } from 'react-router-dom';
 import './EditSpot.css';
@@ -18,15 +18,10 @@ function EditSpot() {
     const [description, setDescription] = useState("");
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
-    const [previewUrl, setPreviewUrl] = useState("");
-    const [image2Url, setImage2Url] = useState("");
-    const [image3Url, setImage3Url] = useState("");
-    const [image4Url, setImage4Url] = useState("");
-    const [image5Url, setImage5Url] = useState("");
     const [errors, setErrors] = useState({});
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
-    const sessionUser = useSelector(state => state.session.user);
+
     const history = useHistory();
     const dispatch = useDispatch();
     let newDbSpot;
@@ -35,7 +30,7 @@ function EditSpot() {
     useEffect(() => {
         //rerender upon form submission
         dispatch(getSpotDetails(spotId));
-    }, [dispatch, hasSubmitted])
+    }, [dispatch, hasSubmitted, spotId])
 
 
     const spotDetails = useSelector(state => state.spot.oneSpot);
@@ -83,7 +78,7 @@ function EditSpot() {
                 }
             )
         newDbSpot = result;
-        if (newDbSpot == undefined) return;
+        if (newDbSpot === undefined) return;
 
         setHasSubmitted(false);
         history.push(`/spots/${newDbSpot.id}`)

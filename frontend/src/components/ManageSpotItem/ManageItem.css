@@ -26,7 +26,7 @@
     width: 270px;
 }
 
-.delete-btn, .update-btn {
+.manage-container .modal-btn, .update-btn {
     height: 25px;
     margin-top: 10px;
     background-color: #FF5A5F;
@@ -43,7 +43,7 @@
     font-size: 13px;
 }
 
-.delete-btn {
+.manage-container .modal-btn {
     margin-left: 15px;
     font-size: 14px;
 }
