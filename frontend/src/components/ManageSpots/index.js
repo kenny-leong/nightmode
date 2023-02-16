@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserSpots } from '../../store/spot';
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ManageSpotItem from '../ManageSpotItem';
-import './ManageSpots.css'
+import './ManageSpots.css';
+import { useEffect } from 'react';
 
 function ManageSpots() {
     const dispatch = useDispatch();
@@ -15,7 +15,6 @@ function ManageSpots() {
 
 
     const userSpots = useSelector(state => state.spot.userSpots);
-
     if (!userSpots) return null
 
     const userSpotArr = Object.values(userSpots);
@@ -33,7 +32,7 @@ function ManageSpots() {
                     return (
                         <div key={spot.id} className='manage-spot-item-div'>
                         <Link key={spot.id} to={`/spots/${spot.id}`}>
-                            <ManageSpotItem spot={spot} />
+                            <ManageSpotItem spot={spot}/>
                         </Link>
                     </div>
                     )

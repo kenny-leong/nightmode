@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { deleteUserSpot } from '../../store/spot';
 import { useHistory } from 'react-router-dom';
+import { getUserSpots } from '../../store/spot';
 
 
 
@@ -13,7 +14,10 @@ function ManageSpotItem({ spot }) {
     const handleDelete = (e) => {
         e.preventDefault();
         dispatch(deleteUserSpot(spot))
-            .then(() => history.push('/spots/current'))
+            .then(() => {
+                history.push('/spots/current');
+                dispatch(getUserSpots());
+            })
     }
 
     return (
