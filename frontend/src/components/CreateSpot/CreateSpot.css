@@ -21,11 +21,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: white 3px solid;
-}
-
-.newspot-form-div form {
-    border: purple 3px solid;
 }
 
 .section-one {
@@ -63,20 +58,20 @@
     font-family: 'Montserrat';
 }
 
-input[placeholder='Price per night (USD)'] {
+.newspot-form-div input[placeholder='Price per night (USD)'] {
     width: 573px;
     padding: 10px;
     font-family: 'Montserrat';
 }
 
-input[placeholder='Name of your spot'] {
+.newspot-form-div input[placeholder='Name of your spot'] {
     width: 592px;
     padding: 10px;
     font-family: 'Montserrat';
 }
 
-input[placeholder='Image URL'],
-input[placeholder='Preview Image URL'] {
+.newspot-form-div input[placeholder='Image URL'],
+.newspot-form-div input[placeholder='Preview Image URL'] {
     width: 592px;
     padding: 10px;
     font-family: 'Montserrat';
@@ -142,8 +137,6 @@ input[placeholder='Preview Image URL'] {
     margin-top: 8px;
 }
 
-
-
 .url-div {
     margin-bottom: 20px;
 }
@@ -182,4 +175,15 @@ input[placeholder='Preview Image URL'] {
     color: whitesmoke;
     font-family: 'Montserrat';
     display: block;
+}
+
+.submit-btn {
+    background-color: #FF5A5F;
+    border: 1px #FF5A5F solid;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 5px 5px black;
+    font-family: 'Montserrat';
+    cursor: pointer;
 }
