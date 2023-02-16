@@ -44,8 +44,8 @@ input[type="password"] {
   color: white;
   cursor: pointer;
   padding: 15px;
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 30px;
+  padding-right: 30px;
   font-size: 16px;
   margin-top: 10px;
   border: none;
@@ -71,5 +71,9 @@ input[type="password"] {
 .login-errors li {
   font-family: sans-serif;
   color: #FF5A5F;
+  margin-bottom: 10px;
+}
+
+.login-submit-btn {
   margin-bottom: 10px;
 }

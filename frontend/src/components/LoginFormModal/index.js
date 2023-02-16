@@ -70,7 +70,7 @@ function LoginFormModal() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <button type="submit" disabled={credential.length < 4 || password.length < 6} >Log In</button>
+        <button className="login-submit-btn" type="submit" disabled={credential.length < 4 || password.length < 6} >Log In</button>
         <button className="demo-user-btn" onClick={demoUser}>Log in as Demo User</button>
       </form>
     </div>
