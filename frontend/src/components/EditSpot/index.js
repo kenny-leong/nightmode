@@ -79,6 +79,7 @@ function EditSpot() {
                         errObj[type] = errMsg;
                         setErrors(errObj)
                         setHasSubmitted(false);
+                        console.log(data)
                     }
                 }
             )
@@ -132,6 +133,7 @@ function EditSpot() {
                     const errObj = {};
                     errObj.spotImg = errMsg;
                     setErrors(errObj);
+                    console.log(data)
                 }
             )
 
@@ -259,40 +261,6 @@ function EditSpot() {
                                 onChange={(e) => setPrice(e.target.value)}
                             />
                         </div>
-                    </div>
-                    <div className='url-div'>
-                        <h2>Liven up your spot with photos</h2>
-                        <h4>Submit a link to at least one photo to publish your spot</h4>
-                        <input
-                            type="text"
-                            placeholder="Preview Image URL"
-                            value={previewUrl}
-                            onChange={(e) => setPreviewUrl(e.target.value)}
-                        />
-                        <input
-                            type="text"
-                            placeholder="Image URL"
-                            value={image2Url}
-                            onChange={(e) => setImage2Url(e.target.value)}
-                        />
-                        <input
-                            type="text"
-                            placeholder="Image URL"
-                            value={image3Url}
-                            onChange={(e) => setImage3Url(e.target.value)}
-                        />
-                        <input
-                            type="text"
-                            placeholder="Image URL"
-                            value={image4Url}
-                            onChange={(e) => setImage4Url(e.target.value)}
-                        />
-                        <input
-                            type="text"
-                            placeholder="Image URL"
-                            value={image5Url}
-                            onChange={(e) => setImage5Url(e.target.value)}
-                        />
                     </div>
                     <div className='submit-div'>
                         <button type='submit' className='edit-submit-btn'>Edit Spot</button>
