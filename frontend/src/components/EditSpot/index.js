@@ -41,7 +41,7 @@ function EditSpot() {
     const spotDetails = useSelector(state => state.spot.oneSpot);
     if (!spotDetails) return null;
 
-    console.log(spotDetails.Owner.id)
+    console.log(spotDetails)
 
 
     const handleSubmit = async (e) => {
@@ -50,6 +50,7 @@ function EditSpot() {
 
         //needs ownerId
         const newSpot = {
+            id: spotDetails.id,
             country,
             address,
             city,
@@ -59,7 +60,8 @@ function EditSpot() {
             description,
             name,
             price,
-            ownerId: spotDetails.Owner.id
+            Owner: spotDetails.Owner,
+            SpotImages: spotDetails.SpotImages
         }
 
         console.log(newSpot)

@@ -390,7 +390,10 @@ router.put('/:spotId', requireAuth, async (req, res) => {
         val.error = "Description is required";
         return errorHandle(val);
     } else if (!price) {
-        val.error = "Price per day is required";
+        val.error = "Price per night is required";
+        return errorHandle(val);
+    } else if (isNaN(price)) {
+        val.error = 'Price cannot contain letters or symbols.';
         return errorHandle(val);
     }
 
