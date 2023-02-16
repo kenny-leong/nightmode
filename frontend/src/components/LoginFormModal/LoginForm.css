@@ -1,8 +1,7 @@
-form {
+.login-form form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
   }
 
 .login-text {
@@ -19,10 +18,11 @@ form {
   flex-direction: column;
   align-items: center;
   font-family: 'Montserrat';
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-input[type="text"],
-input[type="password"] {
+.login-form input[type="text"], .login-form input[type="password"] {
   width: 100%;
   padding: 10px;
   font-size: 16px;
@@ -55,17 +55,15 @@ input[type="password"] {
 }
 
 .login-form {
-  padding-left: 130px;
-  padding-right: 130px;
-  padding-bottom: 30px;
+  padding-left: 110px;
+  padding-right: 110px;
+  padding-bottom: 50px;
   border:#333 solid 2px;
   background-color: #1E1E1E;;
 }
 
 .login-errors ul {
   list-style: none;
-  color: #FF5A5F;
-  font-size: 14px;
   margin-top: 10px;
 }
 
@@ -73,8 +71,19 @@ input[type="password"] {
   font-family: sans-serif;
   color: #FF5A5F;
   margin-bottom: 10px;
+  margin-right: 40px;
 }
 
 .login-submit-btn {
   margin-bottom: 10px;
+}
+
+.login-form button[type="submit"]:disabled {
+  cursor: not-allowed;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  font-size: 18px;
+  padding-left: 20px;
+  padding-right: 20px;
 }
