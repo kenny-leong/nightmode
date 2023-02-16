@@ -23,6 +23,11 @@ const deleteSpot = () => ({
     type: 'DELETE_SPOT'
 });
 
+const editSpot = (spot) => ({
+    type: 'EDIT_SPOT',
+    spot
+});
+
 const addSpotImages = (spot, spotImages) => ({
     type: 'ADD_SPOT_IMGS',
     payload: {
@@ -101,6 +106,28 @@ export const addSpotImgs = (spot, imgArr) => async dispatch => {
     dispatch(addSpotImages(spot, spotImgArr));
 }
 
+// UPDATE EXISTING SPOT
+export const editSpotDetails = (spot) => async dispatch => {
+
+    const spotRes = await csrfFetch(`/api/spots/${spot.id}`, {
+        method: 'PUT',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(spot)
+    });
+
+    let newSpot;
+
+    if (spotRes.ok) {
+        newSpot = await spotRes.json();
+        newSpot.Owner = spot.Owner;
+        newSpot.SpotImages = spot.SpotImages;
+        dispatch(editSpot(newSpot));
+    }
+
+    return newSpot;
+}
+
+
 // GET SPOTS OF LOGGED IN USER
 export const getUserSpots = () => async dispatch => {
     const res = await csrfFetch(`/api/spots/current`);
@@ -176,6 +203,13 @@ const spotReducer = (state = initialState, action) => {
         case 'DELETE_SPOT':
             const newState = {...state};
             return newState;
+        case 'EDIT_SPOT':
+            return {
+                ...state,
+                oneSpot: {
+                    ...action.spot
+                }
+            }
         default:
             return state;
     }

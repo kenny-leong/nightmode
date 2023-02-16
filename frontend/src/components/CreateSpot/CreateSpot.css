@@ -2,13 +2,10 @@
     font-family: 'Montserrat';
 }
 
-.newspot-full-div h1 {
+.create-spot-header {
     font-size: 40px;
     font-family: 'Montserrat';
     margin-bottom: 20px;
-}
-
-.create-spot-header {
     display: flex;
     justify-content: center;
 }

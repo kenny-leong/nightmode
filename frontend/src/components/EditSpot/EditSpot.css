@@ -1,0 +1,19 @@
+.edit-spot-header {
+    font-size: 40px;
+    font-family: 'Montserrat';
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.edit-submit-btn {
+    background-color: #FF5A5F;
+    border: 1px #FF5A5F solid;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+    box-shadow: 2px 5px 5px black;
+    font-family: 'Montserrat';
+    cursor: pointer;
+}

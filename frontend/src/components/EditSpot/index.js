@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { createSpot, addSpotImgs } from '../../store/spot';
-import './CreateSpot.css';
+import { editSpotDetails, addSpotImgs } from '../../store/spot';
+import { getSpotDetails } from '../../store/spot';
+import { useParams } from 'react-router-dom';
+import './EditSpot.css';
 
 
-function CreateSpot() {
+function EditSpot() {
 
     const [country, setCountry] = useState("");
     const [address, setAddress] = useState("");
@@ -28,16 +30,25 @@ function CreateSpot() {
     const history = useHistory();
     const dispatch = useDispatch();
     let newDbSpot;
+    const { spotId } = useParams();
 
     useEffect(() => {
         //rerender upon form submission
-    }, [hasSubmitted])
+        dispatch(getSpotDetails(spotId));
+    }, [dispatch, hasSubmitted])
+
+
+    const spotDetails = useSelector(state => state.spot.oneSpot);
+    if (!spotDetails) return null;
+
+    console.log(spotDetails.Owner.id)
 
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setHasSubmitted(true);
 
+        //needs ownerId
         const newSpot = {
             country,
             address,
@@ -48,17 +59,15 @@ function CreateSpot() {
             description,
             name,
             price,
-            Owner: {
-                id: sessionUser.id,
-                firstName: sessionUser.firstName,
-                lastName: sessionUser.lastName
-            }
+            ownerId: spotDetails.Owner.id
         }
+
+        console.log(newSpot)
 
 
         // create the new spot before adding images to it
 
-        const result = await dispatch(createSpot(newSpot))
+        const result = await dispatch(editSpotDetails(newSpot))
             .catch(
                 async (res) => {
                     const data = await res.json();
@@ -151,6 +160,7 @@ function CreateSpot() {
         errMsgs.push(errors[key]);
     }
 
+
     return (
         <div className='newspot-full-div'>
             {(errMsgs.length > 0) && (
@@ -165,7 +175,7 @@ function CreateSpot() {
             )}
             <div className='newspot-form-div'>
                 <form onSubmit={handleSubmit}>
-                    <h1 className='create-spot-header'>Create a new Spot</h1>
+                    <h1 className='edit-spot-header'>Update your Spot</h1>
                     <div className='section-one'>
                         <h2>Where's your place located?</h2>
                         <h4>Guests will only get your exact address once they book a reservation.</h4>
@@ -299,7 +309,7 @@ function CreateSpot() {
                         />
                     </div>
                     <div className='submit-div'>
-                        <button type='submit' className='submit-btn'>Create Spot</button>
+                        <button type='submit' className='edit-submit-btn'>Edit Spot</button>
                     </div>
                 </form>
             </div>
@@ -307,4 +317,4 @@ function CreateSpot() {
     )
 }
 
-export default CreateSpot;
+export default EditSpot;
