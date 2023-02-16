@@ -20,8 +20,6 @@ function ManageSpots() {
 
     const userSpotArr = Object.values(userSpots);
 
-    console.log(userSpotArr)
-
     return (
         <div className='manage-spots-full-div'>
             <h2>Manage Your Spots</h2>

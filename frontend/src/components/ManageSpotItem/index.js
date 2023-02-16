@@ -2,6 +2,7 @@ import './ManageItem.css';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { deleteUserSpot } from '../../store/spot';
+import { useHistory } from 'react-router-dom';
 
 
 

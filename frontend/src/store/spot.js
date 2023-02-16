@@ -108,7 +108,6 @@ export const getUserSpots = () => async dispatch => {
 
     if (res.ok) {
         const userSpots = await res.json()
-        console.log(userSpots)
         dispatch(loadUserSpots(userSpots));
     }
 }
@@ -131,7 +130,7 @@ export const deleteUserSpot = (spot) => async dispatch => {
 
 
 // --------------------- SPOT REDUCER ----------------------------------------
-const initialState = { allSpots: null, oneSpot: null, currentUserSpots: null };
+const initialState = { allSpots: null, oneSpot: null, userSpots: null };
 
 const spotReducer = (state = initialState, action) => {
     switch (action.type) {
