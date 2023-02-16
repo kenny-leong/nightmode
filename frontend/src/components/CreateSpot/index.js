@@ -58,28 +58,29 @@ function CreateSpot() {
 
 
         // create the new spot before adding images to it
-        if (newSpot) {
-            const result = await dispatch(createSpot(newSpot))
-                .catch(
-                    async (res) => {
-                        const data = await res.json();
 
-                        if (data && data.error) {
-                            let errMsg = Object.values(data.error);
-                            errMsg = errMsg.join('');
-                            let errType = errMsg.split(' ');
-                            errType = errType[0];
-                            const type = errType.toLowerCase();
-                            const errObj = {};
-                            errObj[type] = errMsg;
-                            setErrors(errObj)
-                            setHasSubmitted(false);
-                        }
+        const result = await dispatch(createSpot(newSpot))
+            .catch(
+                async (res) => {
+                    const data = await res.json();
+
+                    if (data && data.error) {
+                        let errMsg = Object.values(data.error);
+                        errMsg = errMsg.join('');
+                        let errType = errMsg.split(' ');
+                        errType = errType[0];
+                        const type = errType.toLowerCase();
+                        const errObj = {};
+                        errObj[type] = errMsg;
+                        setErrors(errObj)
+                        setHasSubmitted(false);
                     }
-                )
-            newDbSpot = result;
-            console.log(result);
-        }
+                }
+            )
+
+        newDbSpot = result;
+        if (newDbSpot == undefined) return;
+
 
 
         // add images to the newly created spot in the database
