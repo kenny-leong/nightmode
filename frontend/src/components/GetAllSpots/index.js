@@ -18,8 +18,6 @@ function LoggedInLanding() {
     const allSpots = useSelector(state => state.spot.allSpots)
     if (!allSpots) return null;
     const spotArr = Object.values(allSpots);
-    console.log(allSpots)
-
 
     return (
         <div className='all-spots-div'>

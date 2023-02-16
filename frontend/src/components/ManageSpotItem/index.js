@@ -8,9 +8,12 @@ import { useHistory } from 'react-router-dom';
 
 function ManageSpotItem({ spot }) {
     const dispatch = useDispatch();
+    const history = useHistory();
 
-    const handleDelete = () => {
-        dispatch(deleteUserSpot(spot));
+    const handleDelete = (e) => {
+        e.preventDefault();
+        dispatch(deleteUserSpot(spot))
+            .then(() => history.push('/spots/current'))
     }
 
     return (
