@@ -25,8 +25,6 @@ const SpotDetails = () => {
     if (spot.SpotImages[0]) mainUrlImg = spot.SpotImages[0].url;
     else mainUrlImg = 'https://us.123rf.com/450wm/yehorlisnyi/yehorlisnyi2104/yehorlisnyi210400016/167492439-no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image.jpg?ver=6'
 
-    console.log(spot)
-
     const smallImgArr = spotImgArr.slice(1, 5); //grab the first 4 images after the main img
     const smallUrlArr = []; //grab existing data urls
 
