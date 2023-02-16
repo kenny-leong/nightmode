@@ -25,6 +25,7 @@ function DeleteModal({ spot }) {
 
   const doNotDelete = (e) => {
     closeModal();
+    history.push('/spots/current');
   }
 
 
