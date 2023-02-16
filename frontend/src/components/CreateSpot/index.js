@@ -73,7 +73,6 @@ function CreateSpot() {
                             const errObj = {};
                             errObj[type] = errMsg;
                             setErrors(errObj)
-                            console.log(errors)
                             setHasSubmitted(false);
                         }
                     }
