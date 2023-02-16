@@ -21,6 +21,7 @@
 input[placeholder="Country"], input[placeholder="Address"] {
     padding-right: 20%;
     width: 500px;
+    background-color: #eeeeee;
 }
 
 .city-state-div {
@@ -32,6 +33,7 @@ input[placeholder="Country"], input[placeholder="Address"] {
 
 input[placeholder="City"] {
     width: 360px;
+    background-color: #eeeeee;
 }
 
 .lat-long-div {
@@ -44,10 +46,12 @@ input[placeholder="City"] {
 
 input[placeholder="Latitude"] {
     width: 270px;
+    background-color: #eeeeee;
 }
 
 input[placeholder="Longitude"] {
     width: 270px;
+    background-color: #eeeeee;
 }
 
 .comma-one {
