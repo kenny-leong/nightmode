@@ -88,6 +88,7 @@ function EditSpot() {
 
         setHasSubmitted(false);
         history.push(`/spots/${newDbSpot.id}`)
+
     }
 
     const errMsgs = []
