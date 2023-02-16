@@ -56,6 +56,8 @@ const SpotDetails = () => {
         </div>
     );
 
+    console.log(spot)
+
     const handleReserve = (e) => {
         e.preventDefault();
         window.alert('Feature Coming Soon...');
@@ -82,13 +84,26 @@ const SpotDetails = () => {
                 <div className='reserve-div'>
                     <div className='pricing-and-review'>
                         <span className='price-per-night'>{`$${spot.price} /night`}</span>
-                        <span className='review'>
+                        <span className='spot-rating-avg'>
                             <i className="fa-sharp fa-solid fa-star"></i>
-                            {(spot.avgStarRating === null) ? <span>New</span> : <span>{parseInt(spot.avgStarRating).toFixed(1)}</span>}
+                            {(spot.avgStarRating === null) ? <span className='avg-star-rating'>New</span> : <span className='avg-star-rating'>{spot.avgStarRating.toFixed(1)}</span>}
                         </span>
+                        {spot.numReviews > 0 && (
+                            <span className='num-reviews'>
+                                {spot.numReviews === 1 ? '1 review' : `${spot.numReviews} reviews`}
+                            </span>
+                        )}
                     </div>
                     <button className='reserve-btn' onClick={handleReserve}>Reserve</button>
                 </div>
+            </div>
+            <div className='review-details'>
+                <div className='review-rating-bottom'>
+                    <i className="fa-sharp fa-solid fa-star"></i>
+                    {(spot.avgStarRating === null) ? <span>New</span> : <span>{parseInt(spot.avgStarRating).toFixed(1)}</span>}
+                </div>
+                <button className='review-btn'>Post Your Review</button>
+                {(spot.numReviews === 0) ? <p className='review-describe'>Be the first to post a review!</p> : <p className='review-describe'>{null}</p>}
             </div>
         </div>
     )
