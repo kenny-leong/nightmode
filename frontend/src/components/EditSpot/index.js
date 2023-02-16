@@ -79,7 +79,6 @@ function EditSpot() {
                         errObj[type] = errMsg;
                         setErrors(errObj)
                         setHasSubmitted(false);
-                        console.log(data)
                     }
                 }
             )

@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { deleteUserSpot } from '../../store/spot';
 import { useHistory } from 'react-router-dom';
 import { getUserSpots } from '../../store/spot';
+import OpenModalButton from '../OpenModalButton';
+import DeleteModal from '../DeleteModal';
 
 
 
@@ -41,6 +43,10 @@ function ManageSpotItem({ spot }) {
                         <Link className='manage-update-text' exact='true' to={`/spots/${spot.id}/edit`}>Update</Link>
                     </button>
                     <button className='delete-btn' onClick={handleDelete}>Delete</button>
+                    <OpenModalButton
+                        buttonText="Delete"
+                        modalComponent={<DeleteModal />}
+                    />
                 </div>
             </div>
         </div>
