@@ -69,10 +69,11 @@ function CreateSpot() {
                             errMsg = errMsg.join('');
                             let errType = errMsg.split(' ');
                             errType = errType[0];
-                            errType = errType.toLowerCase();
+                            const type = errType.toLowerCase();
                             const errObj = {};
-                            errObj.errType = errMsg;
+                            errObj[type] = errMsg;
                             setErrors(errObj)
+                            console.log(errors)
                             setHasSubmitted(false);
                         }
                     }
@@ -130,8 +131,8 @@ function CreateSpot() {
             urlObj.preview = "false";
             spotImages.push(urlObj);
         }
-        console.log(JSON.stringify(spotImages[1]))
-        const imgRes = await dispatch(addSpotImgs(newDbSpot, spotImages))
+
+        await dispatch(addSpotImgs(newDbSpot, spotImages))
             .catch(
                 async (res) => {
                     const data = await res.json();
@@ -158,7 +159,7 @@ function CreateSpot() {
             {(errMsgs.length > 0) && (
                 <div className='error-div'>
                     <p>Please fix the following error before submitting:</p>
-                    <ul>
+                    <ul className='newspot-ul'>
                         {errMsgs.map((err) => (
                             <li key={err} className='error-item'>{err}</li>
                         ))}

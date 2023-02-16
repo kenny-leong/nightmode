@@ -121,6 +121,10 @@
     margin-bottom: 30px;
 }
 
+.newspot-ul {
+    list-style: none;
+}
+
 .description-ta {
     width: 610px;
     height:200px;
@@ -169,6 +173,7 @@
     font-style: italic;
     font-size: 20px;
     margin-bottom: 20px;
+    color: rgba(255, 0, 0, 0.547);
 }
 
 .form-label {
