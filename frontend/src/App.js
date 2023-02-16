@@ -6,6 +6,7 @@ import Navigation from "./components/Navigation";
 import LoggedInLanding from "./components/GetAllSpots";
 import SpotDetails from "./components/SpotDetails";
 import CreateSpot from "./components/CreateSpot";
+import ManageSpots from "./components/ManageSpots";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={LoggedInLanding} />
           <Route path='/spots/new' component={CreateSpot} />
+          <Route path="/spots/current" component={ManageSpots} />
           <Route path='/spots/:spotId' component={SpotDetails} />
           <Route>
             <p>Page Not Found</p>

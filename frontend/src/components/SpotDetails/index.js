@@ -11,7 +11,6 @@ const SpotDetails = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        console.log(spotId)
         dispatch(getSpotDetails(spotId));
     }, [spotId]);
 

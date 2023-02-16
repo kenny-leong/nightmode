@@ -25,7 +25,12 @@ const addSpotImages = (spot, spotImages) => ({
         spot,
         spotImages
     }
-})
+});
+
+const loadUserSpots = userSpots => ({
+    type: 'LOAD_USER_SPOTS',
+    userSpots
+});
 
 
 
@@ -89,10 +94,20 @@ export const addSpotImgs = (spot, imgArr) => async dispatch => {
     dispatch(addSpotImages(spot, spotImgArr));
 }
 
+export const getUserSpots = () => async dispatch => {
+    const res = await csrfFetch(`/api/spots/current`);
+
+    if (res.ok) {
+        const userSpots = await res.json()
+        console.log(userSpots)
+        dispatch(loadUserSpots(userSpots));
+    }
+}
 
 
 
-const initialState = { allSpots: null, oneSpot: null };
+
+const initialState = { allSpots: null, oneSpot: null, currentUserSpots: null };
 
 const spotReducer = (state = initialState, action) => {
     switch (action.type) {
@@ -126,6 +141,16 @@ const spotReducer = (state = initialState, action) => {
                     ...action.payload.spot,
                     SpotImages: action.payload.spotImages
                 }
+            }
+        case 'LOAD_USER_SPOTS':
+            const currentUserSpots = {};
+            const userSpotsArr = action.userSpots.Spots
+            userSpotsArr.forEach(spot => {
+                currentUserSpots[spot.id] = spot;
+            });
+            return {
+                ...state,
+                userSpots: currentUserSpots
             }
         default:
             return state;
