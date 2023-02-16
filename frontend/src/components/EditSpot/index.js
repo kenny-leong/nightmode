@@ -26,15 +26,26 @@ function EditSpot() {
     const dispatch = useDispatch();
     let newDbSpot;
     const { spotId } = useParams();
+    const spotDetails = useSelector(state => state.spot.oneSpot);
 
     useEffect(() => {
         //rerender upon form submission
         dispatch(getSpotDetails(spotId));
     }, [dispatch, hasSubmitted, spotId])
 
+    useEffect(() => {
+        if (spotDetails) setCountry(spotDetails.country)
+        if (spotDetails) setAddress(spotDetails.address)
+        if (spotDetails) setCity(spotDetails.city)
+        if (spotDetails) setState(spotDetails.state)
+        if (spotDetails) setLat(spotDetails.lat)
+        if (spotDetails) setLng(spotDetails.lng)
+        if (spotDetails) setDescription(spotDetails.description)
+        if (spotDetails) setName(spotDetails.name)
+        if (spotDetails) setPrice(spotDetails.price)
+    }, [spotDetails])
 
-    const spotDetails = useSelector(state => state.spot.oneSpot);
-    if (!spotDetails) return null;
+
 
 
     const handleSubmit = async (e) => {

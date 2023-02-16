@@ -31,10 +31,10 @@ function ManageSpots() {
                 {userSpotArr.map((spot) => {
                     return (
                         <div key={spot.id} className='manage-spot-item-div'>
-                        <Link key={spot.id} to={`/spots/${spot.id}`}>
-                            <ManageSpotItem spot={spot}/>
-                        </Link>
-                    </div>
+                            <Link key={spot.id} to={`/spots/${spot.id}`}>
+                                <ManageSpotItem spot={spot}/>
+                            </Link>
+                        </div>
                     )
                 })}
             </div>
