@@ -86,59 +86,8 @@ function EditSpot() {
         newDbSpot = result;
         if (newDbSpot == undefined) return;
 
-
-        // update the spotImages if needed
-        let spotImages = [spotDetails.spotImages];
-
-        if (previewUrl) {
-            const urlObj = {};
-            urlObj.url = previewUrl;
-            urlObj.preview = "true";
-            spotImages.splice(0, 1, urlObj)
-        }
-
-        if (image2Url) {
-            const urlObj = {};
-            urlObj.url = image2Url;
-            urlObj.preview = "false";
-            spotImages.splice(1, 1, urlObj)
-        }
-
-        if (image3Url) {
-            const urlObj = {};
-            urlObj.url = image3Url;
-            urlObj.preview = "false";
-            spotImages.splice(2, 1, urlObj)
-        }
-
-        if (image4Url) {
-            const urlObj = {};
-            urlObj.url = image4Url;
-            urlObj.preview = "false";
-            spotImages.splice(3, 1, urlObj)
-        }
-
-        if (image5Url) {
-            const urlObj = {};
-            urlObj.url = image5Url;
-            urlObj.preview = "false";
-            spotImages.splice(4, 1, urlObj)
-        }
-
-        await dispatch(addSpotImgs(newDbSpot, spotImages))
-            .catch(
-                async (res) => {
-                    const data = await res.json();
-                    const errMsg = data.message;
-                    const errObj = {};
-                    errObj.spotImg = errMsg;
-                    setErrors(errObj);
-                    console.log(data)
-                }
-            )
-
-            setHasSubmitted(false);
-            history.push(`/spots/${newDbSpot.id}`)
+        setHasSubmitted(false);
+        history.push(`/spots/${newDbSpot.id}`)
     }
 
     const errMsgs = []
