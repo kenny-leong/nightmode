@@ -21,7 +21,7 @@ function ManageSpots() {
 
     return (
         <div className='manage-spots-full-div'>
-            <h2>Manage Your Spots</h2>
+            <h2 className='manage-h2'>Manage Your Spots</h2>
             <button className='create-spot-btn'>
                 <Link exact='true' to='/spots/new' className='create-spot-link-text'>
                     Create a New Spot

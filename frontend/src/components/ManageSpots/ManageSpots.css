@@ -9,6 +9,11 @@
     margin-left: 30px;
 }
 
+.manage-h2 {
+    font-family: 'Montserrat';
+    font-size: 30px;
+}
+
 .manage-spots-full-div h2, .create-spot-btn {
     margin-left: 20px;
 }
