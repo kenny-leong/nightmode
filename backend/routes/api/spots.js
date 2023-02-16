@@ -320,9 +320,9 @@ router.post('/:spotId/images', requireAuth, async (req, res) => {
 
     //validation checks for SpotImage creation
     let { url, preview } = req.body;
-    if (!url) return res.status(400).json({ message: "url is needed."});
-    if (!preview) return res.status(400).json({ message: "preview is needed"});
-    if (preview != true && preview != false) return res.status(400).json({ message: "preview must be true or false."})
+    if (!url) return res.status(400).json({ message: "Url is missing."});
+    if (!preview) return res.status(400).json({ message: "Preview is missing."});
+    if (preview !== "true" && preview !== "false") return res.status(400).json({ message: "preview must be true or false."})
 
     const newImage = await SpotImage.create({ spotId: req.params.spotId, ...req.body });
     const { id } = newImage;

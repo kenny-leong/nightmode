@@ -78,6 +78,7 @@ function CreateSpot() {
                     }
                 )
             newDbSpot = result;
+            console.log(result);
         }
 
 
@@ -87,7 +88,7 @@ function CreateSpot() {
         if (!previewUrl) {
             const urlObj = {};
             urlObj.url = 'https://us.123rf.com/450wm/yehorlisnyi/yehorlisnyi2104/yehorlisnyi210400016/167492439-no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image.jpg?ver=6';
-            urlObj.preview = true;
+            urlObj.preview = "true";
             spotImages.push(urlObj);
         } else {
             if (!(previewUrl.includes(".png") || previewUrl.includes(".jpg") || previewUrl.includes(".jpeg"))) {
@@ -97,7 +98,7 @@ function CreateSpot() {
             } else {
                 const urlObj = {};
                 urlObj.url = previewUrl;
-                urlObj.preview = true;
+                urlObj.preview = "true;"
                 spotImages.push(urlObj);
             }
         }
@@ -105,41 +106,44 @@ function CreateSpot() {
         if (image2Url) {
             const urlObj = {};
             urlObj.url = image2Url;
-            urlObj.preview = false;
+            urlObj.preview = "false";
             spotImages.push(urlObj);
         }
 
         if (image3Url) {
             const urlObj = {};
             urlObj.url = image3Url;
-            urlObj.preview = false;
+            urlObj.preview = "false";
             spotImages.push(urlObj);
         }
 
         if (image4Url) {
             const urlObj = {};
             urlObj.url = image4Url;
-            urlObj.preview = false;
+            urlObj.preview = "false";
             spotImages.push(urlObj);
         }
 
         if (image5Url) {
             const urlObj = {};
             urlObj.url = image5Url;
-            urlObj.preview = false;
+            urlObj.preview = "false";
             spotImages.push(urlObj);
         }
-        console.log(spotImages)
-        dispatch(addSpotImgs(newDbSpot, spotImages))
+        console.log(JSON.stringify(spotImages[1]))
+        const imgRes = await dispatch(addSpotImgs(newDbSpot, spotImages))
             .catch(
                 async (res) => {
                     const data = await res.json();
-                    console.log(data)
+                    const errMsg = data.message;
+                    const errObj = {};
+                    errObj.spotImg = errMsg;
+                    setErrors(errObj);
                 }
             )
 
-
-        setHasSubmitted(false);
+            setHasSubmitted(false);
+            history.push(`/spots/${newDbSpot.id}`)
     }
 
     const errMsgs = []

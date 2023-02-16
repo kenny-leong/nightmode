@@ -61,6 +61,7 @@ export const createSpot = (spot) => async dispatch => {
 
     if (spotRes.ok) {
         newSpot = await spotRes.json();
+        newSpot.Owner = spot.Owner;
         dispatch(addSpot(newSpot));
     }
 
