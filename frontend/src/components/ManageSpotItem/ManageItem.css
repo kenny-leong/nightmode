@@ -1,0 +1,42 @@
+
+.manage-container {
+    padding: 20px;
+}
+
+.manage-img {
+    width: 270px;
+    height: 250px;
+}
+
+.manage-loc, .manage-rating, .manage-price, .manage-int {
+    font-family: 'Montserrat';
+    color: #FF5A5F;
+    font-size: 15px;
+}
+
+.manage-loc-and-rating {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.bottom-section {
+    display: inline-flex;
+    justify-content: space-between;
+    width: 270px;
+}
+
+.delete-btn, .update-btn {
+    height: 25px;
+    margin-top: 10px;
+    background-color: #FF5A5F;
+    font-family: 'Montserrat';
+    cursor: pointer;
+    color: whitesmoke;
+    border-radius: 5px;
+    border: #FF5A5F 2px solid;
+}
+
+.delete-btn {
+    margin-left: 15px;
+}

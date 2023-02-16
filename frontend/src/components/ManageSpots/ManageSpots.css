@@ -1,0 +1,33 @@
+
+.spot-items-div {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+.manage-spots-full-div {
+    margin-left: 30px;
+}
+
+.manage-spots-full-div h2, .create-spot-btn {
+    margin-left: 20px;
+}
+
+.manage-spots-full-div h2 {
+    font-size: 40px;
+}
+
+.create-spot-btn {
+    margin-bottom: 25px;
+    background-color: #FF5A5F;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 10px 5px 5px black;
+    cursor: pointer;
+}
+
+.create-spot-link-text {
+    color: whitesmoke;
+    font-family: 'Montserrat';
+}
