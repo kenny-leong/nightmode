@@ -41,8 +41,6 @@ function EditSpot() {
     const spotDetails = useSelector(state => state.spot.oneSpot);
     if (!spotDetails) return null;
 
-    console.log(spotDetails)
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();

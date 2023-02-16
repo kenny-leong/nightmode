@@ -79,7 +79,7 @@ const SpotDetails = () => {
             <div className='middle-section'>
                 <div className='description'>
                     <h2>{`Hosted by ${spot.Owner.firstName} ${spot.Owner.lastName}`}</h2>
-                    <p>{sampleDescription}</p>
+                    <p>{spot.description}</p>
                     <p>{sampleDescriptionTwo}</p>
                 </div>
                 <div className='reserve-div'>
