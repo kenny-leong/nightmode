@@ -1,14 +1,14 @@
-h2, h4 {
+.form-div h2, .form-div h4 {
     font-family: 'Montserrat';
 }
 
-h1 {
+.form-div h1 {
     font-size: 30px;
     font-family: 'Montserrat';
     margin-bottom: 20px;
 }
 
-h4 {
+.form-div h4 {
     font-size: 14;
 }
 
@@ -26,8 +26,8 @@ input[placeholder="Country"], input[placeholder="Address"] {
 .city-state-div {
     display: flex;
     justify-content: space-between;
-    width: 610px;
-    margin-right: 8px;
+    width: 600px;
+    margin-right: 15px;
 }
 
 input[placeholder="City"] {
@@ -105,8 +105,6 @@ input[placeholder='Price per night (USD)'] {
     padding-bottom: 50px;
 }
 
-
-
 .error-div {
     display: flex;
     align-items: center;
@@ -125,4 +123,15 @@ input[placeholder='Price per night (USD)'] {
     font-style: italic;
     font-size: 20px;
     margin-bottom: 20px;
+}
+
+.form-label {
+    color: whitesmoke;
+    font-family: 'Montserrat';
+    display: flex;
+    align-items: flex-start;
+}
+
+.country, .address {
+    margin-right: 100px;
 }
