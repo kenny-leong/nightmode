@@ -30,13 +30,20 @@
     height: 25px;
     margin-top: 10px;
     background-color: #FF5A5F;
-    font-family: 'Montserrat';
     cursor: pointer;
-    color: whitesmoke;
     border-radius: 5px;
     border: #FF5A5F 2px solid;
+    color: whitesmoke;
+    font-family: 'Montserrat';
+}
+
+.manage-update-text {
+    color: whitesmoke;
+    font-family: 'Montserrat';
+    font-size: 13px;
 }
 
 .delete-btn {
     margin-left: 15px;
+    font-size: 14px;
 }

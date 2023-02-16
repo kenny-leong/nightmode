@@ -19,6 +19,11 @@ const addSpot = spot => ({
     spot
 });
 
+const deleteSpot = spotId => ({
+    type: 'DELETE_SPOT',
+    spotId
+});
+
 const addSpotImages = (spot, spotImages) => ({
     type: 'ADD_SPOT_IMGS',
     payload: {
@@ -35,6 +40,8 @@ const loadUserSpots = userSpots => ({
 
 
 // -------------------------------------- thunk action creators -----------------------------------
+
+// GET ALL SPOTS
 export const getAllSpots = () => async dispatch => {
     const res = await csrfFetch('/api/spots');
 
@@ -44,6 +51,7 @@ export const getAllSpots = () => async dispatch => {
     }
 }
 
+// GET SPOT DETAILS
 export const getSpotDetails = (id) => async dispatch => {
     const res = await csrfFetch(`/api/spots/${id}`);
 
@@ -53,9 +61,9 @@ export const getSpotDetails = (id) => async dispatch => {
     }
 }
 
+// CREATE A NEW SPOT
 export const createSpot = (spot) => async dispatch => {
 
-    //Spot Creation
     const spotRes = await csrfFetch(`/api/spots`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -73,9 +81,9 @@ export const createSpot = (spot) => async dispatch => {
     return newSpot;
 }
 
+// ADD SPOT IMAGES TO AN EXISTING SPOT
 export const addSpotImgs = (spot, imgArr) => async dispatch => {
 
-    //Spot image creation
     const spotImgArr = [];
 
     for (let img of imgArr) {
@@ -94,6 +102,7 @@ export const addSpotImgs = (spot, imgArr) => async dispatch => {
     dispatch(addSpotImages(spot, spotImgArr));
 }
 
+// GET SPOTS OF LOGGED IN USER
 export const getUserSpots = () => async dispatch => {
     const res = await csrfFetch(`/api/spots/current`);
 
@@ -104,9 +113,24 @@ export const getUserSpots = () => async dispatch => {
     }
 }
 
+// DELETE A SPOT
+export const deleteUserSpot = (spot) => async dispatch => {
+    const res = await csrfFetch(`/api/spots/${spot.id}`, {
+        method: 'DELETE'
+    });
+
+    if (res.ok) {
+        const deleteRes = await res.json();
+        dispatch(deleteSpot(spot.id))
+    }
+}
 
 
 
+
+
+
+// --------------------- SPOT REDUCER ----------------------------------------
 const initialState = { allSpots: null, oneSpot: null, currentUserSpots: null };
 
 const spotReducer = (state = initialState, action) => {
@@ -152,6 +176,13 @@ const spotReducer = (state = initialState, action) => {
                 ...state,
                 userSpots: currentUserSpots
             }
+        case 'DELETE_SPOT':
+            const newState = {...state};
+            const newAllSpots = newState.spot.allSpots;
+            const newUserSpots = newState.spot.userSpots;
+            delete newAllSpots[action.spotId];
+            delete newUserSpots[action.spotId];
+            return newState;
         default:
             return state;
     }

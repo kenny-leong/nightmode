@@ -1,10 +1,16 @@
-import './ManageItem.css'
-
+import './ManageItem.css';
+import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { deleteUserSpot } from '../../store/spot';
 
 
 
 function ManageSpotItem({ spot }) {
+    const dispatch = useDispatch();
 
+    const handleDelete = () => {
+        dispatch(deleteUserSpot(spot));
+    }
 
     return (
         <div className='manage-container'>
@@ -19,8 +25,10 @@ function ManageSpotItem({ spot }) {
             <div className="bottom-section">
                 <p className='manage-price'>{`$${spot.price} /night`}</p>
                 <div>
-                    <button className='update-btn'>Update</button>
-                    <button className='delete-btn'>Delete</button>
+                    <button className='update-btn'>
+                        <Link className='manage-update-text' exact='true' to={`/spots/${spot.id}/edit`}>Update</Link>
+                    </button>
+                    <button className='delete-btn' onClick={handleDelete}>Delete</button>
                 </div>
             </div>
         </div>
