@@ -1,0 +1,64 @@
+.post-modal {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+    border: #555151 1px solid;
+}
+
+
+.review-header {
+    font-family: 'Montserrat';
+    font-size: 40px;
+}
+
+.post-modal textarea {
+    width: 400px;
+    height: 100px;
+    font-family: 'Montserrat';
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+
+.star-rating span {
+    font-size: 35px;
+}
+
+.star-filled {
+    color: gold;
+    cursor: pointer;
+}
+
+.star-text {
+    margin-left: 15px;
+    font-family: 'Montserrat';
+}
+
+.star-empty {
+    color: whitesmoke;
+    cursor: pointer;
+}
+
+.post-modal button {
+    margin-top: 20px;
+}
+
+.submit-review {
+    background-color: #FF5A5F;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    font-size: 16px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Montserrat';
+}
+
+.submit-review:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}
