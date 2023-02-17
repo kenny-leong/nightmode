@@ -8,6 +8,7 @@ import './SpotDetails.css';
 
 const SpotDetails = () => {
     const { spotId } = useParams();
+    const sessionUser = useSelector(state => state.session.user);
 
     const dispatch = useDispatch();
 
@@ -15,17 +16,27 @@ const SpotDetails = () => {
         dispatch(getSpotDetails(spotId));
         dispatch(getSpotReviews(spotId));
         dispatch(getCurrentReviews());
-      }, [dispatch, spotId]);
+      }, [dispatch, spotId, sessionUser]);
 
     const spot = useSelector(state => state.spot.oneSpot);
     let reviews = useSelector(state => state.spot.spotReviews);
     let currReviews = useSelector(state => state.review.currReviews);
 
-    if (!spot || !reviews) return null;
+
+    if (!spot || !reviews || !currReviews) return null;
 
     reviews = reviews.Reviews;
+    currReviews = Object.values(currReviews);
 
-    console.log(reviews)
+    let buttonEnable;
+
+    for (let review of currReviews) {
+        if (review.Spot.id === parseInt(spotId)) {
+            buttonEnable = false;
+        } else {
+            buttonEnable = true;
+        }
+    }
 
     const spotImgArr = spot.SpotImages;
     let mainUrlImg;
@@ -49,10 +60,6 @@ const SpotDetails = () => {
     for (let i=0; i<dupesNeeded; i++) {
         smallUrlArr.push(noPhoto);
     }
-
-
-
-
 
 
     const inlineDivOne = (
@@ -111,10 +118,17 @@ const SpotDetails = () => {
             </div>
             <div className='review-details'>
                 <div className='review-rating-bottom'>
-                    <i className="fa-sharp fa-solid fa-star"></i>
-                    {(spot.avgStarRating === null) ? <span>New</span> : <span>{parseInt(spot.avgStarRating).toFixed(1)}</span>}
+                    <div className='bottom-avg-rating'>
+                        <i className="fa-sharp fa-solid fa-star"></i>
+                        {(spot.avgStarRating === null) ? <span className='rating-float'>New</span> : <span className='rating-float'>{parseInt(spot.avgStarRating).toFixed(1)}</span>}
+                        <span>
+                            {spot.numReviews === 1 ? '1 review' : `${spot.numReviews} reviews`}
+                        </span>
+                    </div>
                 </div>
-                <button className='review-btn'>Post Your Review</button>
+                {(buttonEnable) && (sessionUser) && (
+                    <button className='review-btn'>Post Your Review</button>
+                )}
                 {(spot.numReviews === 0) ? <p className='review-describe'>Be the first to post a review!</p> : null}
             </div>
             {reviews && reviews.map((reviewObj, index) => (

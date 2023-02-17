@@ -85,6 +85,7 @@ a {
     font-family: 'Montserrat';
     font-size: 28px;
     margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .review-rating-bottom .fa-star {
@@ -139,4 +140,8 @@ a {
 
 .review-div-map p {
     font-size: 15px;
+}
+
+.rating-float {
+    margin-right: 45px;
 }
