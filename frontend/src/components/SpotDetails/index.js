@@ -28,8 +28,8 @@ const SpotDetails = () => {
 
     if (!spot || !reviews || !currReviews) return null;
 
-    console.log(reviews)
     currReviews = Object.values(currReviews);
+    console.log(reviews, sessionUser)
 
     let buttonEnable;
 
