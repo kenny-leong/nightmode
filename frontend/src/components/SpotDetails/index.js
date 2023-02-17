@@ -41,6 +41,7 @@ const SpotDetails = () => {
             }
         }
     }
+
     reviews = Object.values(reviews)
     reviews = reviews.reverse();
 

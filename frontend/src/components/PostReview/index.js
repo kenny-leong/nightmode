@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { postReview, getSpotReviews, getCurrentReviews } from "../../store/review";
 import { getSpotDetails } from '../../store/spot';
 import './PostReview.css'
