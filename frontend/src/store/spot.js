@@ -179,6 +179,7 @@ export const postReview = (spotId, newReview) => async dispatch => {
 
     if (res.ok) {
         const postedReview = await res.json();
+        postedReview.User = newReview.User;
         dispatch(addReview(postedReview));
     }
 }
@@ -249,11 +250,17 @@ const spotReducer = (state = initialState, action) => {
                 spotReviews: action.spotReviews
             }
         case 'ADD_REVIEW':
+            const newReview = {};
+            newReview[action.review.id] = action.review;
+            const revArr = [newReview];
+            const existingReviews = state.spotReviews.Reviews;
+            existingReviews.foreEach(rev => {
+                revArr.push(rev)
+            });
             return {
                 ...state,
                 spotReviews: {
-                    [action.review.id]: action.review,
-                    ...state.spotReviews.Reviews
+                    Reviews: revArr
                 }
             }
         default:

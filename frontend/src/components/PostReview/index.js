@@ -29,6 +29,8 @@ function PostReview({ spotId }) {
             User: sessionUser
         }
 
+        console.log(newReview)
+
         dispatch(postReview(spotId, newReview))
             .then(() => {
                 closeModal();
