@@ -16,6 +16,9 @@ function PostReview({ spotId }) {
         setRating(value);
       };
 
+
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
 

@@ -252,7 +252,7 @@ const spotReducer = (state = initialState, action) => {
             return {
                 ...state,
                 spotReviews: {
-                    ...state.spotReviews,
+                    ...state.spotReviews.Reviews,
                     [action.review.id]: action.review
                 }
             }

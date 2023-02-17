@@ -33,8 +33,9 @@ const SpotDetails = () => {
     let buttonEnable;
 
     for (let review of currReviews) {
-        if (review.Spot.id === parseInt(spotId)) {
+        if (review.spotId === parseInt(spotId)) {
             buttonEnable = false;
+            break;
         } else {
             buttonEnable = true;
         }
