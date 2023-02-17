@@ -1,15 +1,18 @@
 // frontend/src/components/LoginFormModal/index.js
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { removeReview } from '../../store/review';
-import { getSpotReviews } from '../../store/spot';
 import './DeleteReview.css'
 
-function DeleteReview({ reviewId, spotId }) {
+function DeleteReview({ reviewId, spot }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 
+
+  useEffect(() => {
+    //rerender upon spot changing
+  }, [spot])
 
   const yesDelete = (e) => {
     e.preventDefault();
@@ -17,7 +20,6 @@ function DeleteReview({ reviewId, spotId }) {
     dispatch(removeReview(reviewId))
         .then(() => {
             closeModal();
-            dispatch(getSpotReviews(spotId));
         });
     }
 
