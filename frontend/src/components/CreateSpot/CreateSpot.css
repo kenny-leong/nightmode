@@ -118,6 +118,10 @@
     margin-bottom: 30px;
 }
 
+.url-div input {
+    margin-bottom: 15px;
+}
+
 .newspot-ul {
     list-style: none;
 }
