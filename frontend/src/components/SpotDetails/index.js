@@ -27,7 +27,7 @@ const SpotDetails = () => {
     useEffect(() => {
         //rerender when reviews changes
         dispatch(getCurrentReviews());
-    }, [reviews])
+    }, [dispatch, reviews])
 
     const spot = useSelector(state => state.spot.oneSpot);
 

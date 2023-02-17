@@ -78,6 +78,7 @@ function CreateSpot() {
             )
         newDbSpot = result;
 
+        if (newDbSpot === undefined) return;
 
         // add images to the newly created spot in the database
         let spotImages = [];
@@ -138,8 +139,6 @@ function CreateSpot() {
     for (let key of keys) {
         errMsgs.push(errors[key]);
     }
-
-    console.log(errMsgs)
 
     return (
         <div className='newspot-full-div'>
