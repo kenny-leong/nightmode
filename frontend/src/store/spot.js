@@ -168,7 +168,6 @@ export const getSpotReviews = (spotId) => async dispatch => {
 
 
 
-
 // --------------------- SPOT REDUCER ----------------------------------------
 const initialState = { allSpots: null, oneSpot: null, userSpots: null };
 

@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getSpotDetails, getSpotReviews } from '../../store/spot';
+import { getCurrentReviews } from '../../store/review';
 import './SpotDetails.css';
 
 
@@ -13,10 +14,12 @@ const SpotDetails = () => {
     useEffect(() => {
         dispatch(getSpotDetails(spotId));
         dispatch(getSpotReviews(spotId));
+        dispatch(getCurrentReviews());
       }, [dispatch, spotId]);
 
     const spot = useSelector(state => state.spot.oneSpot);
-    let reviews = useSelector(state => state.spot.spotReviews)
+    let reviews = useSelector(state => state.spot.spotReviews);
+    let currReviews = useSelector(state => state.review.currReviews);
 
     if (!spot || !reviews) return null;
 
