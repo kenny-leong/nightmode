@@ -279,10 +279,10 @@ router.post('/', requireAuth, async (req, res) => {
     if (!name || name.length > 50) {
         val.errors.push("Name is required and must be less than 50 characters");
     }
-    if (!description) {
-        val.errors.push("Description is required");
+    if (description.length < 30 || description.length > 500) {
+        val.errors.push("Description needs a minimum of 30 characters");
     }
-    if (price === null) {
+    if (!price) {
         val.errors.push("Price per night is required");
     }
     if (isNaN(price)) {

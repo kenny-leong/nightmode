@@ -237,6 +237,7 @@ function CreateSpot() {
                     <div className='describe-div'>
                         <h2>Describe your place to guests</h2>
                         <h4>Mention the best features of your space, any special amenities like fast wifi or parking, and what you love about the neighborhood.</h4>
+                        {<span className='error-desc'>{errors.Description}</span>}
                         <textarea
                             className='description-ta'
                             placeholder='Please write at least 30 characters . . . .'
@@ -247,6 +248,7 @@ function CreateSpot() {
                     <div className='title-div'>
                         <h2>Create a title for your spot</h2>
                         <h4>Catch guests' attention witha  spot title that highlights what makes your place special.</h4>
+                        <span className='error-desc'>{errors.Name}</span>
                         <input
                             type="text"
                             placeholder='Name of your spot'
@@ -257,6 +259,7 @@ function CreateSpot() {
                     <div className='price-div'>
                         <h2>Set a base price for your spot</h2>
                         <h4>Competitive pricing can help your listing stand out and rank higher in search results.</h4>
+                        <span className='error-desc'>{errors.Price}</span>
                         <div className='price-input'>
                             <span className='dollar-sign'>$</span>
                             <input

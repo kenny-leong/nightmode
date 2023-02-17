@@ -193,4 +193,11 @@
 .error-span {
     color: red;
     margin-left: 20px;
+    font-family: 'Montserrat';
+}
+
+.error-desc {
+    color: red;
+    font-family: 'Montserrat';
+    margin-bottom: 10px;
 }
