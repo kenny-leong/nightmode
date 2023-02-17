@@ -250,20 +250,12 @@ const spotReducer = (state = initialState, action) => {
                 spotReviews: action.spotReviews
             }
         case 'ADD_REVIEW':
-<<<<<<< HEAD
             const newReview = {};
             newReview[action.review.id] = action.review;
             return {
                 ...state,
                 spotReviews: {
                     Reviews: [newReview, state.spotReviews.Reviews]
-=======
-            return {
-                ...state,
-                spotReviews: {
-                    [action.review.id]: action.review,
-                    ...state.spotReviews.Reviews
->>>>>>> parent of 108c7d8 (reducer fixed.)
                 }
             }
         default:
