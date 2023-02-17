@@ -5,6 +5,7 @@ import { getSpotDetails, getSpotReviews } from '../../store/spot';
 import { getCurrentReviews } from '../../store/review';
 import OpenModalButton from '../OpenModalButton';
 import PostReview from '../PostReview';
+import DeleteReview from '../DeleteReview';
 import './SpotDetails.css';
 
 
@@ -27,10 +28,10 @@ const SpotDetails = () => {
 
     if (!spot || !reviews || !currReviews) return null;
 
-    reviews = reviews.Reviews;
     currReviews = Object.values(currReviews);
 
     let buttonEnable;
+    console.log(sessionUser)
 
     for (let review of currReviews) {
         if (review.spotId === parseInt(spotId)) {
@@ -147,6 +148,13 @@ const SpotDetails = () => {
                     <h1>{reviewObj.User.firstName} {reviewObj.User.lastName}</h1>
                     <span>{new Date(reviewObj.createdAt).toISOString().split('T')[0]}</span>
                     <p>{reviewObj.review}</p>
+                    {(reviewObj.userId === sessionUser.id) && (
+                        <OpenModalButton
+                            buttonText="Delete"
+                            modalComponent={<DeleteReview reviewId={reviewObj.id}/>}
+                            className='delete-review-btn'
+                        />
+                    )}
                 </div>
             ))}
         </div>

@@ -165,7 +165,7 @@ export const getSpotReviews = (spotId) => async dispatch => {
 
     if (res.ok) {
         const spotReviews = await res.json();
-        dispatch(loadSpotReviews(spotReviews));
+        dispatch(loadSpotReviews(spotReviews.Reviews));
     }
 }
 
@@ -252,8 +252,8 @@ const spotReducer = (state = initialState, action) => {
             return {
                 ...state,
                 spotReviews: {
-                    ...state.spotReviews.Reviews,
-                    [action.review.id]: action.review
+                    [action.review.id]: action.review,
+                    ...state.spotReviews.Reviews
                 }
             }
         default:

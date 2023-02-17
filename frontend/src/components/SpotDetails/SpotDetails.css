@@ -156,6 +156,19 @@ a {
     font-size: 15px;
 }
 
+.review-div-map .modal-btn {
+    background-color: #FF5A5F;
+    color: white;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Montserrat';
+    margin-bottom: 15px;
+}
+
 .rating-float {
     margin-right: 45px;
 }
