@@ -112,7 +112,7 @@ const SpotDetails = () => {
                     {(spot.avgStarRating === null) ? <span>New</span> : <span>{parseInt(spot.avgStarRating).toFixed(1)}</span>}
                 </div>
                 <button className='review-btn'>Post Your Review</button>
-                {(spot.numReviews === 0) ? <p className='review-describe'>Be the first to post a review!</p> : <p className='review-describe'>{null}</p>}
+                {(spot.numReviews === 0) ? <p className='review-describe'>Be the first to post a review!</p> : null}
             </div>
             {reviews && reviews.map((reviewObj, index) => (
                 <div key={index} className='review-div-map'>

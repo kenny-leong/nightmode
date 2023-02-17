@@ -94,12 +94,20 @@ a {
 
 .review-btn {
     margin-left: 5%;
-    margin-top: 10px;
+    margin-top: 15px;
     margin-bottom: 20px;
+    background-color: #FF5A5F;
+    color: white;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    border: none;
 }
 
 .review-describe {
     margin-left: 5%;
+    font-family: 'Montserrat';
 }
 
 .num-reviews {
