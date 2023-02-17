@@ -77,7 +77,6 @@ function CreateSpot() {
                 }
             )
         newDbSpot = result;
-        if (newDbSpot === undefined) return;
 
 
         // add images to the newly created spot in the database
@@ -86,7 +85,7 @@ function CreateSpot() {
         if (previewUrl) {
             const urlObj = {};
             urlObj.url = previewUrl;
-            urlObj.preview = "true;"
+            urlObj.preview = "true";
             spotImages.push(urlObj);
         }
 
@@ -136,11 +135,11 @@ function CreateSpot() {
     const errMsgs = []
     const keys = Object.keys(errors);
 
-    console.log(keys)
-
     for (let key of keys) {
         errMsgs.push(errors[key]);
     }
+
+    console.log(errMsgs)
 
     return (
         <div className='newspot-full-div'>

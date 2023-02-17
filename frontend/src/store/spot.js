@@ -100,6 +100,7 @@ export const addSpotImgs = (spot, imgArr) => async dispatch => {
         if (imgRes.ok) {
             const spotImg = await imgRes.json();
             spotImgArr.push(spotImg);
+            console.log(spotImg);
         }
     }
 
