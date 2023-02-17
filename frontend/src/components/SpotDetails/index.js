@@ -26,24 +26,26 @@ const SpotDetails = () => {
     let currReviews = useSelector(state => state.review.currReviews);
 
 
-    if (!spot || !reviews || !currReviews) return null;
+    if (!spot || !reviews) return null;
 
-    currReviews = Object.values(currReviews);
+    if (currReviews) {
+        currReviews = Object.values(currReviews);
+        for (let review of currReviews) {
+            if (review.spotId === parseInt(spotId)) {
+                buttonEnable = false;
+                break;
+            } else {
+                buttonEnable = true;
+            }
+        }
+    }
     reviews = Object.values(reviews)
     reviews = reviews.reverse();
 
-    console.log(currReviews)
 
     let buttonEnable;
 
-    for (let review of currReviews) {
-        if (review.spotId === parseInt(spotId)) {
-            buttonEnable = false;
-            break;
-        } else {
-            buttonEnable = true;
-        }
-    }
+
 
     if (buttonEnable === undefined) buttonEnable = true;
 
@@ -153,7 +155,7 @@ const SpotDetails = () => {
                     <h1>{reviewObj.User.firstName} {reviewObj.User.lastName}</h1>
                     <span>{new Date(reviewObj.createdAt).toISOString().split('T')[0]}</span>
                     <p>{reviewObj.review}</p>
-                    {(reviewObj.userId === sessionUser.id) && (
+                    {(sessionUser) && (reviewObj.userId === sessionUser.id) && (
                         <OpenModalButton
                             buttonText="Delete"
                             modalComponent={<DeleteReview reviewId={reviewObj.id} spot={spot}/>}
