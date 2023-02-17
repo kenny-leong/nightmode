@@ -40,7 +40,7 @@ function Navigation({ isLoaded }){
   return (
     <ul className='nav-bar'>
       <li>
-        <NavLink exact to="/" className='navbar-text'>nightbnb.</NavLink>
+        <NavLink exact to="/" className='navbar-text'>nightmode.</NavLink>
       </li>
       {sessionUser !== null && (
         <li>
