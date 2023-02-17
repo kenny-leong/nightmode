@@ -63,14 +63,14 @@ function CreateSpot() {
                 async (res) => {
                     const data = await res.json();
 
-                    if (data && data.error) {
-                        let errMsg = Object.values(data.error);
-                        errMsg = errMsg.join('');
-                        let errType = errMsg.split(' ');
-                        errType = errType[0];
-                        const type = errType.toLowerCase();
+                    if (data) {
+                        const errorArr = Object.values(data.errors);
                         const errObj = {};
-                        errObj[type] = errMsg;
+                        errorArr.forEach((err) => {
+                            let firstWord = err.split(' ');
+                            firstWord = firstWord[0];
+                            errObj[firstWord] = err;
+                        })
                         setErrors(errObj)
                         setHasSubmitted(false);
                     }
@@ -136,6 +136,8 @@ function CreateSpot() {
     const errMsgs = []
     const keys = Object.keys(errors);
 
+    console.log(keys)
+
     for (let key of keys) {
         errMsgs.push(errors[key]);
     }
@@ -160,7 +162,9 @@ function CreateSpot() {
                         <h4>Guests will only get your exact address once they book a reservation.</h4>
                     </div>
                     <label className="form-label country">
-                        <p>Country</p>
+                        <p>
+                            Country <span className='error-span'>{errors.Country}</span>
+                        </p>
                         <input
                             type='text'
                             onChange={(e) => setCountry(e.target.value)}
@@ -169,7 +173,9 @@ function CreateSpot() {
                         />
                     </label>
                     <label className="form-label address">
-                        <p>Street Address</p>
+                        <p>
+                            Street Address <span className='error-span'>{errors.Street}</span>
+                        </p>
                         <input
                             type='text'
                             onChange={(e) => setAddress(e.target.value)}
@@ -179,7 +185,9 @@ function CreateSpot() {
                     </label>
                     <div className='city-state-div'>
                         <label className='form-label city'>
-                            <p>City</p>
+                            <p>
+                                City <span className='error-span'>{errors.City}</span>
+                            </p>
                             <input
                                 type="text"
                                 placeholder="City"
@@ -190,7 +198,9 @@ function CreateSpot() {
                         </label>
                         <span className='comma-one'>,</span>
                         <label className='form-label state'>
-                            <p>State</p>
+                            <p>
+                                State <span className='error-span'>{errors.State}</span>
+                            </p>
                             <input
                                 type="text"
                                 placeholder="State"
@@ -201,7 +211,9 @@ function CreateSpot() {
                     </div>
                     <div className='lat-long-div'>
                         <label className='form-label lat'>
-                            <p>Latitude</p>
+                            <p>
+                                Latitude <span className='error-span'>{errors.Latitude}</span>
+                            </p>
                             <input
                                 type="text"
                                 placeholder="Latitude"
@@ -211,7 +223,9 @@ function CreateSpot() {
                         </label>
                         <span className='comma-two'>,</span>
                         <label className='form-label lng'>
-                            <p>Longitude</p>
+                            <p>
+                                Longitude <span className='error-span'>{errors.Longitude}</span>
+                            </p>
                             <input
                                 type="text"
                                 placeholder="Longitude"

@@ -252,42 +252,44 @@ router.post('/', requireAuth, async (req, res) => {
     }
     const val = {
         message: "Validation Error",
-        statusCode: 400
+        statusCode: 400,
+        errors: []
     };
 
     // make sure req body parameters are valid
     let { address, city, state, country, lat, lng, name, description, price } = req.body;
     if (!address) {
-        val.error = "Street address is required";
-        return errorHandle(val);
-    } else if (!city) {
-        val.error = "City is required";
-        return errorHandle(val);
-    } else if (!state) {
-        val.error = "State is required";
-        return errorHandle(val);
-    } else if (!country) {
-        val.error = "Country is required";
-        return errorHandle(val);
-    } else if (!lat || isNaN(lat) || lat > 90 || lat < -90) {
-        val.error = "Latitude is not valid";
-        return errorHandle(val);
-    } else if (!lng || isNaN(lng) || lng > 180 || lng < -180) {
-        val.error = "Longitude is not valid";
-        return errorHandle(val);
-    } else if (!name || name.length > 50) {
-        val.error = "Name is required and must be less than 50 characters";
-        return errorHandle(val);
-    } else if (!description) {
-        val.error = "Description is required";
-        return errorHandle(val);
-    } else if (price === null) {
-        val.error = "Price per night is required";
-        return errorHandle(val);
-    } else if (isNaN(price)) {
-        val.error = 'Price cannot contain letters or symbols.';
-        return errorHandle(val);
+        val.errors.push("Street address is required");
     }
+    if (!city) {
+        val.errors.push("City is required");
+    }
+    if (!state) {
+        val.errors.push("State is required");
+    }
+    if (!country) {
+        val.errors.push("Country is required");
+    }
+    if (!lat || isNaN(lat) || lat > 90 || lat < -90) {
+        val.errors.push("Latitude is not valid");
+    }
+    if (!lng || isNaN(lng) || lng > 180 || lng < -180) {
+        val.errors.push("Longitude is not valid");
+    }
+    if (!name || name.length > 50) {
+        val.errors.push("Name is required and must be less than 50 characters");
+    }
+    if (!description) {
+        val.errors.push("Description is required");
+    }
+    if (price === null) {
+        val.errors.push("Price per night is required");
+    }
+    if (isNaN(price)) {
+        val.errors.push('Price cannot contain letters or symbols.');
+    }
+
+    if ((val.errors).length > 0)return res.status(400).json(val);
 
     const ownerId = req.user.id;  // grab current user's id
     const newSpot = await Spot.create({ownerId, ...req.body}); // create new Spot
