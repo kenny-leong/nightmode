@@ -93,7 +93,7 @@ const SpotDetails = () => {
                         <span className='spot-rating-avg'>
                             <i className="fa-sharp fa-solid fa-star"></i>
                             {(spot.avgStarRating === null) ? <span className='avg-star-rating'>New</span> :
-                            <span className='avg-star-rating'>{spot.avgStarRating.toFixed(1)}</span>}
+                            <span className='avg-star-rating'>{spot.avgStarRating && (spot.avgStarRating.toFixed(1))}</span>}
                         </span>
                         {spot.numReviews > 0 && (
                             <span className='num-reviews'>
