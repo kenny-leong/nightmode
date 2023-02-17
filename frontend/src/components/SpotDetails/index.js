@@ -29,9 +29,9 @@ const SpotDetails = () => {
     if (!spot || !reviews || !currReviews) return null;
 
     currReviews = Object.values(currReviews);
+    console.log(reviews, sessionUser)
 
     let buttonEnable;
-    console.log(sessionUser)
 
     for (let review of currReviews) {
         if (review.spotId === parseInt(spotId)) {

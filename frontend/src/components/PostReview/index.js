@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useEffect, useState } from 'react';
 import { postReview, getSpotReviews } from "../../store/spot";
@@ -11,6 +11,7 @@ function PostReview({ spotId }) {
     const [rating, setRating] = useState(0)
     const dispatch = useDispatch();
     const { closeModal } = useModal();
+    const sessionUser = useSelector(state => state.session.user);
 
     const handleStarClick = (value) => {
         setRating(value);
@@ -24,7 +25,8 @@ function PostReview({ spotId }) {
 
         const newReview = {
             review,
-            stars: rating
+            stars: rating,
+            User: sessionUser
         }
 
         dispatch(postReview(spotId, newReview))
