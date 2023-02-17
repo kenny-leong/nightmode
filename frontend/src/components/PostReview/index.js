@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useEffect, useState } from 'react';
 import { postReview, getSpotReviews } from "../../store/review";
+import { getSpotDetails } from '../../store/spot';
 import './PostReview.css'
 
 
@@ -15,10 +16,11 @@ function PostReview({ spotId }) {
 
     const handleStarClick = (value) => {
         setRating(value);
-      };
+    };
 
+    useEffect(() => {
 
-    console.log(spotId)
+    })
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -32,6 +34,7 @@ function PostReview({ spotId }) {
             .then(() => {
                 closeModal();
                 dispatch(getSpotReviews(spotId))
+                dispatch(getSpotDetails(spotId))
             })
     }
 
