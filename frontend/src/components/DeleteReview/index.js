@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useHistory } from 'react-router-dom';
 import { getUserSpots } from '../../store/spot';
+import './DeleteReview.css'
 
 function DeleteReview({ reviewId }) {
   const dispatch = useDispatch();

@@ -1,0 +1,42 @@
+.delete-review-header {
+    font-family: 'Montserrat';
+    padding: 15px;
+}
+
+.delete-review-modal p {
+    font-family: 'Montserrat';
+}
+
+.delete-review-modal {
+    width: 500px;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.delete-review-yes {
+    background-color: #FF5A5F;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    font-size: 16px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Montserrat';
+    margin-right: 30px;
+}
+
+.delete-review-keep {
+    background-color: gray;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    font-size: 16px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Montserrat';
+    margin-right: 30px;
+}
