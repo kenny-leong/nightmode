@@ -10,6 +10,10 @@ const loadReviews = reviews => ({
     reviews
 });
 
+const deleteReview = () => ({
+    type: 'DELETE_REVIEW'
+});
+
 
 
 // ---------------------thunk action creators-------------------
@@ -20,6 +24,17 @@ export const getCurrentReviews = () => async dispatch => {
 
     if (res.ok) {
         const currReviews = await res.json();
+        dispatch(loadReviews(currReviews));
+    }
+}
+
+// DELETE A REVIEW
+export const removeReview = (reviewId) => async dispatch => {
+    const res = await csrfFetch(`/api/reviews/${reviewId}`, {
+        method: 'DELETE'
+    });
+
+    if (res.ok) {
         dispatch(loadReviews(currReviews));
     }
 }
@@ -41,6 +56,9 @@ const reviewReducer = (state = initialState, action) => {
                 ...state,
                 currReviews: currReviews
             };
+        case 'DELETE_REVIEW':
+            const newState = {...state};
+            return newState;
         default:
             return state;
     }
