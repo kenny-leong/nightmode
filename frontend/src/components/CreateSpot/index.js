@@ -144,16 +144,6 @@ function CreateSpot() {
 
     return (
         <div className='newspot-full-div'>
-            {(errMsgs.length > 0) && (
-                <div className='error-div'>
-                    <p>Please fix the following error before submitting:</p>
-                    <ul className='newspot-ul'>
-                        {errMsgs.map((err) => (
-                            <li key={err} className='error-item'>{err}</li>
-                        ))}
-                    </ul>
-                </div>
-            )}
             <div className='newspot-form-div'>
                 <form onSubmit={handleSubmit}>
                     <h1 className='create-spot-header'>Create a new Spot</h1>
