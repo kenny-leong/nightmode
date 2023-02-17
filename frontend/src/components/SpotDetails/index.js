@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { getSpotDetails } from '../../store/spot';
+import { getSpotDetails, getSpotReviews } from '../../store/spot';
 import './SpotDetails.css';
 
 
@@ -12,12 +12,17 @@ const SpotDetails = () => {
 
     useEffect(() => {
         dispatch(getSpotDetails(spotId));
-    }, [dispatch, spotId]);
-
+        dispatch(getSpotReviews(spotId));
+      }, [dispatch, spotId]);
 
     const spot = useSelector(state => state.spot.oneSpot);
+    let reviews = useSelector(state => state.spot.spotReviews)
 
-    if (!spot) return null;
+    if (!spot || !reviews) return null;
+
+    reviews = reviews.Reviews;
+
+    console.log(reviews)
 
     const spotImgArr = spot.SpotImages;
     let mainUrlImg;
@@ -42,6 +47,11 @@ const SpotDetails = () => {
         smallUrlArr.push(noPhoto);
     }
 
+
+
+
+
+
     const inlineDivOne = (
         <div className='inline-div-one'>
             <img src={smallUrlArr[0]} className='sub-img' alt={spot.name}></img>
@@ -56,7 +66,6 @@ const SpotDetails = () => {
         </div>
     );
 
-    console.log(spot)
 
     const handleReserve = (e) => {
         e.preventDefault();
@@ -105,6 +114,13 @@ const SpotDetails = () => {
                 <button className='review-btn'>Post Your Review</button>
                 {(spot.numReviews === 0) ? <p className='review-describe'>Be the first to post a review!</p> : <p className='review-describe'>{null}</p>}
             </div>
+            {reviews && reviews.map((reviewObj, index) => (
+                <div key={index} className='review-div-map'>
+                    <h1>{reviewObj.User.firstName} {reviewObj.User.lastName}</h1>
+                    <span>{new Date(reviewObj.createdAt).toISOString().split('T')[0]}</span>
+                    <p>{reviewObj.review}</p>
+                </div>
+            ))}
         </div>
     )
 

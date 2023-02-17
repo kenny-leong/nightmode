@@ -100,7 +100,6 @@ a {
 
 .review-describe {
     margin-left: 5%;
-    padding-bottom: 100px;
 }
 
 .num-reviews {
@@ -111,4 +110,24 @@ a {
 
 .avg-star-rating {
     margin-left: 5px;
+}
+
+.review-div-map {
+    border-top: 3px rgba(134, 108, 108, 0.498) solid;
+    border-bottom: 3px rgba(134, 108, 108, 0.498) solid;
+    margin-left: 5%;
+    font-family: 'Montserrat';
+    margin-bottom: 30px;
+}
+
+.review-div-map h1 {
+    font-size: 25px;
+}
+
+.review-div-map span {
+    font-size: 18px;
+}
+
+.review-div-map p {
+    font-size: 15px;
 }

@@ -41,6 +41,11 @@ const loadUserSpots = userSpots => ({
     userSpots
 });
 
+const loadSpotReviews = (spotReviews) => ({
+    type: 'LOAD_SPOT_REVIEWS',
+    spotReviews
+})
+
 
 
 // -------------------------------------- thunk action creators -----------------------------------
@@ -149,6 +154,16 @@ export const deleteUserSpot = (spot) => async dispatch => {
     }
 }
 
+// GET REVIEWS BY SPOT ID
+export const getSpotReviews = (spotId) => async dispatch => {
+    const res = await csrfFetch(`/api/spots/${spotId}/reviews`);
+
+    if (res.ok) {
+        const spotReviews = await res.json();
+        dispatch(loadSpotReviews(spotReviews));
+    }
+}
+
 
 
 
@@ -209,6 +224,11 @@ const spotReducer = (state = initialState, action) => {
                 oneSpot: {
                     ...action.spot
                 }
+            }
+        case 'LOAD_SPOT_REVIEWS':
+            return {
+                ...state,
+                spotReviews: action.spotReviews
             }
         default:
             return state;
