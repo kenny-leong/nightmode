@@ -2,12 +2,12 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useEffect, useState } from 'react';
-import { postReview, getSpotReviews } from "../../store/review";
+import { postReview, getSpotReviews, getCurrentReviews } from "../../store/review";
 import { getSpotDetails } from '../../store/spot';
 import './PostReview.css'
 
 
-function PostReview({ spotId }) {
+function PostReview({ spot }) {
     const [review, setReview] = useState('');
     const [rating, setRating] = useState(0)
     const dispatch = useDispatch();
@@ -18,10 +18,6 @@ function PostReview({ spotId }) {
         setRating(value);
     };
 
-    useEffect(() => {
-
-    })
-
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -30,12 +26,13 @@ function PostReview({ spotId }) {
             stars: rating
         }
 
-        dispatch(postReview(spotId, newReview, sessionUser))
+        dispatch(postReview(spot.id, newReview, sessionUser))
             .then(() => {
                 closeModal();
-                dispatch(getSpotReviews(spotId))
-                dispatch(getSpotDetails(spotId))
-            })
+                dispatch(getSpotDetails(spot.id))
+                dispatch(getSpotReviews(spot.id))
+                getCurrentReviews()
+            });
     }
 
     return (
