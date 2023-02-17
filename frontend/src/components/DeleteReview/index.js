@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { removeReview } from '../../store/review';
+import { removeReview, getSpotReviews } from '../../store/review';
 import './DeleteReview.css'
 
 function DeleteReview({ reviewId, spot }) {
@@ -20,6 +20,7 @@ function DeleteReview({ reviewId, spot }) {
     dispatch(removeReview(reviewId))
         .then(() => {
             closeModal();
+            dispatch(getSpotReviews(spot.id))
         });
     }
 

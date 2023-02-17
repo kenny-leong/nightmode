@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { getSpotDetails, getSpotReviews } from '../../store/spot';
-import { getCurrentReviews } from '../../store/review';
+import { getSpotDetails } from '../../store/spot';
+import { getCurrentReviews, getSpotReviews } from '../../store/review';
 import OpenModalButton from '../OpenModalButton';
 import PostReview from '../PostReview';
 import DeleteReview from '../DeleteReview';
@@ -22,14 +22,17 @@ const SpotDetails = () => {
       }, [dispatch, spotId, sessionUser]);
 
     const spot = useSelector(state => state.spot.oneSpot);
-    let reviews = useSelector(state => state.spot.spotReviews);
+    let reviews = useSelector(state => state.review.spot);
     let currReviews = useSelector(state => state.review.currReviews);
 
 
     if (!spot || !reviews || !currReviews) return null;
 
     currReviews = Object.values(currReviews);
-    console.log(reviews, sessionUser)
+    reviews = Object.values(reviews)
+    reviews = reviews.reverse();
+
+    console.log(currReviews)
 
     let buttonEnable;
 
@@ -41,6 +44,8 @@ const SpotDetails = () => {
             buttonEnable = true;
         }
     }
+
+    if (buttonEnable === undefined) buttonEnable = true;
 
     const spotImgArr = spot.SpotImages;
     let mainUrlImg;
@@ -136,7 +141,7 @@ const SpotDetails = () => {
                     <div className='modal-post-review'>
                     <OpenModalButton
                         buttonText="Post Your Review"
-                        modalComponent={<PostReview spot={spot}/>}
+                        modalComponent={<PostReview spotId={spotId}/>}
                         className='post-review-btn'
                 />
                     </div>
@@ -151,7 +156,7 @@ const SpotDetails = () => {
                     {(reviewObj.userId === sessionUser.id) && (
                         <OpenModalButton
                             buttonText="Delete"
-                            modalComponent={<DeleteReview reviewId={reviewObj.id} spotId={spotId}/>}
+                            modalComponent={<DeleteReview reviewId={reviewObj.id} spot={spot}/>}
                             className='delete-review-btn'
                         />
                     )}

@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useEffect, useState } from 'react';
-import { postReview, getSpotReviews } from "../../store/spot";
+import { postReview, getSpotReviews } from "../../store/review";
 import './PostReview.css'
 
 
@@ -18,18 +18,17 @@ function PostReview({ spotId }) {
       };
 
 
-
+    console.log(spotId)
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         const newReview = {
-            review,
-            stars: rating,
-            User: sessionUser
+            review: review,
+            stars: rating
         }
 
-        dispatch(postReview(spotId, newReview))
+        dispatch(postReview(spotId, newReview, sessionUser))
             .then(() => {
                 closeModal();
                 dispatch(getSpotReviews(spotId))

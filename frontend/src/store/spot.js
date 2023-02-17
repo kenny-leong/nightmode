@@ -41,16 +41,6 @@ const loadUserSpots = userSpots => ({
     userSpots
 });
 
-const loadSpotReviews = (spotReviews) => ({
-    type: 'LOAD_SPOT_REVIEWS',
-    spotReviews
-})
-
-const addReview = review => ({
-    type: 'ADD_REVIEW',
-    review
-});
-
 
 
 // -------------------------------------- thunk action creators -----------------------------------
@@ -159,30 +149,6 @@ export const deleteUserSpot = (spot) => async dispatch => {
     }
 }
 
-// GET REVIEWS BY SPOT ID
-export const getSpotReviews = (spotId) => async dispatch => {
-    const res = await csrfFetch(`/api/spots/${spotId}/reviews`);
-
-    if (res.ok) {
-        const spotReviews = await res.json();
-        dispatch(loadSpotReviews(spotReviews.Reviews));
-    }
-}
-
-// POST A REVIEW BY SPOT ID
-export const postReview = (spotId, newReview) => async dispatch => {
-    const res = await csrfFetch(`/api/spots/${spotId}/reviews`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(newReview)
-    });
-
-    if (res.ok) {
-        const postedReview = await res.json();
-        dispatch(addReview(postedReview));
-        console.log(postedReview)
-    }
-}
 
 
 
@@ -242,20 +208,6 @@ const spotReducer = (state = initialState, action) => {
                 ...state,
                 oneSpot: {
                     ...action.spot
-                }
-            }
-        case 'LOAD_SPOT_REVIEWS':
-            return {
-                ...state,
-                spotReviews: action.spotReviews
-            }
-        case 'ADD_REVIEW':
-            const newReview = {};
-            newReview[action.review.id] = action.review;
-            return {
-                ...state,
-                spotReviews: {
-                    Reviews: [newReview, state.spotReviews.Reviews]
                 }
             }
         default:
