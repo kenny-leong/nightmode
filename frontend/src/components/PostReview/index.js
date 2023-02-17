@@ -10,12 +10,17 @@ import './PostReview.css'
 function PostReview({ spot }) {
     const [review, setReview] = useState('');
     const [rating, setRating] = useState(0)
+    const [hoverRating, setHoverRating] = useState(0)
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const sessionUser = useSelector(state => state.session.user);
 
     const handleStarClick = (value) => {
         setRating(value);
+    };
+
+    const handleStarHover = (value) => {
+        setHoverRating(value);
     };
 
     const handleSubmit = (e) => {
@@ -45,11 +50,36 @@ function PostReview({ spot }) {
                 onChange={(e) => setReview(e.target.value)}
             />
             <div className="star-rating">
-                <span className={rating >= 1 ? "star-filled" : "star-empty"} onClick={() => handleStarClick(1)}>★</span>
-                <span className={rating >= 2 ? "star-filled" : "star-empty"} onClick={() => handleStarClick(2)}>★</span>
-                <span className={rating >= 3 ? "star-filled" : "star-empty"} onClick={() => handleStarClick(3)}>★</span>
-                <span className={rating >= 4 ? "star-filled" : "star-empty"} onClick={() => handleStarClick(4)}>★</span>
-                <span className={rating >= 5 ? "star-filled" : "star-empty"} onClick={() => handleStarClick(5)}>★</span>
+            <span
+                    className={rating >= 1 || hoverRating >= 1 ? "star-filled" : "star-empty"}
+                    onClick={() => handleStarClick(1)}
+                    onMouseEnter={() => handleStarHover(1)}
+                    onMouseLeave={() => handleStarHover(0)}
+                >★</span>
+                <span
+                    className={rating >= 2 || hoverRating >= 2 ? "star-filled" : "star-empty"}
+                    onClick={() => handleStarClick(2)}
+                    onMouseEnter={() => handleStarHover(2)}
+                    onMouseLeave={() => handleStarHover(0)}
+                >★</span>
+                <span
+                    className={rating >= 3 || hoverRating >= 3 ? "star-filled" : "star-empty"}
+                    onClick={() => handleStarClick(3)}
+                    onMouseEnter={() => handleStarHover(3)}
+                    onMouseLeave={() => handleStarHover(0)}
+                >★</span>
+                <span
+                    className={rating >= 4 || hoverRating >= 4 ? "star-filled" : "star-empty"}
+                    onClick={() => handleStarClick(4)}
+                    onMouseEnter={() => handleStarHover(4)}
+                    onMouseLeave={() => handleStarHover(0)}
+                >★</span>
+                <span
+                    className={rating >= 5 || hoverRating >= 5 ? "star-filled" : "star-empty"}
+                    onClick={() => handleStarClick(5)}
+                    onMouseEnter={() => handleStarHover(5)}
+                    onMouseLeave={() => handleStarHover(0)}
+                >★</span>
                 <span className="star-text">Stars</span>
             </div>
             <button

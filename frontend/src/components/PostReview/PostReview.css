@@ -55,6 +55,10 @@
     margin-top: 20px;
 }
 
+.star-empty:hover {
+    color: gold;
+  }
+
 .submit-review {
     background-color: #FF5A5F;
     color: white;
