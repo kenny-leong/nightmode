@@ -22,6 +22,8 @@ const SpotDetails = () => {
 
     reviews = reviews.Reviews;
 
+    console.log(reviews)
+
     const spotImgArr = spot.SpotImages;
     let mainUrlImg;
 
@@ -64,6 +66,7 @@ const SpotDetails = () => {
         </div>
     );
 
+
     const handleReserve = (e) => {
         e.preventDefault();
         window.alert('Feature Coming Soon...');
@@ -92,8 +95,7 @@ const SpotDetails = () => {
                         <span className='price-per-night'>{`$${spot.price} /night`}</span>
                         <span className='spot-rating-avg'>
                             <i className="fa-sharp fa-solid fa-star"></i>
-                            {(spot.avgStarRating === null) ? <span className='avg-star-rating'>New</span> :
-                            <span className='avg-star-rating'>{spot.avgStarRating && (spot.avgStarRating.toFixed(1))}</span>}
+                            {(spot.avgStarRating === null) ? <span className='avg-star-rating'>New</span> : <span className='avg-star-rating'>{parseInt(spot.avgStarRating).toFixed(1)}</span>}
                         </span>
                         {spot.numReviews > 0 && (
                             <span className='num-reviews'>
