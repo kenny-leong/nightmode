@@ -28,6 +28,8 @@ const SpotDetails = () => {
 
     if (!spot || !reviews) return null;
 
+    let buttonEnable;
+
     if (currReviews) {
         currReviews = Object.values(currReviews);
         for (let review of currReviews) {
@@ -43,7 +45,7 @@ const SpotDetails = () => {
     reviews = reviews.reverse();
 
 
-    let buttonEnable;
+
 
 
 
