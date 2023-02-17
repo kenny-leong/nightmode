@@ -35,7 +35,7 @@ export const removeReview = (reviewId) => async dispatch => {
     });
 
     if (res.ok) {
-        dispatch(loadReviews());
+        dispatch(deleteReview());
     }
 }
 

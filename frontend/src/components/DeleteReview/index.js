@@ -2,29 +2,28 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
-import { useHistory } from 'react-router-dom';
-import { getUserSpots } from '../../store/spot';
+import { removeReview } from '../../store/review';
+import { getSpotReviews } from '../../store/spot';
 import './DeleteReview.css'
 
-function DeleteReview({ reviewId }) {
+function DeleteReview({ reviewId, spotId }) {
   const dispatch = useDispatch();
-  const history = useHistory();
   const { closeModal } = useModal();
 
 
   const yesDelete = (e) => {
     e.preventDefault();
-    // dispatch(deleteUserSpot(spot))
-    //     .then(() => {
-    //         history.push('/spots/current');
-    //         closeModal();
-    //         dispatch(getUserSpots());
-    //     })
+
+    dispatch(removeReview(reviewId))
+        .then(() => {
+            closeModal();
+            dispatch(getSpotReviews(spotId));
+        });
     }
 
   const doNotDelete = (e) => {
+    e.preventDefault();
     closeModal();
-    history.push('/spots/current');
   }
 
 

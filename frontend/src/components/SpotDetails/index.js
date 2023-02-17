@@ -151,7 +151,7 @@ const SpotDetails = () => {
                     {(reviewObj.userId === sessionUser.id) && (
                         <OpenModalButton
                             buttonText="Delete"
-                            modalComponent={<DeleteReview reviewId={reviewObj.id}/>}
+                            modalComponent={<DeleteReview reviewId={reviewObj.id} spotId={spotId}/>}
                             className='delete-review-btn'
                         />
                     )}
