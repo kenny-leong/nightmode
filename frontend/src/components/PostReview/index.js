@@ -2,13 +2,15 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { useEffect, useState } from 'react';
+import { postReview, getSpotReviews } from "../../store/spot";
 import './PostReview.css'
 
 
-function PostReview() {
+function PostReview({ spotId }) {
     const [review, setReview] = useState('');
     const [rating, setRating] = useState(0)
     const dispatch = useDispatch();
+    const { closeModal } = useModal();
 
     const handleStarClick = (value) => {
         setRating(value);
@@ -16,6 +18,17 @@ function PostReview() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        const newReview = {
+            review,
+            stars: rating
+        }
+
+        dispatch(postReview(spotId, newReview))
+            .then(() => {
+                closeModal();
+                dispatch(getSpotReviews(spotId))
+            })
     }
 
     return (
@@ -24,7 +37,7 @@ function PostReview() {
             <textarea
                 className="stay-describe"
                 placeholder="Leave your review here . . . . "
-                value={null}
+                value={review}
                 onChange={(e) => setReview(e.target.value)}
             />
             <div className="star-rating">

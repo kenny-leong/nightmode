@@ -134,7 +134,7 @@ const SpotDetails = () => {
                     <div className='modal-post-review'>
                     <OpenModalButton
                         buttonText="Post Your Review"
-                        modalComponent={<PostReview />}
+                        modalComponent={<PostReview spotId={spotId}/>}
                         className='post-review-btn'
                 />
                     </div>
