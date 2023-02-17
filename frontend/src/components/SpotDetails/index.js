@@ -12,6 +12,8 @@ import './SpotDetails.css';
 const SpotDetails = () => {
     const { spotId } = useParams();
     const sessionUser = useSelector(state => state.session.user);
+    let currReviews = useSelector(state => state.review.currReviews);
+    let reviews = useSelector(state => state.review.spot);
 
     const dispatch = useDispatch();
 
@@ -21,9 +23,15 @@ const SpotDetails = () => {
         dispatch(getCurrentReviews());
       }, [dispatch, spotId, sessionUser]);
 
+
+    useEffect(() => {
+        //rerender when reviews changes
+        dispatch(getCurrentReviews());
+    }, [reviews])
+
     const spot = useSelector(state => state.spot.oneSpot);
-    let reviews = useSelector(state => state.review.spot);
-    let currReviews = useSelector(state => state.review.currReviews);
+
+
 
 
     if (!spot || !reviews) return null;
