@@ -44,7 +44,6 @@ export const getSpotReviews = (spotId) => async dispatch => {
 
     if (res.ok) {
         const spotReviews = await res.json();
-        console.log(spotReviews)
         dispatch(loadSpotReviews(spotReviews.Reviews));
     }
 }

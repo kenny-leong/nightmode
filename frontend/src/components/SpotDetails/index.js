@@ -119,7 +119,7 @@ const SpotDetails = () => {
                         <span className='price-per-night'>{`$${spot.price} /night`}</span>
                         <span className='spot-rating-avg'>
                             <i className="fa-sharp fa-solid fa-star"></i>
-                            {(spot.avgStarRating === null) ? <span className='avg-star-rating'>New</span> : <span className='avg-star-rating'>{parseInt(spot.avgStarRating).toFixed(1)}</span>}
+                            {(spot.avgStarRating === null) ? <span className='avg-star-rating'>New</span> : <span className='avg-star-rating'>{parseFloat(spot.avgStarRating).toFixed(1)}</span>}
                         </span>
                         {spot.numReviews > 0 && (
                             <span className='num-reviews'>
@@ -134,7 +134,7 @@ const SpotDetails = () => {
                 <div className='review-rating-bottom'>
                     <div className='bottom-avg-rating'>
                         <i className="fa-sharp fa-solid fa-star"></i>
-                        {(spot.avgStarRating === null) ? <span className='rating-float'>New</span> : <span className='rating-float'>{parseInt(spot.avgStarRating).toFixed(1)}</span>}
+                        {(spot.avgStarRating === null) ? <span className='rating-float'>New</span> : <span className='rating-float'>{parseFloat(spot.avgStarRating).toFixed(1)}</span>}
                         <span>
                             {spot.numReviews > 0 ? (
                                 spot.numReviews === 1 ? '1 review' : `${spot.numReviews} reviews`
