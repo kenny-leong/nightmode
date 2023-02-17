@@ -86,15 +86,15 @@ const SpotDetails = () => {
 
     const inlineDivOne = (
         <div className='inline-div-one'>
-            <img src={smallUrlArr[0]} className='sub-img' alt={spot.name}></img>
-            <img src={smallUrlArr[1]} className='sub-img' alt={spot.name}></img>
+            <img src={smallUrlArr[0]} className='sub-img' alt={spot.name} onError={(e) => {e.target.src = noPhoto}}></img>
+            <img src={smallUrlArr[1]} className='sub-img' alt={spot.name} onError={(e) => {e.target.src = noPhoto}}></img>
         </div>
     );
 
     const inlineDivTwo = (
         <div className='inline-div-two'>
-            <img src={smallUrlArr[2]} className='sub-img' alt={spot.name}></img>
-            <img src={smallUrlArr[3]} className='sub-img' alt={spot.name}></img>
+            <img src={smallUrlArr[2]} className='sub-img' alt={spot.name} onError={(e) => {e.target.src = noPhoto}}></img>
+            <img src={smallUrlArr[3]} className='sub-img' alt={spot.name} onError={(e) => {e.target.src = noPhoto}}></img>
         </div>
     );
 
@@ -111,7 +111,14 @@ const SpotDetails = () => {
                 <p>{`${spot.city}, ${spot.state}, ${spot.country}`}</p>
             </div>
             <div className='imgs-div'>
-                <img src={mainUrlImg} className='main-img' alt={spot.name}></img>
+                <img
+                    src={mainUrlImg}
+                    className='main-img'
+                    alt={spot.name}
+                    onError={(e) => {
+                        e.target.src = noPhoto
+                    }}>
+                </img>
                 <div className='quad-square'>
                     {inlineDivOne}
                     {inlineDivTwo}
