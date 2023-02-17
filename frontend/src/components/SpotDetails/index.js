@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getSpotDetails, getSpotReviews } from '../../store/spot';
 import { getCurrentReviews } from '../../store/review';
+import OpenModalButton from '../OpenModalButton';
+import PostReview from '../PostReview';
 import './SpotDetails.css';
 
 
@@ -129,7 +131,13 @@ const SpotDetails = () => {
                     </div>
                 </div>
                 {(buttonEnable) && (sessionUser) && (
-                    <button className='review-btn'>Post Your Review</button>
+                    <div className='modal-post-review'>
+                    <OpenModalButton
+                        buttonText="Post Your Review"
+                        modalComponent={<PostReview />}
+                        className='post-review-btn'
+                />
+                    </div>
                 )}
                 {(spot.numReviews === 0) ? <p className='review-describe'>Be the first to post a review!</p> : null}
             </div>

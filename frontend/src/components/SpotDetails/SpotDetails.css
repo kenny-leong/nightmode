@@ -107,6 +107,20 @@ a {
     font-family: 'Montserrat';
 }
 
+.modal-post-review .modal-btn {
+    margin-left: 5%;
+    margin-top: 15px;
+    margin-bottom: 20px;
+    background-color: #FF5A5F;
+    color: white;
+    cursor: pointer;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    border: none;
+    font-family: 'Montserrat';
+}
+
 .review-describe {
     margin-left: 5%;
     font-family: 'Montserrat';
