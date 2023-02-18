@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { getSpotDetails } from '../../store/spot';
+import { getSpotDetails, getUserSpots } from '../../store/spot';
 import { getCurrentReviews, getSpotReviews } from '../../store/review';
 import OpenModalButton from '../OpenModalButton';
 import PostReview from '../PostReview';
@@ -15,12 +15,14 @@ const SpotDetails = () => {
     let currReviews = useSelector(state => state.review.currReviews);
     let reviews = useSelector(state => state.review.spot);
 
+
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getSpotDetails(spotId));
         dispatch(getSpotReviews(spotId));
         dispatch(getCurrentReviews());
+        dispatch(getUserSpots());
       }, [dispatch, spotId, sessionUser]);
 
 
@@ -30,24 +32,33 @@ const SpotDetails = () => {
     }, [dispatch, reviews])
 
     const spot = useSelector(state => state.spot.oneSpot);
+    let userSpots = useSelector(state => state.spot.userSpots);
 
 
 
 
     if (!spot || !reviews) return null;
 
-    let buttonEnable;
 
-    if (currReviews) {
+
+    let buttonEnable = true;
+
+    if (currReviews && userSpots) {
+        userSpots = Object.values(userSpots);
+        console.log(userSpots)
         currReviews = Object.values(currReviews);
         for (let review of currReviews) {
             if (review.spotId === parseInt(spotId)) {
                 buttonEnable = false;
-                break;
-            } else {
-                buttonEnable = true;
             }
         }
+        for (let ownedSpot of userSpots) {
+            console.log(ownedSpot.id, spotId)
+            if (ownedSpot.id === parseInt(spotId)) {
+                buttonEnable = false;
+            }
+        }
+
     }
 
     reviews = Object.values(reviews)
