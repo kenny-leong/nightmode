@@ -45,7 +45,6 @@ const SpotDetails = () => {
 
     if (currReviews && userSpots) {
         userSpots = Object.values(userSpots);
-        console.log(userSpots)
         currReviews = Object.values(currReviews);
         for (let review of currReviews) {
             if (review.spotId === parseInt(spotId)) {
@@ -53,7 +52,6 @@ const SpotDetails = () => {
             }
         }
         for (let ownedSpot of userSpots) {
-            console.log(ownedSpot.id, spotId)
             if (ownedSpot.id === parseInt(spotId)) {
                 buttonEnable = false;
             }
