@@ -218,7 +218,7 @@ function EditSpot() {
                         </div>
                     </div>
                     <div className='submit-div'>
-                        <button type='submit' className='edit-submit-btn'>Edit Spot</button>
+                        <button type='submit' className='edit-submit-btn'>Update Spot</button>
                     </div>
                 </form>
             </div>
