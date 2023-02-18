@@ -180,7 +180,7 @@ const SpotDetails = () => {
                 />
                     </div>
                 )}
-                {(spot.numReviews === 0) ? <p className='review-describe'>Be the first to post a review!</p> : null}
+                {(spot.numReviews === 0) && (buttonEnable) ? <p className='review-describe'>Be the first to post a review!</p> : null}
             </div>
             {reviews && reviews.map((reviewObj, index) => (
                 <div key={index} className='review-div-map'>
