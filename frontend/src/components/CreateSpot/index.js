@@ -72,7 +72,6 @@ function CreateSpot() {
                             errObj[firstWord] = err;
                         })
                         setErrors(errObj)
-                        setHasSubmitted(false);
                     }
                 }
             )
@@ -139,6 +138,27 @@ function CreateSpot() {
     for (let key of keys) {
         errMsgs.push(errors[key]);
     }
+
+    const imgErrors = {};
+
+    if (!previewUrl) imgErrors.Preview = 'Preview image is required.'
+    if (!previewUrl.includes('.png') || (!previewUrl.includes('.jpg')) || (!previewUrl.includes('.jpeg'))) {
+        imgErrors.PreviewFormat = 'Image URL must contain .png, .jpg, or .jpeg';
+    }
+    if (image2Url && ((!image2Url.includes('.png')) || (!image2Url.includes('.jpg')) || (!image2Url.includes('.jpeg')))) {
+        imgErrors.Image2 = 'Image URL must contain .png, .jpg, or .jpeg';
+    }
+    if (image3Url && ((!image3Url.includes('.png')) || (!image3Url.includes('.jpg')) || (!image3Url.includes('.jpeg')))) {
+        imgErrors.Image3 = 'Image URL must contain .png, .jpg, or .jpeg';
+    }
+    if (image4Url && ((!image4Url.includes('.png')) || (!image4Url.includes('.jpg')) || (!image4Url.includes('.jpeg')))) {
+        imgErrors.Image4 = 'Image URL must contain .png, .jpg, or .jpeg';
+    }
+    if (image5Url && ((!image5Url.includes('.png')) || (!image5Url.includes('.jpg')) || (!image5Url.includes('.jpeg')))) {
+        imgErrors.Image5 = 'Image URL must contain .png, .jpg, or .jpeg';
+    }
+
+    console.log(imgErrors)
 
     return (
         <div className='newspot-full-div'>
@@ -261,30 +281,45 @@ function CreateSpot() {
                     <div className='url-div'>
                         <h2>Liven up your spot with photos</h2>
                         <h4>Submit a link to at least one photo to publish your spot</h4>
+                        {(hasSubmitted) && (
+                            <span className='error-desc'>{imgErrors.Preview} {imgErrors.PreviewFormat}</span>
+                        )}
                         <input
                             type="text"
                             placeholder="Preview Image URL"
                             value={previewUrl}
                             onChange={(e) => setPreviewUrl(e.target.value)}
                         />
+                        {(hasSubmitted) && (
+                            <span className='error-desc'>{imgErrors.Image2}</span>
+                        )}
                         <input
                             type="text"
                             placeholder="Image URL"
                             value={image2Url}
                             onChange={(e) => setImage2Url(e.target.value)}
                         />
+                        {(hasSubmitted) && (
+                            <span className='error-desc'>{imgErrors.Image3}</span>
+                        )}
                         <input
                             type="text"
                             placeholder="Image URL"
                             value={image3Url}
                             onChange={(e) => setImage3Url(e.target.value)}
                         />
+                        {(hasSubmitted) && (
+                            <span className='error-desc'>{imgErrors.Image4}</span>
+                        )}
                         <input
                             type="text"
                             placeholder="Image URL"
                             value={image4Url}
                             onChange={(e) => setImage4Url(e.target.value)}
                         />
+                        {(hasSubmitted) && (
+                            <span className='error-desc'>{imgErrors.Image5}</span>
+                        )}
                         <input
                             type="text"
                             placeholder="Image URL"
