@@ -150,6 +150,9 @@ const SpotDetails = () => {
                     <div className='bottom-avg-rating'>
                         <i className="fa-sharp fa-solid fa-star"></i>
                         {(spot.avgStarRating === null) ? <span className='rating-float'>New</span> : <span className='rating-float'>{parseFloat(spot.avgStarRating).toFixed(1)}</span>}
+                        {(spot.numReviews > 0) && (
+                            <span className='centered-dot'>.</span>
+                        )}
                         <span>
                             {spot.numReviews > 0 ? (
                                 spot.numReviews === 1 ? '1 review' : `${spot.numReviews} reviews`
