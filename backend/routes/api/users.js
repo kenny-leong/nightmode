@@ -35,42 +35,30 @@ const validateSignup = [
 router.post('/', async (req, res) => {
       const { email, password, username, firstName, lastName } = req.body;
 
+      const val = {
+        message: 'Validation error',
+        statusCode: 400,
+        errors: []
+      };
+
       // req body validations
       if (!firstName) {
-        return res.status(400).json({
-          message: "Validation error",
-          statusCode: 400,
-          error: "First Name is required"
-        });
+        val.errors.push("First name is required");
       }
       if (!lastName) {
-        return res.status(400).json({
-          message: "Validation error",
-          statusCode: 400,
-          error: "Last Name is required"
-        });
+        val.errors.push("Last name is required");
       }
       if (!username) {
-        return res.status(400).json({
-          message: "Validation error",
-          statusCode: 400,
-          error: "Username is required"
-        });
+        val.errors.push("Username is required");
       }
       if (username.length < 4 || username.length > 30) {
-        return res.status(400).json({
-          message: 'Username must be between 4 - 30 characters',
-          statusCode: 400,
-          error: 'Invalid username length'
-        });
+        val.errors.push('Invalid username length');
       }
       if ((!email.includes('@')) || email.length < 3 || email.length > 256) {
-        return res.status(400).json({
-          message: "Validation error",
-          statusCode: 400,
-          error: "The provided email is invalid"
-        });
+        val.errors.push("The provided email is invalid");
       }
+
+      if ((val.errors).length > 0) return res.status(400).json(val);
 
       //get all existing users
       const allUsers = await User.findAll();

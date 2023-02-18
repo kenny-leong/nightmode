@@ -75,3 +75,7 @@
   color: #ff8b8b;
   margin-right: 35px;
 }
+
+.signup-form ul {
+  list-style-type: none;
+}

@@ -20,9 +20,9 @@ function DeleteReview({ reviewId, spot }) {
 
     dispatch(removeReview(reviewId))
         .then(() => {
-            closeModal();
-            dispatch(getSpotReviews(spot.id))
+          closeModal();
             dispatch(getSpotDetails(spot.id))
+            dispatch(getSpotReviews(spot.id))
         });
     }
 

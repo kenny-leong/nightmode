@@ -246,10 +246,6 @@ router.get('/:spotId', async (req, res) => {
 // POST /api/spots (Create a spot)
 router.post('/', requireAuth, async (req, res) => {
 
-    // helper function for error handling
-    function errorHandle(valError) {
-        return res.status(400).json(valError);
-    }
     const val = {
         message: "Validation Error",
         statusCode: 400,
@@ -289,7 +285,7 @@ router.post('/', requireAuth, async (req, res) => {
         val.errors.push('Price cannot contain letters or symbols.');
     }
 
-    if ((val.errors).length > 0)return res.status(400).json(val);
+    if ((val.errors).length > 0) return res.status(400).json(val);
 
     const ownerId = req.user.id;  // grab current user's id
     const newSpot = await Spot.create({ownerId, ...req.body}); // create new Spot
