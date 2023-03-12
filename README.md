@@ -27,12 +27,9 @@ nightmode is a web application inspired by Airbnb, that provides an online marke
 
 ## Home Page Demo User: ##
 
-You will be able to test the features without sign up by click on the "Demo User" button.
+Feel free to test the site features through clicking the "Demo User" button.
 
 ![homePageDemo](https://user-images.githubusercontent.com/47682357/224535845-c495c75e-37e2-4649-a753-9817eed637cb.gif)
-
-
-
 
 
 ## Signup & Login: ##
