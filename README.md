@@ -36,32 +36,19 @@ Feel free to test the site features through clicking the "Demo User" button.
 
 You will be able to sign up and log in.
 
-![signupLoginDemo](https://user-images.githubusercontent.com/90532956/176979568-7f8ce50f-df46-47ba-9eba-1bc4204044f3.gif)
+
 
 
 ## Create Your Own Listing: ##
 
 You will be able to create a listing by click on the "Become a Host" button on the navigation bar.
 
-![createListing (2)](https://user-images.githubusercontent.com/90532956/176980425-348dc626-c470-4d68-8592-ce68f410ea3f.gif)
 
 
-## Edit and Delete Your Own Listing: ##
+
+## Update and Delete Your Own Listing: ##
 
 You will be able to see an owner action section to edit and delete your own listing. 
 
 You will not be able to see this section if you are not the owner for this listing.
 
-![editListing](https://user-images.githubusercontent.com/90532956/176980560-3a71427d-b091-4ca6-a3f4-60ec6ff0dead.gif)
-
-## Reserve Your Own Booking: ##
-
-You will be able to reserve a booking inside the listing detail page.
-
-![reserveBooking](https://user-images.githubusercontent.com/90532956/176980855-41102482-721e-465e-a479-7ef5114f44ec.gif)
-
-## Edit and Delete Your Own Booking: ##
-
-You will be able to edit and delete your bookings in your bookings page.
-
-![editDeleteBooking](https://user-images.githubusercontent.com/90532956/176980927-64fe519b-34dc-49f6-816b-73d4ad76f66b.gif)
