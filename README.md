@@ -9,9 +9,8 @@ Are you tired of being blinded by the blinding light of traditional vacation ren
 
 [Feature List](https://github.com/kenny-leong/nightmode/wiki/Feature-List)\
 [Database Schema](https://github.com/kenny-leong/nightmode/wiki/Database-Schema)\
-[Frontend Routes](https://github.com/kenny-leong/nightmode/wiki/Frontend-Routes)\
 [API Routes](https://github.com/kenny-leong/nightmode/wiki/API-Documentation)\
-[Redux Store State Shape](https://github.com/kennyleong/nightmode/wiki/Redux-State-Shape)
+
 
 
 ## Technologies Used:
