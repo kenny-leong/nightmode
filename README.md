@@ -2,12 +2,12 @@
 nightmode is a web application inspired by Airbnb, that provides an online marketplace for lodging, primarily homestays for vacation rentals, and tourism activities. 
 [Click here to view nightmode Live Site](https://abnb-clone.onrender.com/)
 
-**Please see below links to project Wiki:**\
-[Feature List](https://github.com/ZhiqiLinn/airVnb/wiki/Feature-List)\
-[Database Schema](https://github.com/ZhiqiLinn/airVnb/wiki/Database-Schema)\
-[Frontend Routes](https://github.com/ZhiqiLinn/airVnb/wiki/Frontend-Routes)\
-[API Routes](https://github.com/ZhiqiLinn/airVnb/wiki/API-Documentation)\
-[Redux Store State Shape](https://github.com/ZhiqiLinn/airVnb/wiki/Redux-State-Shape)
+**Please see below links for project Wiki:**\
+[Feature List](https://github.com/kenny-leong/nightmode/wiki/Feature-List)\
+[Database Schema](https://github.com/kenny-leong/nightmode/wiki/Database-Schema)\
+[Frontend Routes](https://github.com/kenny-leong/nightmode/wiki/Frontend-Routes)\
+[API Routes](https://github.com/kenny-leong/nightmode/wiki/API-Documentation)\
+[Redux Store State Shape](https://github.com/kennyleong/nightmode/wiki/Redux-State-Shape)
 
 
 **This project is built with:**\
