@@ -22,31 +22,31 @@ Are you tired of being blinded by the blinding light of traditional vacation ren
 * React
 * Redux
 
-# Features: #
+# Features:
 
 
-## Home Page Demo User: ##
+## Home Page Demo User:
 
 Feel free to test the site features through clicking the "Demo User" button.
 
 ![homePageDemo](https://user-images.githubusercontent.com/47682357/224535845-c495c75e-37e2-4649-a753-9817eed637cb.gif)
 
 
-## Signup & Login: ##
+## Signup & Login:
 
 You will be able to sign up and log in.
 
 
 
 
-## Create Your Own Listing: ##
+## Create Your Own Listing:
 
 You will be able to create a listing by click on the "Become a Host" button on the navigation bar.
 
 
 
 
-## Update and Delete Your Own Listing: ##
+## Update and Delete Your Own Listing:
 
 You will be able to see an owner action section to edit and delete your own listing. 
 
