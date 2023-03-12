@@ -27,8 +27,7 @@ Redux
 
 You will be able to test the features without sign up by click on the "Demo User" button.
 
-![homePageDemo](https://user-images.githubusercontent.com/47682357/224535305-1de0783c-ff92-4388-9e78-fcbcff521dee.mov)
-
+![homePageDemo](https://user-images.githubusercontent.com/47682357/224535845-c495c75e-37e2-4649-a753-9817eed637cb.gif)
 
 
 
