@@ -20,7 +20,7 @@ Express\
 React\
 Redux
 
-# Features Directions: #
+# Features: #
 
 
 ## Home Page Demo User: ##
