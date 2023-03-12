@@ -5,6 +5,7 @@ nightmode is a web application inspired by Airbnb, that provides an online marke
 
 
 ## Navigate to:
+
 [Feature List](https://github.com/kenny-leong/nightmode/wiki/Feature-List)\
 [Database Schema](https://github.com/kenny-leong/nightmode/wiki/Database-Schema)\
 [Frontend Routes](https://github.com/kenny-leong/nightmode/wiki/Frontend-Routes)\
@@ -12,7 +13,8 @@ nightmode is a web application inspired by Airbnb, that provides an online marke
 [Redux Store State Shape](https://github.com/kennyleong/nightmode/wiki/Redux-State-Shape)
 
 
-**This project is built with:**
+## Technologies Used:
+
 * JavaScript
 * PostgreSQL
 * Sequelize
