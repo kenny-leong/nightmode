@@ -13,12 +13,12 @@ nightmode is a web application inspired by Airbnb, that provides an online marke
 
 
 **This project is built with:**\
-JavaScript\
-PostgreSQL\
-Sequelize\
-Express\
-React\
-Redux
+* JavaScript
+* PostgreSQL
+* Sequelize
+* Express
+* React
+* Redux
 
 # Features: #
 
