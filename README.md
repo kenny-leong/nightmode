@@ -15,7 +15,7 @@ Are you tired of being blinded by the blinding light of traditional vacation ren
 
 ## Technologies Used:
 
-* JavaScript
+* Javascript
 * PostgreSQL
 * Sequelize
 * Express
