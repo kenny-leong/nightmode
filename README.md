@@ -7,9 +7,9 @@ Are you tired of being blinded by the blinding light of traditional vacation ren
 
 ## Navigate to:
 
-[Feature List](https://github.com/kenny-leong/nightmode/wiki/Feature-List)\
-[Database Schema](https://github.com/kenny-leong/nightmode/wiki/Database-Schema)\
-[API Routes](https://github.com/kenny-leong/nightmode/wiki/API-Documentation)\
+* [Feature List](https://github.com/kenny-leong/nightmode/wiki/Feature-List)
+* [Database Schema](https://github.com/kenny-leong/nightmode/wiki/Database-Schema)
+* [API Routes](https://github.com/kenny-leong/nightmode/wiki/API-Documentation)
 
 
 
