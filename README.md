@@ -54,9 +54,12 @@ Are you tired of being blinded by the blinding light of traditional vacation ren
 
 ## Create Your Own Listing:
 
-* You will be able to create a listing by click on the "Create a spot" button to the right of the navigation bar
+* You will be able to create a listing by click on the "Create a Spot" button to the right of the navigation bar
+* You must be logged in to create a listing
+* Dynamic validations implemented so any fields that do not pass validations will have an error message appear above the field and require resubmission
+* Upon successful creation you will be redirected to your new listing
 
-
+![create-listing](https://user-images.githubusercontent.com/47682357/224597055-e0d5183e-135e-463b-a5e3-03594e618f03.gif)
 
 
 ## Update/Delete Your Own Listing(s)
