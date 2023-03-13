@@ -50,6 +50,7 @@ Are you tired of being blinded by the blinding light of traditional vacation ren
 
 ![user-login](https://user-images.githubusercontent.com/47682357/224591975-f8fd9959-1ca8-4095-ab07-c5c16443f3ad.gif)
 
+![output](https://user-images.githubusercontent.com/47682357/224592567-f3e790a8-12b7-4b55-a0b3-de3d46352162.gif)
 
 
 ## Create Your Own Listing:
