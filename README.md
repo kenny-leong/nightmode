@@ -32,9 +32,12 @@ Feel free to test the site features through clicking the "Demo User" button.
 ![homePageDemo](https://user-images.githubusercontent.com/47682357/224535845-c495c75e-37e2-4649-a753-9817eed637cb.gif)
 
 
-## Signup & Login:
+## Sign up a User:
 
-You will be able to sign up and log in.
+You will be able to sign up and automatically be redirected to the logged in page.
+
+![signup-user](https://user-images.githubusercontent.com/47682357/224586952-e47bdfa5-0938-4657-81f7-cab875c67a44.gif)
+
 
 
 
