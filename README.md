@@ -25,7 +25,7 @@ Are you tired of being blinded by the blinding light of traditional vacation ren
 # Features:
 
 
-## Home Page Demo User:
+## Demo User Implementation:
 
 Feel free to test the site features through clicking the "Demo User" button.
 
