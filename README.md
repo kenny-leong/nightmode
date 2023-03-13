@@ -49,7 +49,6 @@ Are you tired of being blinded by the blinding light of traditional vacation ren
 * If there are no matching credentials an error message is displayed
 * Login button is disabled if there are null fields or if the amount of characters entered is not within the acceptable range
 
-![user-login](https://user-images.githubusercontent.com/47682357/224592567-f3e790a8-12b7-4b55-a0b3-de3d46352162.gif)
 ![login-user](https://user-images.githubusercontent.com/47682357/224611672-9bdf65c3-97dd-4498-9bbf-070cca6c5b83.gif)
 
 
