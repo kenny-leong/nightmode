@@ -35,7 +35,9 @@ Are you tired of being blinded by the blinding light of traditional vacation ren
 ## Sign up a User:
 
 * You will be able to sign up and automatically be redirected to the logged in page
-* There are validations for signing up such as username length requirements, valid email address, password length, and the passwords must be matching when entered twice or the signup button will be disabled
+* There are validations for signing up such as username length requirements, valid email address, password length, etc
+* Passwords must be matching when entered twice or the signup button will be disabled
+* Friendly reminders will display and signup will be blocked if fields are not properly filled out
 
 ![signup-user](https://user-images.githubusercontent.com/47682357/224586952-e47bdfa5-0938-4657-81f7-cab875c67a44.gif)
 
