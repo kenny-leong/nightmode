@@ -40,7 +40,8 @@ Are you tired of being blinded by the blinding light of traditional vacation ren
 * Passwords must be matching when entered twice or the signup button will be disabled
 * Friendly reminders will display and signup will be blocked if fields are not properly filled out
 
-![signup-user](https://user-images.githubusercontent.com/47682357/224593212-1e00b67e-1951-4226-86ed-0c269ba09a08.gif)
+![signup-user](https://user-images.githubusercontent.com/47682357/224612510-d5c783c9-0ca5-46e7-b43b-80e0036c31b8.gif)
+
 
 
 
