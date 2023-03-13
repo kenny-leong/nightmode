@@ -29,7 +29,7 @@ Are you tired of being blinded by the blinding light of traditional vacation ren
 
 * Feel free to test the site features through clicking the "Demo User" button which will directly log you in
 
-![homePageDemo](https://user-images.githubusercontent.com/47682357/224535845-c495c75e-37e2-4649-a753-9817eed637cb.gif)
+![demo-user](https://user-images.githubusercontent.com/47682357/224593022-455cea22-ccbc-4056-86fa-3f6a81eb71a0.gif)
 
 
 ## Sign up a User:
