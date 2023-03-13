@@ -72,3 +72,4 @@ Are you tired of being blinded by the blinding light of traditional vacation ren
 * You will be able to see an owner action section to edit and delete your own listings
 * You will not be able to see this section if you are not the owner for this listing
 
+![update-listing](https://user-images.githubusercontent.com/47682357/224613362-1e26dac4-38ab-4545-ba2e-c7af2031ab5d.gif)
