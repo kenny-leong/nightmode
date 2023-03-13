@@ -60,6 +60,7 @@ Are you tired of being blinded by the blinding light of traditional vacation ren
 * Upon successful creation you will be redirected to your new listing
 
 ![create-listing](https://user-images.githubusercontent.com/47682357/224597055-e0d5183e-135e-463b-a5e3-03594e618f03.gif)
+* Below is an example of the dynamic error messages
 ![listing-validators](https://user-images.githubusercontent.com/47682357/224609987-83d3dabd-532e-4c5c-9a21-ef1c2a095427.gif)
 
 
