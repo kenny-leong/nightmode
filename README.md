@@ -28,6 +28,7 @@ Are you tired of being blinded by the blinding light of traditional vacation ren
 ## Demo User Implementation:
 
 * Feel free to test the site features through clicking the "Demo User" button which will directly log you in
+![demo-user](https://user-images.githubusercontent.com/47682357/224611991-61c05dc7-d7df-4a01-b626-5dd0a06d69d3.gif)
 
 ![demo-user](https://user-images.githubusercontent.com/47682357/224593022-455cea22-ccbc-4056-86fa-3f6a81eb71a0.gif)
 
