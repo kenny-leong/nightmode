@@ -34,12 +34,16 @@ Feel free to test the site features through clicking the "Demo User" button.
 
 ## Sign up a User:
 
-You will be able to sign up and automatically be redirected to the logged in page.
+You will be able to sign up and automatically be redirected to the logged in page. There are validations for signing up such as username length requirements, valid email address, password length, and the passwords must be matching when entered twice or the signup button will be disabled.
 
 ![signup-user](https://user-images.githubusercontent.com/47682357/224586952-e47bdfa5-0938-4657-81f7-cab875c67a44.gif)
 
 
+## User Login and Authentication:
 
+You are able to login as long as your credentials are stored within the database (hashed). If there are no matching credentials an error message is displayed.
+
+![user-login](https://user-images.githubusercontent.com/47682357/224587830-6ec10140-8d6b-40a2-acab-ed65166adb81.gif)
 
 
 ## Create Your Own Listing:
