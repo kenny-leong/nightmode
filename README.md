@@ -44,6 +44,7 @@ Are you tired of being blinded by the blinding light of traditional vacation ren
 
 * You are able to login as long as your credentials are stored within the database (hashed)
 * If there are no matching credentials an error message is displayed
+* Login button is disabled if there are null fields or if the amount of characters entered is not within the acceptable range
 
 ![user-login](https://user-images.githubusercontent.com/47682357/224587830-6ec10140-8d6b-40a2-acab-ed65166adb81.gif)
 
