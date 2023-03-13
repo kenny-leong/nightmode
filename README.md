@@ -1,5 +1,5 @@
 # nightmode.
-Are you tired of being blinded by the blinding light of traditional vacation rental websites? Fear not, my dear friend! Nightmode has come to the rescue! Inspired by the one and only Airbnb, Nightmode is your go-to dark knight for finding cozy homestays and exciting tourism activities. It's like having a virtual butler guiding you through the shadows of the best vacation spots. And the best part? No more squinting at your screen or feeling like a vampire in broad daylight! Nightmode's dark mode version will make your eyes feel like they're on vacation too. So sit back, relax, and let Nightmode take you to the dark side (in a good way).
+Are you tired of being blinded by the blinding light of traditional vacation rental websites? Fear not, nightmode has your back! Inspired by the one and only Airbnb, Nightmode is your go-to dark knight for finding cozy homestays and exciting tourism activities. It's like having a virtual butler guiding you through the shadows of the best vacation spots. And the best part? No more squinting at your screen or feeling like a vampire in broad daylight! Nightmode's dark mode version will make your eyes feel like they're on vacation too. So sit back, relax, and let Nightmode take you to the dark side (in a good way).
 
 
 [Click here to view nightmode's Live Site](https://abnb-clone.onrender.com/)
